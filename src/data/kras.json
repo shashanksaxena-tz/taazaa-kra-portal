@@ -1,0 +1,3355 @@
+{
+  "organization": "Taazaa Inc.",
+  "portalTitle": "Taazaa KRA & Role Charter System",
+  "portalSubtitle": "Empowering Employee Growth, Clear Performance Accountability & Unified Role Charters",
+  "lastUpdated": "2026-08-20",
+  "version": "1.0.0",
+  "departments": [
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "tagline": "Software Architecture, Full-Stack Engineering & Tech Leadership",
+      "description": "Building scalable, resilient, high-performance software systems aligned with client business goals and world-class architectural best practices.",
+      "icon": "Code2",
+      "color": "emerald",
+      "badgeColor": "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800",
+      "roles": [
+        {
+          "id": "software-engineer",
+          "title": "Software Engineer",
+          "departmentId": "engineering",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "2-4 Years",
+          "mission": "The core mission of the Software Engineer is to deliver high-quality, well-tested, and maintainable code while collaborating with the team to ensure timely delivery of features and smooth product performance.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "The core mission of the Software Engineer is to deliver high-quality, well-tested, and maintainable code while collaborating with the team to ensure timely delivery of features and smooth product performance.",
+            "Write and review code with a focus on quality, performance, and maintainability. - Apply feedback from peers and mentors; proactively raise risks and limitations early. - Participate actively in grooming, standups, sprint reviews, and retrospectives. - Maintain Jira hygiene (impact areas, test cases, sub-tasks logged). - Contribute to “lunch-and-learn” sessions and knowledge sharing within the team. - Adhere to branching, CI/CD, and other defined engineering processes.",
+            "Core Values (Taazaa Values)"
+          ],
+          "responsibilities": [
+            "Key Competencies of the Role",
+            "Proficiency in programming languages, frameworks, and tools used by the team.",
+            "Agile/Scrum methodology understanding.",
+            "Strong debugging and troubleshooting skills.",
+            "Test-driven development.",
+            "Smart use of AI Productivity tools like Github Copilot",
+            "Clear and structured communication skills. Maintains well in time communication."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Support: Tech Lead, Mentor, QA buddy. - Resources: Coding standards, CI/CD pipeline, templates. - Systems: Jira, Git, Jenkins/CI, SharePoint/Loop."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Application performance & scalability",
+              "metric": "Avg. API response <200ms; Downtime <5 mins/quarter",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Quality of deliveries",
+              "metric": "90% features bug-free (0 critical/blocker defects)",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery timeliness",
+              "metric": "90% features delivered on-time",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Code quality",
+              "metric": "≤1 iteration required for code approval",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Production reliability",
+              "metric": "50% reduction in production bugs/issues per quarter",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Test coverage",
+              "metric": "Unit test coverage increased as per team-defined %",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team collaboration & communication",
+              "metric": "Jira updates daily; adherence to DoR/DoD",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [],
+            "nextRoles": [
+              {
+                "id": "senior-software-engineer-sse",
+                "title": "Senior Software Engineer (SSE)"
+              }
+            ]
+          },
+          "sourceDoc": "Software_Engineer_Roles_Responsibilities.docx"
+        },
+        {
+          "id": "senior-software-engineer-sse",
+          "title": "Senior Software Engineer (SSE)",
+          "departmentId": "engineering",
+          "level": "Senior (L3)",
+          "experienceYears": "4-6 Years",
+          "mission": "To design, implement, and maintain scalable software solutions with strong focus on code quality, mentoring juniors, and driving delivery predictability. The SSE ensures technical soundness of features, reduces production issues, and enhances team velocity through proactive contribution and leadership.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Collaboration: Actively support teammates, enable psychological safety.",
+            "Discipline: Adhere to coding, testing, and delivery standards.",
+            "Agility: Adjust to changes in requirements without delivery impact."
+          ],
+          "responsibilities": [
+            "Communication: Provide clear updates on risks, blockers, and progress.",
+            "Problem Solving: Focus on resolving technical gaps, not assigning blame.",
+            "Advanced coding & debugging skills (multiple languages, frameworks).",
+            "Strong understanding of software design patterns and architecture.",
+            "Effective code review & quality enforcement.",
+            "Agile & Scrum methodology.",
+            "CI/CD pipeline management and automation.",
+            "Mentorship and coaching of junior engineers.",
+            "Effective stakeholder communication.",
+            "Design and implement complex modules and features with a focus on scalability, security, and performance.",
+            "Review and guide code contributions from SEs and peers, ensuring adherence to best practices and standards.",
+            "Proactively identify risks in design and implementation, and propose mitigation strategies before they escalate.",
+            "Lead refinement sessions, clarifying requirements, breaking down epics into stories/sub-tasks, and ensuring accurate estimations.",
+            "Drive technical discussions in grooming, standups, sprint reviews, and retrospectives with a solution-oriented approach.",
+            "Ensure Jira hygiene by validating impact areas, test coverage, and accurate status updates across the team."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Feature Development",
+              "metric": "Delivery of well-designed, tested, and maintainable code.",
+              "target": "• 90%+ quality rate on features delivered. • At least 2 Epics delivered per quarter.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Code Quality & Reviews",
+              "metric": "Set and enforce coding standards; ensure robustness and maintainability.",
+              "target": "• Zero critical issues post-release. • 90% of PRs reviewed within SLA.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Mentoring & Coaching",
+              "metric": "Support Software Engineers through pair-programming, guidance, and feedback.",
+              "target": "• Documented mentoring sessions. • Feedback from 2+ mentees per cycle.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process Adherence",
+              "metric": "Champion agile processes, CI/CD, and retrospective actions.",
+              "target": "• 95%+ sprint commitments met. • Coverage and quality gate compliance > 90%.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Incident Resolution",
+              "metric": "Handle and resolve medium to high-severity production incidents.",
+              "target": "• Failed Deployment Recovery Time (FDRT) should be less than an hour.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Innovation & Improvement",
+              "metric": "Contribute utilities, tools, or improvements to build/deploy processes.",
+              "target": "• At least 1 reusable utility/tool contributed per quarter.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "software-engineer",
+                "title": "Software Engineer"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "lead-software-engineer-lse",
+                "title": "Lead Software Engineer (LSE)"
+              }
+            ]
+          },
+          "sourceDoc": "Senior_Software_Engineer_R&R.docx"
+        },
+        {
+          "id": "lead-software-engineer-lse",
+          "title": "Lead Software Engineer (LSE)",
+          "departmentId": "engineering",
+          "level": "Lead (L4)",
+          "experienceYears": "6-8 Years",
+          "mission": "To lead technical delivery by architecting scalable solutions, ensuring engineering excellence, mentoring senior and junior engineers, and aligning technical execution with business objectives. The LSE is accountable for delivery predictability, quality, and technical innovation, while also driving ownership of modules and ensuring cross-functional collaboration.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Collaboration: Drive psychological safety and alignment across engineering and product teams.",
+            "Discipline: Enforce adherence to processes, coding standards, and reviews.",
+            "Agility: Respond dynamically to product changes without sacrificing quality."
+          ],
+          "responsibilities": [
+            "Communication: Provide transparent, structured updates to leadership and peers.",
+            "Problem Solving: Anticipate risks and resolve technical gaps proactively.",
+            "Advanced system design & software architecture expertise.",
+            "Strong technical leadership and decision-making.",
+            "Proficiency in multiple frameworks, languages, and design patterns.",
+            "Excellent mentoring and coaching ability."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Support: Engineering Manager, Product Owner.",
+              "Resources: Architecture guidelines, reusable libraries, automation scripts.",
+              "Systems: Git, Jira, Jenkins, Cloud platforms (AWS/Azure/GCP)."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Design & Delivery",
+              "metric": "Own design and delivery of complex, cross-team features or services; ensure robustness, maintainability, and performance of critical code paths.",
+              "target": "• 95% of features delivered within planned timelines. • <5% of production issues from owned components.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "System Performance & Reliability",
+              "metric": "Lead achievement of benchmarks for system performance, scalability, and reliability.",
+              "target": "• Platform/service uptime > 99.9%. • Achieve agreed performance benchmarks (latency, throughput, error rates).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Technical Initiatives",
+              "metric": "Lead small-to-medium technical initiatives end-to-end and contribute to platform/system health roadmap.",
+              "target": "• 100% delivery of assigned initiatives within quarter. • Documented improvements to system health metrics (e.g., MTTR reduction by 15%).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Enablement & Tooling",
+              "metric": "Build reusable templates, automation, and tooling that accelerate development across teams.",
+              "target": "• At least 2–3 reusable tools/templates delivered per quarter. • Peer productivity improvement noted in engineering feedback surveys.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "AI Productivity Adoption",
+              "metric": "Drive adoption of AI tools to accelerate development and reduce repetitive tasks.",
+              "target": "• 30%+ usage of AI tools among immediate team. • Reduction in manual/repetitive coding by measurable hours saved.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Coaching & Mentorship",
+              "metric": "Mentor and coach Senior Engineers on architecture, design trade-offs, and best practices.",
+              "target": "• At least 2 coaching/learning sessions per quarter. • Positive feedback from mentees in pulse surveys.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Communication & Documentation",
+              "metric": "Lead design reviews, publish concise documentation, and promote clarity in cross-functional forums.",
+              "target": "• 100% of major features documented. • Active participation in >80% design/architecture reviews.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Cross-Functional Practices",
+              "metric": "Champion infrastructure-as-code standards, best practices, and release readiness reviews.",
+              "target": "• 90% adherence to infra-as-code guidelines. • No critical release delays due to readiness gaps.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Org-Level Contribution",
+              "metric": "Lead or contribute to communities of practice and knowledge sharing across org.",
+              "target": "• Active leadership in at least one community of practice. • Minimum 1 knowledge-sharing session per quarter.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-software-engineer-sse",
+                "title": "Senior Software Engineer (SSE)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "module-lead",
+                "title": "Module Lead"
+              }
+            ]
+          },
+          "sourceDoc": "Lead_Software_Engineer_R&R.docx"
+        },
+        {
+          "id": "module-lead",
+          "title": "Module Lead",
+          "departmentId": "engineering",
+          "level": "Lead (L4)",
+          "experienceYears": "5-7 Years",
+          "mission": "The core mission of the Module Lead is to plan, deliver, and ensure the health of a module/microservice by balancing technical excellence with delivery commitments, while coaching and enabling a squad to perform at their best.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "The core mission of the Module Lead is to plan, deliver, and ensure the health of a module/microservice by balancing technical excellence with delivery commitments, while coaching and enabling a squad to perform at their best.",
+            "Dependencies - Product requirements clarity. - Design & Engineering inputs for readiness.",
+            "Blockers & Mitigation - Resource unavailability → maintain buffer resources, escalate early. - Mid-sprint scope changes → lock backlog 1 day before sprint."
+          ],
+          "responsibilities": [
+            "Enablers - Support: Delivery Head, Technical Architect - Resources: Updated RACI, module guidelines - Systems: JIRA, Confluence, DevLakes",
+            "Milestones - 30 days: Module RAID log created, ownership matrix visible. - 60 days: Milestone slippages < 10%, module risks tracked. - 90 days: Delivery predictability > 90%, stakeholder satisfaction high."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Delivery",
+              "metric": "90% features delivered on time and bug-free",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Code Quality",
+              "metric": "90% features require only 1 iteration for approval",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Incident Management",
+              "metric": "Lead RCA for all module-related critical incidents",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Growth",
+              "metric": "Regular 1:1s and training sessions for squad",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process Adherence",
+              "metric": "Ensure DoD compliance, up-to-date Readme/docs, sprint ceremonies participation",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "lead-software-engineer-lse",
+                "title": "Lead Software Engineer (LSE)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "technical-lead-tech-lead",
+                "title": "Technical Lead (Tech Lead)"
+              }
+            ]
+          },
+          "sourceDoc": "Module_Lead_R&R.docx"
+        },
+        {
+          "id": "technical-lead-tech-lead",
+          "title": "Technical Lead (Tech Lead)",
+          "departmentId": "engineering",
+          "level": "Lead (L4)",
+          "experienceYears": "6-8 Years",
+          "mission": "The core mission of the Technical Lead is to architect and oversee end-to-end delivery of a large product/feature set, ensuring technical robustness, scalability, and alignment with organizational goals.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "The core mission of the Technical Lead is to architect and oversee end-to-end delivery of a large product/feature set, ensuring technical robustness, scalability, and alignment with organizational goals.",
+            "Architect and oversee delivery of products/features.",
+            "Draft and maintain design documents, diagrams, decission points – prior to starting the development."
+          ],
+          "responsibilities": [
+            "Liverage phased delivery based on “Build to Test” (Alpha/Beta versions) so as to obtain early feedbacks. After that move to “Build to Scale”, ensuring Performance Test. - Partner with Technical Architect for high-impact decisions. - Ensure and advocate coding standards and design patterns across teams. - Build/shared frameworks and libraries for productivity. - Present technical vision to product/business stakeholders.",
+            "Document on Technical Specification containing Tech Stack used",
+            "ER Diagrams",
+            "Dependencies - Availability of architecture inputs from product & business. - System-level testing & infrastructure readiness.",
+            "Blockers & Mitigation - Misaligned communication → ensure weekly syncs & RACI clarity. - Lack of risk tracking → mandatory RAID log reviews.",
+            "Enablers - Support: Principal Architect, Delivery Head - Resources: Architecture templates, design libraries - Systems: JIRA, Daylight, DevLakes",
+            "Milestones - 30 days: Architecture review process set up, ADRs initiated. - 60 days: Delivery slippages < 10%, risks closed proactively. - 90 days: Technical predictability > 90%, stakeholder satisfaction high."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Architecture Quality",
+              "metric": "• Documents and Diagrams on design of implemented structure • Documents related to performance benchmark • Documents related to Observability implementation.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery",
+              "metric": "90% features delivered on time 90% features delivered with zero critical bugs and blockers",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Reliability",
+              "metric": "Application downtime < 5 minutes per quarter FDRT in Dora should be less than an hour each quarter",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Org Contribution",
+              "metric": "Sponsor 2 major POCs/innovations annually",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Mentorship",
+              "metric": "Regular coaching sessions with MLs & SSEs",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "module-lead",
+                "title": "Module Lead"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "principal-architect",
+                "title": "Principal Architect"
+              }
+            ]
+          },
+          "sourceDoc": "Technical_Lead_R&R (1).docx"
+        },
+        {
+          "id": "principal-architect",
+          "title": "Principal Architect",
+          "departmentId": "engineering",
+          "level": "Principal / Architect (L5)",
+          "experienceYears": "10-14+ Years",
+          "mission": "Define enterprise-wide architecture vision and ensure strategic alignment of technology to business goals, while enabling innovation and scalability.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Collaboration: Creates psychological safety across teams, resolves misalignments proactively.",
+            "Discipline: Rigorously follows plans, processes, and timelines.",
+            "Agility: Adjusts plans dynamically without losing delivery momentum.",
+            "Communication: Provides clarity upward, downward, and sideways — succinct and timely.",
+            "Problem Solving: Solves for delivery gaps without blame or excuses.",
+            "Enterprise Architecture Leadership",
+            "Innovation & Emerging Tech",
+            "Risk & Governance Frameworks"
+          ],
+          "responsibilities": [
+            "Define enterprise-wide architecture vision and ensure strategic alignment of technology to business goals, while enabling innovation and scalability.",
+            "Lead technical architects and ensure extensible architecture across products.",
+            "Set long-term architecture strategy.",
+            "Drive major transformation initiatives (cloud migration, platform consolidation).",
+            "Represent Taazaa in industry forums and compliance bodies.",
+            "Create strategic roadmaps",
+            "Run enterprise-level audits",
+            "Pilot innovations",
+            "Micro-managing module-level delivery",
+            "Funding allocation: Delays initiatives",
+            "Cross-business buy-in: Delays adoption",
+            "Cloud/tool adoption: Impacts scalability",
+            "Blockers & Mitigation Plan",
+            "Resistance to change - How it shows: Pushback on adoption | Mitigation: Proactive communication, pilot quick wins",
+            "Misaligned priorities - How it shows: Conflicts between departments | Mitigation: Board alignment sessions"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Enterprise architecture vision",
+              "metric": "Roadmaps documented, reviewed with C-suite quarterly",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Innovation",
+              "metric": "2+ pilots/POCs per year with emerging tech",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Governance & Compliance",
+              "metric": "100% audit compliance across systems",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "People leadership",
+              "metric": "Architect training program established, 3+ mentees certified/year",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Business impact",
+              "metric": "P&L improvement through scalable solutions, cost savings initiatives",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "technical-lead-tech-lead",
+                "title": "Technical Lead (Tech Lead)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "principal-engineer",
+                "title": "Principal Engineer"
+              }
+            ]
+          },
+          "sourceDoc": "Principal_Architect_R&R_Revised.docx"
+        },
+        {
+          "id": "principal-engineer",
+          "title": "Principal Engineer",
+          "departmentId": "engineering",
+          "level": "Principal / Architect (L5)",
+          "experienceYears": "10-14+ Years",
+          "mission": "To provide deep technical expertise, thought leadership, and architectural direction across multiple teams. The Principal Engineer ensures scalability, security, and performance of large-scale systems, sets engineering standards, and mentors senior engineers to drive excellence across the organization. They influence business and product strategy through technology insights.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Collaboration – Align with stakeholders, guide teams with empathy.",
+            "Discipline – Enforce engineering excellence and architectural rigor.",
+            "Agility – Adapt architectures to evolving product and business needs.",
+            "Communication – Translate complex technical ideas into business impact.",
+            "Problem Solving – Solve the hardest technical challenges with creativity.",
+            "Expertise in distributed systems, cloud-native architectures, and security.",
+            "Designing and scaling systems for millions of users.",
+            "Performance optimization, DevOps, and CI/CD mastery."
+          ],
+          "responsibilities": [
+            "To provide deep technical expertise, thought leadership, and architectural direction across multiple teams. The Principal Engineer ensures scalability, security, and performance of large-scale systems, sets engineering standards, and mentors senior engineers to drive excellence across the organization. They influence business and product strategy through technology insights."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Support: CTO, Engineering Managers",
+              "Resources: Architecture review boards, reusable libraries, performance monitoring tools",
+              "Systems: Cloud platforms (AWS/Azure/GCP), observability stacks, CI/CD pipelines"
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Architecture Leadership",
+              "metric": "Define and own system architecture for large-scale platforms.",
+              "target": "• Zero critical scalability issues in production. • Reference architectures reused across projects.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Technology Strategy",
+              "metric": "Influence long-term technical roadmap aligned with business goals.",
+              "target": "• 3+ year tech strategy delivered. • Adoption of new technologies that improve efficiency.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Cross-Team Technical Alignment",
+              "metric": "Ensure consistent engineering practices across teams.",
+              "target": "• >90% compliance with coding/testing standards. • <2 escalations due to misaligned practices.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Problem Solving",
+              "metric": "Resolve the most complex technical challenges.",
+              "target": "• 100% RCA documented for P0/P1 incidents. • No recurrence of critical production issues.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Mentorship",
+              "metric": "Coach Leads, Senior Engineers, and Engineers.",
+              "target": "• At least 3 mentees show career progression annually. • Positive 360° mentorship feedback.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Innovation & IP Creation",
+              "metric": "Drive innovation, publish whitepapers, or file patents.",
+              "target": "• At least 1 innovation/IP contribution yearly. • Conference talks, blogs, or thought leadership.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "principal-architect",
+                "title": "Principal Architect"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "technical-architect",
+                "title": "Technical Architect"
+              }
+            ]
+          },
+          "sourceDoc": "Principal_Engineer_R&R.docx"
+        },
+        {
+          "id": "technical-architect",
+          "title": "Technical Architect",
+          "departmentId": "engineering",
+          "level": "Principal / Architect (L5)",
+          "experienceYears": "8-11 Years",
+          "mission": "Ensure scalable, secure, and compliant architecture for products while enabling delivery velocity and reducing technical debt.",
+          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Collaboration: Creates psychological safety across teams, resolves misalignments proactively.",
+            "Discipline: Rigorously follows plans, processes, and timelines.",
+            "Agility: Adjusts plans dynamically without losing delivery momentum.",
+            "Communication: Provides clarity upward, downward, and sideways — succinct and timely.",
+            "Problem Solving: Solves for delivery gaps without blame or excuses.",
+            "Solution Design & Blueprinting (C4/UML)",
+            "Risk & Compliance Management"
+          ],
+          "responsibilities": [
+            "Ensure scalable, secure, and compliant architecture for products while enabling delivery velocity and reducing technical debt.",
+            "Own solution blueprints and architectural patterns.",
+            "Ensure compliance with scalability, performance, and security standards.",
+            "Mentor engineers on architecture governance and checkpoints.",
+            "Drive delivery predictability through proactive risk identification and mitigation.",
+            "Maintain architecture blueprints",
+            "Audit application health",
+            "Run design clinics",
+            "Deep technical coding unless high-priority POCs",
+            "Product requirements clarity: Reduces rework or scope creep",
+            "Design & Engineering inputs: Delays sprint readiness",
+            "Business alignment: Impacts decision-making",
+            "Blockers & Mitigation Plan",
+            "Shifting Priorities - How it shows: Mid-sprint scope changes | Mitigation: Align upfront with PdM; lock backlog 1 day before sprint",
+            "Lack of Documentation - How it shows: Confusion in delivery | Mitigation: Ensure ADRs are mandatory"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Coaching & Training Engineers",
+              "Governance & Standards Enforcement"
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Application performance",
+              "metric": "API response <200ms, <5 min downtime/quarter",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery excellence",
+              "metric": "90% on-time, bug-free delivery",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Architecture governance",
+              "metric": "100% compliance to coding & documentation standards",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team enablement",
+              "metric": "2+ trainings per year, mentoring Tier-2 engineers",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Innovation",
+              "metric": "1 major feature/POC per year",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "principal-engineer",
+                "title": "Principal Engineer"
+              }
+            ],
+            "nextRoles": []
+          },
+          "sourceDoc": "Technical_Architect_R&R_Revised.docx"
+        }
+      ],
+      "frameworks": [
+        {
+          "title": "Taazaa Engineering Competency Matrix & Org Design",
+          "summary": "Standardized career progression across L1 (Associate) to L6 (Principal Architect), evaluating Code Quality, Architecture, Mentorship, and System Resilience.",
+          "source": "Tz_OrgDesign_Engineering.docx"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "Quality Assurance & SDET",
+      "tagline": "Automated Testing, Quality Engineering & Release Reliability",
+      "description": "Ensuring world-class quality standards, automated test pipeline execution, defect prevention, and robust release reliability.",
+      "icon": "ShieldCheck",
+      "color": "blue",
+      "badgeColor": "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800",
+      "roles": [
+        {
+          "id": "associate-sdet",
+          "title": "Associate SDET",
+          "departmentId": "qa",
+          "level": "Associate (L1)",
+          "experienceYears": "0-2 Years",
+          "mission": "- Support test automation and quality assurance activities.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "% of test cases executed vs. planned.",
+            "Defect detection effectiveness.",
+            "On-time regression completion.",
+            "Quality of defect reports."
+          ],
+          "responsibilities": [
+            "Execute test cases, log defects, and validate fixes.",
+            "Contribute to building automation scripts under guidance.",
+            "Write and execute manual/automated test cases.",
+            "Collaborate with developers to reproduce issues.",
+            "Maintain regression test suites.",
+            "Provide detailed defect reports with reproducible steps.",
+            "Collaboration – Pair with developers and QA peers.",
+            "Discipline – Follow QA processes and timelines.",
+            "Agility – Quickly adapt test cases with requirement changes.",
+            "Communication – Share blockers and updates in stand-ups.",
+            "Problem Solving – Identify root causes of recurring bugs.",
+            "Basics of SDLC/STLC.",
+            "Understanding of test design techniques.",
+            "Familiarity with automation frameworks.",
+            "Attention to detail in bug reporting."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [],
+            "nextRoles": [
+              {
+                "id": "quality-assurance-engineer-qa",
+                "title": "Quality Assurance Engineer (QA)"
+              }
+            ]
+          },
+          "sourceDoc": "Associate_SDET_Role_Charter.docx"
+        },
+        {
+          "id": "quality-assurance-engineer-qa",
+          "title": "Quality Assurance Engineer (QA)",
+          "departmentId": "qa",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "2-4 Years",
+          "mission": "The core mission of the QA Engineer is to ensure product quality through structured testing, defect prevention, and continuous feedback throughout the SDLC.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Test Planning & Strategy",
+            "Communication & Collaboration"
+          ],
+          "responsibilities": [
+            "Early involvement in requirement analysis",
+            "Maintaining comprehensive test coverage",
+            "Proactive defect reporting",
+            "Stable Releases and minimum/no production leakages",
+            "Testing without updated requirements",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Defect Detection Efficiency",
+              "metric": "% of defects found before production",
+              "target": "Execute structured functional, regression, and exploratory tests early in the cycle.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Test Coverage",
+              "metric": "% of requirements and acceptance criteria covered by test cases",
+              "target": "Maintain and update a traceability matrix to ensure all requirements are tested.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Release Quality",
+              "metric": "Number of escaped defects post-release",
+              "target": "Conduct full regression cycles, run sanity tests before release, and escalate risks early.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Test Execution Timeliness",
+              "metric": "% of planned test cases executed on schedule",
+              "target": "Prioritize and plan execution to meet sprint/release timelines.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Collaboration & Communication",
+              "metric": "Stakeholder feedback score / # of missed handoffs",
+              "target": "Proactively communicate blockers, progress, and risks during daily standups and syncs.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process Adherence",
+              "metric": "% of adherence to QA process and standards",
+              "target": "Follow defined QA workflows, use test management tools correctly, and log defects consistently.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "associate-sdet",
+                "title": "Associate SDET"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "sdet-i-software-development-engineer-in-test",
+                "title": "SDET I (Software Development Engineer in Test)"
+              }
+            ]
+          },
+          "sourceDoc": "QA-Roles & Responsibilities.docx"
+        },
+        {
+          "id": "sdet-i-software-development-engineer-in-test",
+          "title": "SDET I (Software Development Engineer in Test)",
+          "departmentId": "qa",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "1-3 Years",
+          "mission": "- Independently design, develop, and execute automated tests.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "% automation coverage per sprint.",
+            "Reduction in escaped defects.",
+            "Average time to automate new feature tests.",
+            "Contribution to QA process improvements."
+          ],
+          "responsibilities": [
+            "Develop automation for UI/API tests.",
+            "Maintain CI/CD pipeline integrations for automation suites.",
+            "Provide QA sign-off for releases.",
+            "Mentor ASEs on QA practices.",
+            "Strong knowledge of automation frameworks (Selenium, Appium, etc.).",
+            "API testing expertise.",
+            "Understanding of CI/CD tools.",
+            "Test data management."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "quality-assurance-engineer-qa",
+                "title": "Quality Assurance Engineer (QA)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "sdet-ii-automation-engineer",
+                "title": "SDET II / Automation Engineer"
+              }
+            ]
+          },
+          "sourceDoc": "SDET_I_Role_Charter.docx"
+        },
+        {
+          "id": "sdet-ii-automation-engineer",
+          "title": "SDET II / Automation Engineer",
+          "departmentId": "qa",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "2-4 Years",
+          "mission": "The core mission of the SDET is to design, develop, and maintain robust automation frameworks and tools, enabling faster, reliable, and repeatable testing to ensure high product quality throughout the SDLC.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Test Automation Development",
+            "Programming Skills (Java/Python/JavaScript etc.)",
+            "API & UI Automation Tools (Selenium, RestAssured, Playwright etc.)",
+            "Performance & Load Testing",
+            "Code Review & Quality Practices"
+          ],
+          "responsibilities": [
+            "Build scalable and maintainable automation frameworks",
+            "Automate high-priority regression and smoke tests early",
+            "Integrate automation into CI/CD for continuous feedback",
+            "Automating low-value or unstable test cases first",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Automation Coverage",
+              "metric": "% of regression test cases automated",
+              "target": "Prioritize high-value test cases for automation, keep suite updated",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Framework Stability",
+              "metric": "Number of flaky tests fixed",
+              "target": "Maintain robust, reliable automation scripts",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Pipeline Efficiency",
+              "metric": "Average time for automated suite execution",
+              "target": "Optimize scripts for faster feedback in CI/CD",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Defect Prevention",
+              "metric": "% of defects caught by automation before release",
+              "target": "Implement automation in early stages of development",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Collaboration & Knowledge Sharing",
+              "metric": "# of knowledge sessions or code reviews conducted",
+              "target": "Mentor QA team on automation best practices",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "sdet-i-software-development-engineer-in-test",
+                "title": "SDET I (Software Development Engineer in Test)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "senior-quality-assurance-lead",
+                "title": "Senior Quality Assurance Lead"
+              }
+            ]
+          },
+          "sourceDoc": "SDET-Roles & Responsibilities.docx"
+        },
+        {
+          "id": "senior-quality-assurance-lead",
+          "title": "Senior Quality Assurance Lead",
+          "departmentId": "qa",
+          "level": "Senior (L3)",
+          "experienceYears": "4-7 Years",
+          "mission": "Ensure product quality by executing test cases accurately, learning structured testing techniques, and contributing to early defect detection.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "30 Days: Understand QA process/tools, log defects independently.",
+            "60 Days: Execute regression suite with 95%+ accuracy.",
+            "90 Days: Apply AI tool in sprint, own module-level testing.",
+            "Deliver high-quality test coverage across modules through execution, defect prevention, and structured validation.",
+            "Own module-level QA planning and coverage.",
+            "Execute regression and exploratory testing.",
+            "Identify gaps in acceptance criteria.",
+            "Ensure zero critical bugs escape to production."
+          ],
+          "responsibilities": [
+            "Execute sprint goals with high precision, maintaining transparent status reporting.",
+            "Participate in technical reviews, retrospective discussions, and process improvements.",
+            "Mentor team peers and foster a culture of continuous learning and accountability."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Test Case Execution",
+              "metric": "≥95% accuracy in executing test cases.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Defect Reporting",
+              "metric": "100% defects logged with clear steps.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Learning & Skill Development",
+              "metric": "Demonstrate knowledge of 3 test design techniques.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "AI Adoption",
+              "metric": "Use at least 1 AI-assisted QA tool.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Test Planning",
+              "metric": "100% module test cases mapped.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Bug Leakage",
+              "metric": "< 2% bugs leakage to production.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Regression Coverage",
+              "metric": "≥95% coverage maintained.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Collaboration",
+              "metric": "100% participation in sprint ceremonies.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Mentorship",
+              "metric": "At least 2 mentees guided.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "System Testing",
+              "metric": "100% integration test coverage.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Defect Prevention",
+              "metric": ">30% reduction in repeated bugs.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Analytics Reporting",
+              "metric": "Monthly defect trends shared.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Strategy",
+              "metric": "QA plan created for every sprint.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Defect Leakage",
+              "metric": "<1% to production.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Coaching",
+              "metric": "3 knowledge-sharing sessions per quarter.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Reporting",
+              "metric": "100% RAID risks logged in sprint reports.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "QA Frameworks",
+              "metric": "Enterprise QA playbook published.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Efficiency",
+              "metric": "20% cycle-time reduction via automation/AI.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Business Alignment",
+              "metric": "QA metrics mapped to business OKRs.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership",
+              "metric": "Represent QA in enterprise-level reviews.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "sdet-ii-automation-engineer",
+                "title": "SDET II / Automation Engineer"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "senior-sdet",
+                "title": "Senior SDET"
+              }
+            ]
+          },
+          "sourceDoc": "QA_Role_Charters.docx"
+        },
+        {
+          "id": "senior-sdet",
+          "title": "Senior SDET",
+          "departmentId": "qa",
+          "level": "Senior (L3)",
+          "experienceYears": "4-6 Years",
+          "mission": "- Lead automation initiatives across modules.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Increase regression automation coverage.",
+            "Time saved by reusable QA libraries.",
+            "% reduction in performance issues post-release.",
+            "Team training sessions conducted."
+          ],
+          "responsibilities": [
+            "Create reusable automation libraries.",
+            "Drive performance and load testing.",
+            "Conduct code reviews of test scripts.",
+            "Train junior SDETs on advanced QA techniques.",
+            "Expertise in multiple automation frameworks.",
+            "Strong debugging skills.",
+            "Performance and security testing basics.",
+            "Test strategy and planning."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-quality-assurance-lead",
+                "title": "Senior Quality Assurance Lead"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "principal-sdet-qa-architect",
+                "title": "Principal SDET / QA Architect"
+              }
+            ]
+          },
+          "sourceDoc": "Senior_SDET_Role_Charter.docx"
+        },
+        {
+          "id": "principal-sdet-qa-architect",
+          "title": "Principal SDET / QA Architect",
+          "departmentId": "qa",
+          "level": "Principal / Architect (L5)",
+          "experienceYears": "8-12+ Years",
+          "mission": "- Own QA strategy and automation roadmap organization-wide.",
+          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Organization-wide automation coverage %.",
+            "Escaped defect rate at org level.",
+            "QA productivity improvement YOY.",
+            "Satisfaction scores from Product/Engineering stakeholders."
+          ],
+          "responsibilities": [
+            "Define enterprise-level test automation strategy.",
+            "Collaborate with Engineering leadership for DevOps QA integration."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Enterprise-level test strategy and roadmap.",
+              "Deep expertise in scalability, performance, and resilience testing.",
+              "Change management and stakeholder alignment.",
+              "Coaching/mentoring QA leaders."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-sdet",
+                "title": "Senior SDET"
+              }
+            ],
+            "nextRoles": []
+          },
+          "sourceDoc": "Principal_SDET_Role_Charter.docx"
+        }
+      ],
+      "frameworks": [
+        {
+          "title": "QA & SDET Org Design & Automation Benchmark",
+          "summary": "Defines the division between Functional QA and SDET Automation tracks, establishing test automation thresholds (>85% coverage) and zero-defect deployment standards.",
+          "source": "Tz_OrgDesign_QA&Automation.docx"
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "UI/UX & Product Design",
+      "tagline": "User Research, Product Strategy & Interaction Design",
+      "description": "Crafting intuitive, research-backed, and aesthetically refined digital experiences that elevate product usability and user delight.",
+      "icon": "Palette",
+      "color": "purple",
+      "badgeColor": "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-800",
+      "roles": [
+        {
+          "id": "associate-ux-ui-designer",
+          "title": "Associate UX/UI Designer",
+          "departmentId": "design",
+          "level": "Associate (L1)",
+          "experienceYears": "0-2 Years",
+          "mission": "To support the design team in creating user-centered, visually appealing, and usable digital products while learning and growing in UX research, design, and collaboration practices.",
+          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Wireframing & Prototyping (Figma)",
+            "Visual Design (color theory, typography, responsive layouts)",
+            "Usability & Heuristics Awareness",
+            "Storytelling & Copywriting Basics"
+          ],
+          "responsibilities": [
+            "Collaborate with senior designers to deliver high-quality interfaces.",
+            "Develop foundational skills in storytelling, copywriting, and design systems.",
+            "Most Important: Participate in workshops, deliver wireframes/mockups, assist in user research.",
+            "Advanced analytics, independent strategy (not expected early).",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Advanced analytics, independent strategy (not expected early).",
+            "Access to Figma libraries, design reviews, documented processes.",
+            "Senior Design Team members mentoring",
+            "DesignSystems, Research Document Templates",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "Learn design tools, understand ongoing projects, participate in workshops.",
+            "Assist in creating wireframes, contribute to small parts of user flows.",
+            "Deliver small independent tasks (UI screens, minor user flows) with feedback.",
+            "UX research basics, wireframing, prototyping, visual design, usability awareness.",
+            "Independent product strategy, leading workshops, advanced analytics."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [],
+            "nextRoles": [
+              {
+                "id": "ux-ui-designer",
+                "title": "UX/UI Designer"
+              }
+            ]
+          },
+          "sourceDoc": "Associate Designer (0-2).docx"
+        },
+        {
+          "id": "ux-ui-designer",
+          "title": "UX/UI Designer",
+          "departmentId": "design",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "2-4 Years",
+          "mission": "To independently contribute to the design process by applying UX research, analysis, and design skills to create intuitive, user-centered solutions while supporting senior designers in workshops, usability testing, and stakeholder communications.",
+          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "UX Research facilitation and documentation",
+            "Workshop participation and planning",
+            "Usability testing execution",
+            "Task flow and journey mapping",
+            "Information architecture basics",
+            "Prototyping with annotations in Figma",
+            "Visual design principles and design system creation"
+          ],
+          "responsibilities": [
+            "Apply UX research methods to evaluate user needs and document findings.",
+            "Contribute to planning and executing design workshops and usability tests.",
+            "Translate insights into workflows, journey maps, prototypes, and polished UI.",
+            "Strengthen design delivery with copywriting, storytelling, and presentation skills.",
+            "Dependencies: Senior designers, product managers, stakeholder feedback.",
+            "Blockers: Lack of user access, unclear project requirements.",
+            "Enablers: Figma, design systems, research repositories, mentorship.",
+            "Milestones What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "30 Days: Review current design system and research processes, participate in usability tests.",
+            "60 Days: Independently create annotated prototypes and user flows.",
+            "90 Days: Facilitate parts of a workshop or usability test, present outcomes to stakeholders.",
+            "UX research, usability testing, workflows, journey mapping, prototypes, visual design, microcopy, presentations.",
+            "Independent business strategy, leading large-scale stakeholder management, advanced analytics.",
+            "Research Links Used to Build Proposal"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Understanding",
+              "target": "2–3 Yrs: Understanding of UX research methods; actively assist senior members in executing research. 3–4 Yrs: Facilitate user/stakeholder input, document and share outcomes of user research. Workshops: From active participation to planning and co-leading workshops. Usability: Assist in formative usability tests (2–3 yrs) → Run concept/workflow tests (3–4 yrs).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Analysis",
+              "target": "Task Analysis & Workflows: Identify user tasks, flows, and system touchpoints (2–3 yrs) → Identify process improvements and workflow bottlenecks (3–4 yrs). Experience Mapping: Understand importance of mapping (2–3 yrs) → Create journey maps (3–4 yrs). Use Cases & Scenarios: Contribute notes and mappings with guidance (3–4 yrs). Information Architecture: Learn basics of IA (3–4 yrs).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Design",
+              "target": "Interaction Design: Move from intermediate prototyping (2–3 yrs) → Fully annotated, use-case-covered prototypes (3–4 yrs). Visual Design: From applying brand guidelines (2–3 yrs) → Using design principles (contrast, grids, responsiveness) to produce intuitive, appealing designs and create design systems (3–4 yrs). Writing: Ability to craft microcopy that enhances UI (both 2–3 and 3–4 yrs). Storytelling: From basic storytelling (2–3 yrs) → Presenting designs effectively in show & tells and to stakeholders (3–4 yrs).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "associate-ux-ui-designer",
+                "title": "Associate UX/UI Designer"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "senior-ux-ui-designer",
+                "title": "Senior UX/UI Designer"
+              }
+            ]
+          },
+          "sourceDoc": "UX UI Designer (2-4).docx"
+        },
+        {
+          "id": "senior-ux-ui-designer",
+          "title": "Senior UX/UI Designer",
+          "departmentId": "design",
+          "level": "Senior (L3)",
+          "experienceYears": "4-6 Years",
+          "mission": "To lead and deliver high-quality, user-centered digital experiences by applying advanced UX research, design strategy, and visual execution skills, while mentoring junior designers and collaborating with stakeholders to align design outcomes with business goals.",
+          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Advanced UX research & usability testing",
+            "Workshop planning & facilitation",
+            "Task flow and journey mapping",
+            "Prototyping with annotations in Figma",
+            "Design system creation and governance",
+            "Accessibility & interaction design patterns",
+            "Storytelling and stakeholder communication"
+          ],
+          "responsibilities": [
+            "Apply and evolve research methods to evaluate user needs and share insights.",
+            "Plan and facilitate workshops and usability tests independently.",
+            "Translate research and workflows into journey maps, prototypes, and polished UI aligned with design systems.",
+            "Mentor junior designers and contribute to design knowledge-sharing across the organization.",
+            "Dependencies: Product managers, dev teams, stakeholder input.",
+            "Blockers: Lack of user access, unclear business goals.",
+            "Enablers: Strong design systems, research access, clear product vision.",
+            "Milestones What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "30 Days: Audit current projects and design systems, begin leading usability testing.",
+            "60 Days: Plan and run a workshop, create detailed prototypes with annotations.",
+            "90 Days: Deliver a full design cycle (research → flows → prototypes → UI) and present outcomes to stakeholders.",
+            "UX research, usability testing, IA, annotated prototyping, hi-fi visual design, coaching, stakeholder communication.",
+            "Independent business/strategic ownership.",
+            "Research Links Used to Build Proposal"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Understanding",
+              "target": "4–5 Yrs: Apply standard methods in support of research initiatives, involve wider teams. 5–6 Yrs: Engage with users/customers, collect and analyze behavior/need/opinion data. Workshops: From setting agendas (4–5 yrs) → Planning and running external/internal sessions (5–6 yrs). Usability: From running preference/five-second/design surveys → Proficient in formative usability tests and heuristics. Analytics: Develop general awareness by year 6.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Analysis",
+              "target": "Task Analysis & Workflows: Create and present flow diagrams to stakeholders and product teams. Experience Mapping: Deep dive into personas and user journeys based on research findings. Use Cases & Scenarios: From designing UX solutions for mapped/unmapped stories → Creating and presenting full scenarios/notes to stakeholders. Information Architecture: Conduct card-sorting studies, present IA structures.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Design",
+              "target": "Interaction Design: Ensure accessibility, adopt evolving interaction patterns → Understand tech constraints, work with developers on implementation feasibility. Visual Design: From setting design standards, mood boards, hi-fi prototypes, design systems (4–5 yrs) → Contribute to design strategy, effort estimation, and deliver high-quality designs in sync with sprints (5–6 yrs). Writing: Craft app language, tonality, and microcopy aligned with user personas to aid decision-making. Storytelling: Communicate effectively in design discussions and beyond, internally and with partners.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Influence",
+              "target": "Coaching: From buddy-level support for juniors → Creating a safe space for juniors to share challenges and learn. Stakeholder Management: From following planned initiatives → Effective communication and expectation management. Thought Leadership: From feedback in show & tells → Knowledge sharing (principles, patterns, methodologies). Business & Strategy: Active contribution to innovation practices in partnership with senior design members.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "ux-ui-designer",
+                "title": "UX/UI Designer"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "lead-ux-ui-designer",
+                "title": "Lead UX/UI Designer"
+              }
+            ]
+          },
+          "sourceDoc": "Sr UX UI Designer (4-6).docx"
+        },
+        {
+          "id": "lead-ux-ui-designer",
+          "title": "Lead UX/UI Designer",
+          "departmentId": "design",
+          "level": "Lead (L4)",
+          "experienceYears": "6-8 Years",
+          "mission": "To lead design strategy, drive user-centered innovation, and ensure the delivery of exceptional user experiences by connecting research insights with design execution, mentoring team members, and aligning stakeholders across business, design, and technology.",
+          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Advanced UX research synthesis & reporting",
+            "Workshop facilitation and synthesis",
+            "Usability testing strategy and execution",
+            "Experience maps & IA design",
+            "Interaction & visual design strategy",
+            "Microcopy, UX writing, and storytelling",
+            "Coaching and career development for team members"
+          ],
+          "responsibilities": [
+            "Translate user research into actionable insights, reports, and design strategies.",
+            "Plan, facilitate, and synthesize workshops to drive collaboration and decision-making.",
+            "Define usability test strategies, analyze results, and guide product improvements.",
+            "Lead design reviews, establish design standards, and ensure accessibility and inclusion.",
+            "Mentor designers, manage stakeholder expectations, and contribute to the design community."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Blockers: Lack of clear product vision, limited user access.",
+              "Enablers: Research repositories, analytics tools, mature design system, leadership buy-in.",
+              "30 Days: Audit design systems, review ongoing projects, start leading usability strategies.",
+              "60 Days: Facilitate workshops, synthesize outputs into actionable priorities.",
+              "90 Days: Deliver end-to-end design cycle with research synthesis, flows, prototypes, and stakeholder presentations."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Understanding",
+              "target": "6–7 Yrs: Support synthesis of research findings, create insights, reports, and presentations. 7–8 Yrs: Determine approaches for generative research, contribute to organizational standards for user research. Workshops: From recommending and planning → Pivoting and facilitating diverse workshops (design thinking, story mapping, scenario mapping). Usability: Define usability test strategy (6–7 yrs) → Enable stakeholders to comprehend outcomes and re-prioritize strategy (7–8 yrs). Analytics: Develop understanding of analytics tools to inform design choices.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Analysis",
+              "target": "Task Flows: Pair research findings with use cases to build optimized flows. Experience Mapping: Articulate needs, problems, touchpoints, and emotions (6–7 yrs) → Define full customer interaction journeys (7–8 yrs). Use Cases & Scenarios: Foresee persona experiences and map workflows/stories into diagrams and notes. Information Architecture: Apply UX writing to structure IA (6–7 yrs) → Construct IA tightly tied to research and journeys (7–8 yrs).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Design",
+              "target": "Interaction Design: Keen exploration of evolving patterns (6–7 yrs) → Strong grasp of frameworks, accessibility, inclusion, and implementation with developers (7–8 yrs). Visual Design: From design strategy and hi-fi outputs → Leading reviews, setting standards, proposing modern design solutions with deep awareness of UI patterns and themes. Writing: Craft compelling microcopy (6–7 yrs) → Publish articles/blogs on design topics (7–8 yrs). Storytelling: Use storytelling to connect vision with practical execution across both years.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Influence",
+              "target": "Coaching: Track junior designers’ career progress (6–7 yrs) → Actively coach and set career goals (7–8 yrs). Stakeholder Management: From presenting results effectively → Planning design initiatives, negotiating deliverables, and managing expectations. Thought Leadership: Share feedback and structured learnings (6–7 yrs) → Engage in visible design communities, contributing and learning (7–8 yrs). Business & Strategy: Work on design methods aligned with strategy (6–7 yrs) → Run projects closely aligned with defined business timelines (7–8 yrs).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-ux-ui-designer",
+                "title": "Senior UX/UI Designer"
+              }
+            ],
+            "nextRoles": []
+          },
+          "sourceDoc": "Lead UX UI Designer (6-8).docx"
+        }
+      ],
+      "frameworks": [
+        {
+          "title": "Design OKRs & Metrics Measurement Guide",
+          "summary": "Tracks Design System Adoption, Usability Test Success Rate (SUS > 80), Hand-off Efficiency, and Stakeholder CSAT.",
+          "source": "Design_Roles_OKRs_with_Targets.docx"
+        }
+      ]
+    },
+    {
+      "id": "product",
+      "name": "Product Management",
+      "tagline": "Product Discovery, Roadmap Strategy & Business Analysis",
+      "description": "Driving product vision, customer empathy, data-backed roadmap execution, and measurable business outcomes.",
+      "icon": "Layers",
+      "color": "amber",
+      "badgeColor": "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800",
+      "roles": [
+        {
+          "id": "business-analyst-ba",
+          "title": "Business Analyst (BA)",
+          "departmentId": "product",
+          "level": "Mid-Level (L2)",
+          "experienceYears": "2-4 Years",
+          "mission": "The core mission of Business Analyst is to (give mission).",
+          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Requirements Elicitation & Documentation",
+            "Stakeholder Collaboration",
+            "Process Mapping & Optimization",
+            "Problem-Solving Skills",
+            "Communication & Facilitation"
+          ],
+          "responsibilities": [
+            "Deep User & Stakeholder Discovery",
+            "Over-Documentation Without Purpose",
+            "Sole Reliance on Stakeholder Requests",
+            "Prioritizing Speed Over Clarity",
+            "Stakeholder Availability - Delays in requirement validation, UAT, or sign-offs.",
+            "Access to Users/Customers - Inability to validate pain points or user journeys.",
+            "Technical Clarity from Developers - Ambiguity in feasibility, APIs, or system limitations.",
+            "Data Availability - Inability to justify requirements or process changes.",
+            "Timely Design Inputs - Incomplete user stories due to missing UI/UX specs.",
+            "Leadership Prioritization - Shifting requirements due to unclear business priorities.",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90-day plan? Early indicators of success/failure?"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "User Journey Maps: Basic versions showing key user actions."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Requirement Clarity & Accuracy",
+              "metric": "# of UAT queries from stakeholders (Count)",
+              "target": "Track via UAT logs (e.g., JIRA tickets, spreadsheets).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Effective Collaboration with Teams",
+              "metric": "# of dev flags during sprint (Count)",
+              "target": "Count flags raised during sprint development.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Requirement Defect Leakage Rate",
+              "metric": "Requirement Defect Leakage Rate (%)",
+              "target": "Track defects JIRA; tag root cause (Target <10%.)",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Agile Process Efficiency",
+              "metric": "Sprint Readiness Rate (%)",
+              "target": "% of user stories meeting \"Definition of Ready\" before sprint start.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [],
+            "nextRoles": [
+              {
+                "id": "senior-business-analyst-sr-ba",
+                "title": "Senior Business Analyst (Sr. BA)"
+              }
+            ]
+          },
+          "sourceDoc": "Business Analyst.docx"
+        },
+        {
+          "id": "senior-business-analyst-sr-ba",
+          "title": "Senior Business Analyst (Sr. BA)",
+          "departmentId": "product",
+          "level": "Senior (L3)",
+          "experienceYears": "4-6 Years",
+          "mission": "The core mission of Senior Business Analyst is to (give mission).",
+          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Stakeholder Collaboration",
+            "Data-Driven Decisions"
+          ],
+          "responsibilities": [
+            "Strategic Backlog Prioritization & Alignment",
+            "Acting as a \"Middleman\"",
+            "Micromanaging Junior BAs",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "Research Links Used to Build Proposal"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Detailed Personas: Based on user interviews and analytics, with clear pain points and motivations.",
+              "Comprehensive Journey Maps: Including touchpoints, emotions, and friction areas.",
+              "Prioritized Backlog: Clearly documented and updated using RICE / ICE."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Strategic Alignment",
+              "metric": "% of prioritized backlog items linked to Business Goals.",
+              "target": "How many tickets in the backlog are linked to business goals?",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Agile Readiness",
+              "metric": "Number of upcoming sprints with validated requirements. Signed-off sprints.",
+              "target": "Total number of signed-off sprints at the time of starting the current sprint.",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Value Realization",
+              "metric": "Post-release improvement in key metrics.",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Did the feature release impact the required metrics as per the expectation?",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Reliability",
+              "metric": "Roadmap milestone adherence rate",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "% of roadmap milestones delivered on time and within scope.",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "business-analyst-ba",
+                "title": "Business Analyst (BA)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "senior-product-manager-sr-pm",
+                "title": "Senior Product Manager (Sr. PM)"
+              }
+            ]
+          },
+          "sourceDoc": "Senior Business Analyst.docx"
+        },
+        {
+          "id": "senior-product-manager-sr-pm",
+          "title": "Senior Product Manager (Sr. PM)",
+          "departmentId": "product",
+          "level": "Senior (L3)",
+          "experienceYears": "6-9 Years",
+          "mission": "The core mission of Senior Product Manager is to (give mission).",
+          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Strategic & Business Acumen",
+            "Data-Driven Decision-Making",
+            "Leadership & Influence",
+            "Execution & Operational Excellence",
+            "Communication & Storytelling"
+          ],
+          "responsibilities": [
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "Research Links Used to Build Proposal"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Stakeholder Alignment",
+              "metric": "Stakeholder Confidence Index",
+              "target": "Average survey score (1-5) from stakeholders (clients, Project Managers, executives).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Strategic Execution",
+              "metric": "Business Goal Attainment Rate",
+              "target": "% of OKRs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Market Impact",
+              "metric": "Product Adoption/Impact",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Leadership",
+              "metric": "Team Development",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Operational Excellence",
+              "metric": "Roadmap Execution Efficiency",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-business-analyst-sr-ba",
+                "title": "Senior Business Analyst (Sr. BA)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "product-manager-pm",
+                "title": "Product Manager (PM)"
+              }
+            ]
+          },
+          "sourceDoc": "Senior Product Manager.docx"
+        },
+        {
+          "id": "product-manager-pm",
+          "title": "Product Manager (PM)",
+          "departmentId": "product",
+          "level": "Management (L4-L5)",
+          "experienceYears": "4-7 Years",
+          "mission": "Drive strategic product initiatives that align with business goals, solve real user problems, and maximize market impact",
+          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of Job",
+            "Strategic Vision & Roadmapping",
+            "Customer-Centric Discovery",
+            "Stakeholder Influence & Collaboration",
+            "Data-Driven Decision Making",
+            "Execution & Delivery Excellence"
+          ],
+          "responsibilities": [
+            "Product Vision & Roadmap",
+            "Define and communicate a compelling product vision and long-term roadmap.",
+            "Align roadmap with business goals, market trends, and user needs.",
+            "Present goals and milestones in quarterly planning sessions.",
+            "Stakeholder Prioritization & Conflict Resolution",
+            "Balance input from clients, users, engineering, marketing, and leadership.",
+            "Define and prioritize product backlog using frameworks such as RICE, ICE, MoSCoW, and Cost vs. Impact.",
+            "Resolve conflicts and trade-offs with a data-driven approach.",
+            "Customer & Market Champion",
+            "Conduct user research, interviews, and competitive analysis.",
+            "Leverage internal and external usage data to prioritize features and improvements.",
+            "Mentorship & Team Growth",
+            "Blockers. What blockers, resistance, or friction are anticipated? How will they show up? What is the plan to eliminate or mitigate?",
+            "Milestones. What is the 30-60-90 day plan? Early indicators of success/failure?",
+            "Research Links Used to Build Proposal"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Stakeholder Alignment",
+              "metric": "Stakeholder Confidence Index",
+              "target": "Average survey score (1-5) from stakeholders (clients, Project Managers, executives).",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Strategic Execution",
+              "metric": "Business Goal Attainment Rate",
+              "target": "% of OKRs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Market Impact",
+              "metric": "Product Adoption/Impact",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Quantitative metrics like: Feature adoption rate Retention/engagement Revenue growth attributed to launches",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Leadership",
+              "metric": "Team Development",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Number of BAs/team members promoted or taking ownership of key initiatives 360 feedback on PM’s mentorship",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Operational Excellence",
+              "metric": "Roadmap Execution Efficiency",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "% of roadmap deliverables completed.",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-product-manager-sr-pm",
+                "title": "Senior Product Manager (Sr. PM)"
+              }
+            ],
+            "nextRoles": []
+          },
+          "sourceDoc": "Product Manager.docx"
+        }
+      ],
+      "frameworks": [
+        {
+          "title": "Product & Business Analysis OKR Framework",
+          "summary": "Measures Requirements Clarity, Sprint Acceptance Rate (>95%), Feature Adoption, and Stakeholder Alignment Index.",
+          "source": "Product Team OKRs -Draft 2.docx"
+        }
+      ]
+    },
+    {
+      "id": "program-management",
+      "name": "Program & Delivery Management",
+      "tagline": "Agile Delivery, Account Health, Client Governance & PMO",
+      "description": "Overseeing end-to-end program predictability, financial governance, margin health, risk mitigation, and strategic client partnerships.",
+      "icon": "Kanban",
+      "color": "rose",
+      "badgeColor": "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800",
+      "roles": [
+        {
+          "id": "senior-technical-project-manager-sr-tpm",
+          "title": "Senior Technical Project Manager (Sr. TPM)",
+          "departmentId": "program-management",
+          "level": "Senior (L3)",
+          "experienceYears": "6-9 Years",
+          "mission": "Drive high-complexity, multi-stream technical programs with strong financial discipline, proactive risk foresight, and architectural alignment, ensuring predictable delivery and sustained client confidence",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Own Portfolio P&L: Track gross margin (GM%), enforce scope controls, ensure >95% billing realization. Owns multiple concurrent technical projects or multi-pod delivery streams.",
+            "Drives architecture alignment with Tech Leads and Engineering core.",
+            "Drive Hiring & Backfill: Raise backfill demands early, ensure induction SLA <30 days, plan bench."
+          ],
+          "responsibilities": [
+            "Manage Attrition & Engagement: Monitor engagement, own retention actions, control attrition <10%.",
+            "Delivery & Execution: Maintain plans, RAID, ceremonies; achieve >90% on-time delivery.",
+            "Cross-Team Coordination: Own handoffs across design, engineering, QA, business with SLAs.",
+            "Stakeholder Management: Publish weekly dashboards (P&L, risks, delivery health).",
+            "AI-Enabled Governance: Automate status summaries, risk scanning, billing variance",
+            "Approves scope trade-offs within approved financial thresholds.",
+            "Leads client technical governance discussions independently.",
+            "Anticipates systemic risks instead of tracking project-level risks only.",
+            "Mentors TPMs and improves estimation maturity across pods.",
+            "Drives recovery plans for at-risk programs before escalation to Delivery Manager.",
+            "Mapping dependencies and risks before each sprint.",
+            "Keeping the RAID log up to date and actionable.",
+            "Proactive stakeholder updates and risk escalations.",
+            "Ensure monthly P&L reviews with Finance & Delivery Head.",
+            "Track gross margin variance vs. plan at project and portfolio level."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Financial Health",
+              "metric": "Portfolio Profitability (GM%)",
+              "target": "TPM owns P&L, ensures >40% GM",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Revenue Assurance",
+              "metric": "Billing Realization %",
+              "target": "TPM enforces >95% billing hygiene",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Health",
+              "metric": "Attrition Rate",
+              "target": "TPM accountable for <10% attrition",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Fulfilment Speed",
+              "metric": "Induction/backfill turnaround",
+              "target": "TPM accountable for <30 days SLA",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery Predictability",
+              "metric": "On-time delivery %",
+              "target": "TPM ensures >90% commitments met",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "People Development",
+              "metric": "Appraisal effectiveness",
+              "target": "TPM ensures ≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership",
+              "metric": "360° Feedback",
+              "target": "TPM sustains ≥4/5 score",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Portfolio Profitability (GM%)",
+              "metric": "30%",
+              "target": ">40%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "15%",
+              "target": ">95%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Attrition Rate",
+              "metric": "15%",
+              "target": "<10%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Backfill Turnaround",
+              "metric": "10%",
+              "target": "<30 days",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Appraisal Effectiveness",
+              "metric": "10%",
+              "target": "≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Delivery",
+              "metric": "10%",
+              "target": ">90%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership Score (360°)",
+              "metric": "10%",
+              "target": "≥4/5",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Program Margin Protection (GM%)",
+              "metric": "35%",
+              "target": "40%",
+              "sourceData": "38%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "20%",
+              "target": "95%",
+              "sourceData": "96%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery Predictability (Multi-Stream)",
+              "metric": "20%",
+              "target": "92%",
+              "sourceData": "88%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Risk Containment (Escalation Leakage)",
+              "metric": "15%",
+              "target": "≤2 Major Escalations",
+              "sourceData": "1",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Stability & Capability Uplift",
+              "metric": "10%",
+              "target": "90%",
+              "sourceData": "100%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "TOTAL",
+              "metric": "100%",
+              "target": "-",
+              "sourceData": "Performance Factor:",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [],
+            "nextRoles": [
+              {
+                "id": "delivery-manager-dm",
+                "title": "Delivery Manager (DM)"
+              }
+            ]
+          },
+          "sourceDoc": "Senior Technical Project Manager.docx"
+        },
+        {
+          "id": "delivery-manager-dm",
+          "title": "Delivery Manager (DM)",
+          "departmentId": "program-management",
+          "level": "Management (L4-L5)",
+          "experienceYears": "8-12 Years",
+          "mission": "Own end-to-end delivery outcomes for assigned client accounts or programs, ensuring predictable delivery, healthy margins, strong client relationships, and high-performing teams.",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Empathy: Balances client pressure with team sustainability; manages trade-offs with emotional intelligence.",
+            "Professional Maturity: Handles difficult client conversations, escalations, and negotiations calmly and credibly.",
+            "Collaboration: Works seamlessly across Sales, PMs, Engineering, Finance, and HR.",
+            "Delivery predictability across multiple projects/programs",
+            "Account-level financial performance (revenue, margin, billing)",
+            "Client satisfaction and escalation management",
+            "Team performance, engagement, and capacity readiness",
+            "Compliance with delivery governance and quality standards"
+          ],
+          "responsibilities": [
+            "Own end-to-end delivery across assigned projects/programs.",
+            "Ensure adherence to scope, timelines, quality, and SLAs.",
+            "Actively manage risks, dependencies, and trade-offs across teams.",
+            "Own project/program budgets, revenue realization, and margins.",
+            "Track billing milestones, change requests, and commercial closures.",
+            "Optimize utilization and cost efficiency without compromising delivery.",
+            "Client & Stakeholder Ownership",
+            "Own client confidence and satisfaction for assigned accounts.",
+            "Act as primary escalation point for delivery issues.",
+            "Drive regular governance reviews, steering committees, and status forums.",
+            "People & Capacity Ownership",
+            "Lead and develop Project Managers, Tech Leads, and delivery teams.",
+            "Own hiring, onboarding, and ramp-up readiness in partnership with ER/TA.",
+            "Drive engagement, retention, and performance management.",
+            "Governance & Improvement Ownership"
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Delivery & Execution Discipline: Strong command over Agile/Hybrid delivery, RAID management, and governance cadence.",
+              "Financial Acumen: Manages budgets, margins, billing milestones, and change requests with commercial rigor.",
+              "Problem Solving & System Thinking: Anticipates delivery risks and resolves systemic issues, not just symptoms.",
+              "Stakeholder Management: Maintains executive-level client confidence through clarity and predictability.",
+              "Delivery Manager: No-surprise delivery across accounts — clients, leadership, and teams are never caught off-guard on scope, risk, cost, or timelines."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Sprint Delivery & Quality",
+              "metric": "On-time delivery with zero critical defect leakage in production",
+              "target": ">= 95% on-time completion",
+              "sourceData": "Jira Sprint Velocity & Burndown Charts",
+              "frequency": "Bi-weekly / Monthly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction (CSAT)",
+              "metric": "Internal stakeholder confidence and client satisfaction index",
+              "target": ">= 4.5 / 5.0 rating",
+              "sourceData": "Quarterly CSAT & 360 Review Scores",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process & Competency Growth",
+              "metric": "Continuous skill improvement, tech sharing sessions & mentorship",
+              "target": ">= 2 sessions per quarter",
+              "sourceData": "Engineering Guild & HR ER Records",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "senior-technical-project-manager-sr-tpm",
+                "title": "Senior Technical Project Manager (Sr. TPM)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "program-manager",
+                "title": "Program Manager"
+              }
+            ]
+          },
+          "sourceDoc": "Delivery Manager-30th Jan.docx"
+        },
+        {
+          "id": "program-manager",
+          "title": "Program Manager",
+          "departmentId": "program-management",
+          "level": "Management (L4-L5)",
+          "experienceYears": "6-10 Years",
+          "mission": "A program manager is responsible for managing a group of projects that collectively deliver outcomes with company’s strategic goals.",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Own program outcomes, not individual project execution.",
+            "Actively manage cross-project dependencies, risks, and trade-offs."
+          ],
+          "responsibilities": [
+            "Execute sprint goals with high precision, maintaining transparent status reporting.",
+            "Participate in technical reviews, retrospective discussions, and process improvements.",
+            "Mentor team peers and foster a culture of continuous learning and accountability."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Strategic Alignment",
+              "metric": "Ensure the program delivers outcomes aligned with business strategy.",
+              "target": "• 95% of program objectives aligned to company OKRs • 95% of projects delivering on intended outcomes",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery & Execution",
+              "metric": "Accountable for successful execution of all program projects.",
+              "target": "• On-time milestone achievement (95%)",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Financial Stewardship",
+              "metric": "Own program budget and resource allocation.",
+              "target": "• Budget variance (10%) • 95% Resource utilization efficiency • 95% of value delivered vs. planned",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Stakeholder Engagement",
+              "metric": "Ensure transparent, consistent communication with executives & teams.",
+              "target": "• >4.5 Stakeholder satisfaction index • 99.5% of escalations resolved within SLA",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "People & Leadership",
+              "metric": "Lead and align cross-functional teams under the program.",
+              "target": "• Employee engagement / satisfaction scores • X% of program staff receiving mentoring/support",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Risk & Dependency Management",
+              "metric": "Anticipate and mitigate risks & interdependencies across projects.",
+              "target": "• 95% of risks mitigated before escalation • Less than 2 Number of critical escalations per quarter •Less than X days Dependency resolution lead time",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Change & Transformation",
+              "metric": "Ensure adoption of new processes, tools, or systems.",
+              "target": "• 95% adoption of new tools/processes•",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Metric",
+              "metric": "Weight",
+              "target": "Target",
+              "sourceData": "Actual",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Program Value Realization (ROI / KPI)",
+              "metric": "35%",
+              "target": "95%",
+              "sourceData": "92%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Budget Adherence (Variance)",
+              "metric": "25%",
+              "target": "10%",
+              "sourceData": "12%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Program Milestones",
+              "metric": "20%",
+              "target": "95%",
+              "sourceData": "90%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Cross-Project Dependency Resolution (Days)",
+              "metric": "10%",
+              "target": "500%",
+              "sourceData": "400%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Stakeholder Satisfaction",
+              "metric": "10%",
+              "target": "450%",
+              "sourceData": "460%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "TOTAL",
+              "metric": "100%",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Project Manager Capability",
+              "metric": "Direct impact on delivery predictability and escalation load",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership Decision Timeliness",
+              "metric": "Delays in resolving cross-program trade-offs",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Resource Availability",
+              "metric": "Capacity conflicts across programs",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Business / Product Clarity",
+              "metric": "Program value erosion or misalignment",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Financial Data Accuracy",
+              "metric": "Incorrect ROI, margin, or investment decisions",
+              "target": "Meet quarterly benchmark",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "delivery-manager-dm",
+                "title": "Delivery Manager (DM)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "project-manager-pm",
+                "title": "Project Manager (PM)"
+              }
+            ]
+          },
+          "sourceDoc": "Prgram Manager_Roles_Responsibilities_Final Draft.docx"
+        },
+        {
+          "id": "project-manager-pm",
+          "title": "Project Manager (PM)",
+          "departmentId": "program-management",
+          "level": "Management (L4-L5)",
+          "experienceYears": "3-6 Years",
+          "mission": "Own end-to-end project delivery with full P&L accountability, while ensuring profitable execution, healthy & engaged teams, controlled attrition, timely hiring/backfills, and predictable client outcomes.",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of the Role",
+            "Project Planning & Road mapping",
+            "RAID & Risk Management"
+          ],
+          "responsibilities": [
+            "This role operates at the OWNER level of the Contributor–Owner–Leader (COL) framework. The role is accountable for end-to-end outcomes, irrespective of who executes individual tasks.",
+            "Own Portfolio P&L: Track gross margin (GM%), enforce scope controls, ensure >95% billing realization.",
+            "Drive Hiring & Backfill: Raise backfill demands early, ensure induction SLA <30 days, plan bench.",
+            "Manage Attrition & Engagement: Monitor engagement, own retention actions, control attrition <10%.",
+            "Delivery & Execution: Maintain plans, RAID, ceremonies; achieve >90% on-time delivery.",
+            "Cross-Team Coordination: Own handoffs across design, engineering, QA, business with SLAs.",
+            "Stakeholder Management: Publish weekly dashboards (P&L, risks, delivery health).",
+            "AI-Enabled Governance: Automate status summaries, risk scanning, billing variance alerts.",
+            "Mapping dependencies and risks before each sprint.",
+            "Keeping the RAID log up to date and actionable.",
+            "Proactive stakeholder updates and risk escalations.",
+            "Ensure monthly P&L reviews with Finance & Delivery Head.",
+            "Track gross margin variance vs. plan at project and portfolio level.",
+            "Align hiring/backfill costs to P&L impact.",
+            "Micro-managing individual task owners."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Financial Health",
+              "metric": "Portfolio Profitability (GM%)",
+              "target": "PM owns P&L, ensures >40% GM",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Revenue Assurance",
+              "metric": "Billing Realization %",
+              "target": "PM enforces >95% billing hygiene",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Health",
+              "metric": "Attrition Rate",
+              "target": "PM accountable for <10% attrition",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Fulfilment Speed",
+              "metric": "Induction/backfill turnaround",
+              "target": "PM accountable for <30 days SLA",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery Predictability",
+              "metric": "On-time delivery %",
+              "target": "PM ensures >90% commitments met",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "People Development",
+              "metric": "Appraisal effectiveness",
+              "target": "PM ensures ≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership",
+              "metric": "360° Feedback",
+              "target": "PM sustains ≥4/5 score",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Portfolio Profitability (GM%)",
+              "metric": "30%",
+              "target": ">40%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "15%",
+              "target": ">95%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Attrition Rate",
+              "metric": "15%",
+              "target": "<10%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Backfill Turnaround",
+              "metric": "10%",
+              "target": "<30 days",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Appraisal Effectiveness",
+              "metric": "10%",
+              "target": "≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Delivery",
+              "metric": "10%",
+              "target": ">90%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership Score (360°)",
+              "metric": "10%",
+              "target": "≥4/5",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "P&L Health (GM%)",
+              "metric": "40%",
+              "target": "38%",
+              "sourceData": "95%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "30%",
+              "target": "95%",
+              "sourceData": "96%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Delivery",
+              "metric": "20%",
+              "target": "90%",
+              "sourceData": "85%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Retention",
+              "metric": "10%",
+              "target": "90%",
+              "sourceData": "100%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "TOTAL",
+              "metric": "100%",
+              "target": "-",
+              "sourceData": "Performance Factor:",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "program-manager",
+                "title": "Program Manager"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "technical-project-manager-tpm",
+                "title": "Technical Project Manager (TPM)"
+              }
+            ]
+          },
+          "sourceDoc": "Project_Manager_Roles_Responsibilities_Final Draft.docx"
+        },
+        {
+          "id": "technical-project-manager-tpm",
+          "title": "Technical Project Manager (TPM)",
+          "departmentId": "program-management",
+          "level": "Management (L4-L5)",
+          "experienceYears": "3-6 Years",
+          "mission": "Own end-to-end project delivery with full P&L accountability, while ensuring profitable execution, healthy & engaged teams, controlled attrition, timely hiring/backfills, and predictable client outcomes.",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Key Competencies of the Role",
+            "Project Planning & Road mapping",
+            "RAID & Risk Management"
+          ],
+          "responsibilities": [
+            "Own Portfolio P&L: Track gross margin (GM%), enforce scope controls, ensure >95% billing realization.",
+            "Drive Hiring & Backfill: Raise backfill demands early, ensure induction SLA <30 days, plan bench.",
+            "Manage Attrition & Engagement: Monitor engagement, own retention actions, control attrition <10%.",
+            "Delivery & Execution: Maintain plans, RAID, ceremonies; achieve >90% on-time delivery.",
+            "Cross-Team Coordination: Own handoffs across design, engineering, QA, business with SLAs.",
+            "Stakeholder Management: Publish weekly dashboards (P&L, risks, delivery health).",
+            "AI-Enabled Governance: Automate status summaries, risk scanning, billing variance alerts.",
+            "Mapping dependencies and risks before each sprint.",
+            "Keeping the RAID log up to date and actionable.",
+            "Proactive stakeholder updates and risk escalations.",
+            "Ensure monthly P&L reviews with Finance & Delivery Head.",
+            "Track gross margin variance vs. plan at project and portfolio level.",
+            "Align hiring/backfill costs to P&L impact.",
+            "Micro-managing individual task owners.",
+            "Owning backlog grooming or story definition."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Owns It (Taazaa Owner Level): Takes full accountability for outcomes and quality.",
+              "Transparent & Humble: Openly shares feedback, communicates blockers early, and stays receptive.",
+              "Collaborative Team Player: Aligns personal goals with team velocity and client success."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Financial Health",
+              "metric": "Portfolio Profitability (GM%)",
+              "target": "TPM owns P&L, ensures >40% GM",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Revenue Assurance",
+              "metric": "Billing Realization %",
+              "target": "TPM enforces >95% billing hygiene",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Health",
+              "metric": "Attrition Rate",
+              "target": "TPM accountable for <10% attrition",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Fulfilment Speed",
+              "metric": "Induction/backfill turnaround",
+              "target": "TPM accountable for <30 days SLA",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery Predictability",
+              "metric": "On-time delivery %",
+              "target": "TPM ensures >90% commitments met",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "People Development",
+              "metric": "Appraisal effectiveness",
+              "target": "TPM ensures ≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership",
+              "metric": "360° Feedback",
+              "target": "TPM sustains ≥4/5 score",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Portfolio Profitability (GM%)",
+              "metric": "30%",
+              "target": ">40%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "15%",
+              "target": ">95%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Attrition Rate",
+              "metric": "15%",
+              "target": "<10%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Backfill Turnaround",
+              "metric": "10%",
+              "target": "<30 days",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Appraisal Effectiveness",
+              "metric": "10%",
+              "target": "≥90% budget utilization",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Delivery",
+              "metric": "10%",
+              "target": ">90%",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Leadership Score (360°)",
+              "metric": "10%",
+              "target": "≥4/5",
+              "sourceData": "Sprint Reports / Client CSAT",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "P&L Health (GM%)",
+              "metric": "40%",
+              "target": "38%",
+              "sourceData": "95%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Billing Realization",
+              "metric": "30%",
+              "target": "95%",
+              "sourceData": "96%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "On-Time Delivery",
+              "metric": "20%",
+              "target": "90%",
+              "sourceData": "85%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Team Retention",
+              "metric": "10%",
+              "target": "90%",
+              "sourceData": "100%",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "TOTAL",
+              "metric": "100%",
+              "target": "-",
+              "sourceData": "Performance Factor:",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "project-manager-pm",
+                "title": "Project Manager (PM)"
+              }
+            ],
+            "nextRoles": [
+              {
+                "id": "director-of-delivery",
+                "title": "Director of Delivery"
+              }
+            ]
+          },
+          "sourceDoc": "Technical Project Manager.docx"
+        },
+        {
+          "id": "director-of-delivery",
+          "title": "Director of Delivery",
+          "departmentId": "program-management",
+          "level": "Executive / Director (L6)",
+          "experienceYears": "12-16+ Years",
+          "mission": "Own Taazaa’s delivery portfolio outcomes by setting direction, building delivery leadership capability, and scaling delivery systems that enable profitable growth and sustained client trust.",
+          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "accountabilities": [
+            "Empathy: Builds trust with clients and leaders during high-stakes escalations and transformations.",
+            "Portfolio-level delivery performance across programs and accounts",
+            "Delivery P&L, utilization, and margin optimization",
+            "Client portfolio health and executive-level relationships",
+            "Capability building of Delivery Managers and delivery leadership",
+            "Delivery strategy, governance, and operating model"
+          ],
+          "responsibilities": [
+            "Portfolio Delivery Ownership",
+            "Own end-to-end delivery outcomes across multiple programs and accounts.",
+            "Ensure consistent delivery standards, predictability, and quality.",
+            "Act as final escalation authority for delivery risks and client issues.",
+            "Financial & Resource Ownership",
+            "Own delivery portfolio P&L, margins, and utilization targets.",
+            "Drive capacity planning aligned to sales pipeline and growth plans.",
+            "Oversee vendor and partner delivery models.",
+            "Client & Sales Partnership Ownership",
+            "Own executive-level client relationships and escalation handling.",
+            "Partner with Sales and Pre-Sales on scoping, SOWs, and estimations.",
+            "Support complex deal shaping and project recovery initiatives.",
+            "Leadership & Capability Building",
+            "Build, mentor, and scale high-performing Delivery Managers.",
+            "Define delivery leadership KPIs and performance standards."
+          ],
+          "competencies": {
+            "behavioral": [
+              "Future Focus: Anticipates delivery, capacity, and client risks 1–2 months ahead; avoids short-term fixes.",
+              "Humility: Listens to ground realities from Delivery Managers and teams before setting direction."
+            ],
+            "technical": [
+              "Proficiency with modern tools, frameworks, and engineering best practices in domain.",
+              "Continuous automated testing, CI/CD pipelines, and secure delivery standards.",
+              "Data-driven decision making and performance optimization."
+            ],
+            "domain": [
+              "Deep understanding of modern Agile / Scrum workflows and release cadences",
+              "Client expectation management, requirements clarity, and metric tracking",
+              "High reliability, proactive escalation paths, and risk mitigation strategies"
+            ]
+          },
+          "metricsAndOkrs": [
+            {
+              "outcomeArea": "Portfolio Health",
+              "metric": "Portfolio Health Index",
+              "target": "• ≥ 90% Green projects• ≤ 8% Amber• ≤ 2% Red",
+              "sourceData": "Green: Schedule ±10%, Margin >40%Amber: Schedule 10–20%, Margin 10–40%Red: Schedule >20% or Margin ≤10% / Negative",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Process Compliance",
+              "metric": "Core Process Compliance",
+              "target": "≥ 90%",
+              "sourceData": "• Approved deviations ≤ 10%• Undocumented deviations = 0",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Delivery Flexibility",
+              "metric": "Deviation Governance",
+              "target": "Controlled & documented",
+              "sourceData": "• No undocumented deviations",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Financial Health",
+              "metric": "Revenue Leakage (Total)",
+              "target": "≤ 2% of delivery revenue",
+              "sourceData": "Critical: >3% portfolio leakage or repeated losses",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "SLA Penalties",
+              "target": "≤ 0.5%",
+              "sourceData": "Escalate if recurring",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Write-offs / Rework",
+              "target": "≤ 1%",
+              "sourceData": "Escalate if trend ↑",
+              "frequency": "Quarterly"
+            },
+            {
+              "outcomeArea": "Execution Metric",
+              "metric": "Unbilled Effort",
+              "target": "≤ 0.5%",
+              "sourceData": "Zero tolerance for chronic leakage",
+              "frequency": "Quarterly"
+            }
+          ],
+          "careerPath": {
+            "previousRoles": [
+              {
+                "id": "technical-project-manager-tpm",
+                "title": "Technical Project Manager (TPM)"
+              }
+            ],
+            "nextRoles": []
+          },
+          "sourceDoc": "DIRECTOR OF DELIVERY-30th Jan.docx"
+        }
+      ],
+      "frameworks": [
+        {
+          "title": "Taazaa Center of Leadership (COL) Delivery Framework",
+          "summary": "Comprehensive delivery governance framework covering Scope, Schedule, Cost, Quality, Team Velocity, and Client CSAT.",
+          "source": "Taazaa_COL_Delivery_Framework.pptx"
+        },
+        {
+          "title": "RACI Matrix: Delivery Manager vs Program Manager",
+          "summary": "Clarifies accountabilities between Portfolio Delivery Management and Execution Program Governance across 15 operational touchpoints.",
+          "source": "RACI Matrix - Delivery Manager vs Program Manager.docx"
+        }
+      ]
+    }
+  ],
+  "raciMatrix": [
+    {
+      "activity": "Project Scope & Charter Signoff",
+      "deliveryManager": "Accountable",
+      "programManager": "Consulted",
+      "techLead": "Informed",
+      "productManager": "Responsible"
+    },
+    {
+      "activity": "Sprint Planning & Backlog Grooming",
+      "deliveryManager": "Informed",
+      "programManager": "Informed",
+      "techLead": "Responsible",
+      "productManager": "Accountable"
+    },
+    {
+      "activity": "Technical Architecture & Code Review",
+      "deliveryManager": "Informed",
+      "programManager": "Informed",
+      "techLead": "Accountable",
+      "productManager": "Informed"
+    },
+    {
+      "activity": "Release Quality & Test Automation",
+      "deliveryManager": "Informed",
+      "programManager": "Informed",
+      "techLead": "Consulted",
+      "productManager": "Informed"
+    },
+    {
+      "activity": "Client CSAT & Account Escalations",
+      "deliveryManager": "Accountable",
+      "programManager": "Responsible",
+      "techLead": "Consulted",
+      "productManager": "Consulted"
+    },
+    {
+      "activity": "Resource Allocation & Billing Margin",
+      "deliveryManager": "Accountable",
+      "programManager": "Responsible",
+      "techLead": "Informed",
+      "productManager": "Informed"
+    }
+  ]
+}
