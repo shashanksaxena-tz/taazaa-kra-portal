@@ -34,8 +34,12 @@ const MainPortalContent: React.FC = () => {
     setActiveTab('admin');
   };
 
+  const selectedDepartment = selectedRole
+    ? portalData.departments.find((d) => d.id === selectedRole.departmentId) || portalData.departments[0]
+    : portalData.departments[0];
+
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#07091E] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar
         onOpenAdminLogin={() => setIsAdminLoginOpen(true)}
         onOpenCompareModal={() => setIsCompareModalOpen(true)}
@@ -63,9 +67,9 @@ const MainPortalContent: React.FC = () => {
       {selectedRole && (
         <RoleDetailModal
           role={selectedRole}
+          department={selectedDepartment}
           onClose={() => setSelectedRole(null)}
-          onSelectRole={handleSelectRole}
-          onEditInAdmin={handleEditInAdmin}
+          onOpenAdminEdit={handleEditInAdmin}
         />
       )}
 
