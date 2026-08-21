@@ -60,7 +60,7 @@ export const DepartmentTabs: React.FC = () => {
   const totalFilteredCount = getFilteredCount('all');
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none select-none">
         
         {/* All Departments Tab */}
@@ -69,23 +69,23 @@ export const DepartmentTabs: React.FC = () => {
           className={`relative flex items-center gap-2.5 px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-[0.96] ${
             activeDepartmentId === 'all'
               ? 'text-white'
-              : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+              : 'bg-white dark:bg-navy-800/90 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
           {activeDepartmentId === 'all' && (
             <motion.div
               layoutId="activeDepartmentPill"
-              className="absolute inset-0 bg-slate-900 dark:bg-orange-600 rounded-2xl shadow-md -z-10"
+              className="absolute inset-0 bg-[#FF5B22] rounded-2xl shadow-md shadow-[#FF5B22]/25 -z-10"
               transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
             />
           )}
           <LayoutGrid className="w-4 h-4" />
-          <span>All Departments</span>
+          <span>All Solution Areas</span>
           <span
             className={`px-2 py-0.5 rounded-full text-[11px] font-black ${
               activeDepartmentId === 'all'
                 ? 'bg-white/20 text-white'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                : 'bg-slate-100 dark:bg-navy-900 text-slate-600 dark:text-slate-300'
             }`}
           >
             {totalFilteredCount}
@@ -93,10 +93,11 @@ export const DepartmentTabs: React.FC = () => {
         </button>
 
         {/* Individual Department Tabs */}
-        {portalData.departments.map((dept) => {
+        {portalData.departments.map((dept, index) => {
           const IconComponent = iconMap[dept.icon] || Layers;
           const isSelected = activeDepartmentId === dept.id;
           const count = getFilteredCount(dept.id);
+          const numStr = `0${index + 1}`;
 
           return (
             <button
@@ -105,23 +106,26 @@ export const DepartmentTabs: React.FC = () => {
               className={`relative flex items-center gap-2.5 px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-[0.96] ${
                 isSelected
                   ? 'text-white'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                  : 'bg-white dark:bg-navy-800/90 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               {isSelected && (
                 <motion.div
                   layoutId="activeDepartmentPill"
-                  className="absolute inset-0 bg-orange-500 rounded-2xl shadow-md shadow-orange-500/25 -z-10"
+                  className="absolute inset-0 bg-[#FF5B22] rounded-2xl shadow-md shadow-[#FF5B22]/25 -z-10"
                   transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
                 />
               )}
+              <span className={`text-[11px] font-mono font-bold ${isSelected ? 'text-white/80' : 'text-slate-400'}`}>
+                {numStr}
+              </span>
               <IconComponent className="w-4 h-4" />
               <span>{dept.name}</span>
               <span
                 className={`px-2 py-0.5 rounded-full text-[11px] font-black ${
                   isSelected
                     ? 'bg-white/20 text-white'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                    : 'bg-slate-100 dark:bg-navy-900 text-slate-600 dark:text-slate-300'
                 }`}
               >
                 {count}

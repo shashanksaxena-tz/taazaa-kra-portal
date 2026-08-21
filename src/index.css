@@ -10,14 +10,22 @@
 
 @layer base {
   body {
-    @apply font-sans selection:bg-orange-500 selection:text-white;
+    @apply font-sans selection:bg-[#FF5B22] selection:text-white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 }
 
-/* Emil Kowalski polish utilities */
+/* Taazaa Accent Bar & Heading Label */
+.heading-label-line {
+  width: 28px;
+  height: 3px;
+  background: linear-gradient(90deg, #FF5B22 0%, #29E8AE 100%);
+  border-radius: 9999px;
+}
+
+/* Tactile physical feedback for buttons and cards */
 .pressable {
   transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background-color 160ms ease-out;
 }
@@ -25,40 +33,26 @@
   transform: scale(0.97) !important;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .hover-lift {
-    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out), border-color 200ms ease;
-  }
-  .hover-lift:hover {
-    transform: translateY(-3px);
-  }
-}
-
-/* Subtle scrollbars */
+/* Smooth scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.3);
+  background: rgba(156, 163, 175, 0.25);
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.6);
+  background: rgba(156, 163, 175, 0.5);
 }
-
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.35);
+  background: rgba(100, 116, 139, 0.3);
 }
-
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.6);
+  background: rgba(148, 163, 184, 0.5);
 }
 
 /* Print Optimization */

@@ -9,35 +9,31 @@ export default {
     extend: {
       colors: {
         taazaa: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316', // Core Taazaa Orange
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+          50: '#fff5f0',
+          100: '#ffe8de',
+          200: '#ffd3bf',
+          300: '#ffb394',
+          400: '#ff8659',
+          500: '#FF5B22', // Official Taazaa Vibrant Coral-Orange
+          600: '#e54510',
+          700: '#bf3308',
+          800: '#992a0a',
+          900: '#7c250c',
+          accent: '#29E8AE', // Taazaa Cyan / Mint Highlight
         },
         navy: {
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+          700: '#1a1f4b',
+          800: '#0d1136',
+          900: '#07091E', // Official Taazaa Deep Dark Theme Base
+          950: '#040512',
         }
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['DM Sans', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
         'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-6px)' },
-        }
       }
     },
   },

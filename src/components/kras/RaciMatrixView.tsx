@@ -19,25 +19,27 @@ export const RaciMatrixView: React.FC = () => {
       return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800 font-extrabold';
     }
     if (v.includes('responsible') || v === 'r') {
-      return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 font-extrabold';
+      return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950/60 dark:text-[#29E8AE] dark:border-emerald-800 font-extrabold';
     }
     if (v.includes('consulted') || v === 'c') {
       return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800 font-bold';
     }
-    return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700 font-medium';
+    return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-navy-900 dark:text-slate-400 dark:border-slate-700 font-medium';
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-slate-50 dark:from-slate-800/80 dark:to-slate-900 border border-orange-200/80 dark:border-slate-800 mb-8">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-slate-50 dark:from-navy-800 dark:to-navy-900 border border-slate-200/80 dark:border-slate-800 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300 text-xs font-bold mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Taazaa Program & Delivery Governance</span>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <div className="heading-label-line" />
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
+                GOVERNANCE & ACCOUNTABILITY
+              </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Cross-Functional RACI Governance Matrix
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">
@@ -53,7 +55,7 @@ export const RaciMatrixView: React.FC = () => {
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
               placeholder="Filter activities..."
-              className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-orange-500"
+              className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-[#FF5B22]"
             />
           </div>
         </div>
@@ -61,11 +63,11 @@ export const RaciMatrixView: React.FC = () => {
         {/* RACI Definition Legend */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700/60 text-xs">
           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-extrabold flex items-center justify-center text-xs">
+            <span className="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-[#29E8AE] font-extrabold flex items-center justify-center text-xs">
               R
             </span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">
-              <strong className="text-slate-900 dark:text-white">Responsible</strong>: Does the work
+              <strong className="text-slate-900 dark:text-white">Responsible</strong>: Executes activity
             </span>
           </div>
 
@@ -88,7 +90,7 @@ export const RaciMatrixView: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-extrabold flex items-center justify-center text-xs">
+            <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-navy-900 text-slate-800 dark:text-slate-300 font-extrabold flex items-center justify-center text-xs">
               I
             </span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">
@@ -99,9 +101,9 @@ export const RaciMatrixView: React.FC = () => {
       </div>
 
       {/* RACI Table */}
-      <div className="overflow-x-auto rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+      <div className="overflow-x-auto rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-navy-800/90">
         <table className="w-full text-left text-sm">
-          <thead className="bg-slate-50 dark:bg-slate-800/80 text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+          <thead className="bg-slate-50 dark:bg-navy-900 text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th className="p-4 sm:p-5 w-2/5">Operational Touchpoint & Activity</th>
               <th className="p-4 sm:p-5 text-center">Delivery Manager (DM)</th>
@@ -112,7 +114,7 @@ export const RaciMatrixView: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
             {filtered.map((row, idx) => (
-              <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
+              <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-navy-700/40 transition-colors">
                 <td className="p-4 sm:p-5 font-bold text-slate-900 dark:text-white">
                   {row.activity}
                 </td>
