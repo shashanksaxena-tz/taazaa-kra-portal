@@ -16,6 +16,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TaazaaLogo } from './TaazaaLogo';
 
 interface NavbarProps {
   onOpenAdminLogin: () => void;
@@ -52,27 +53,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Brand Logo (Electric Indigo & Cyan) */}
+          {/* Brand Logo (Official Taazaa SVG from taazaa.com) */}
           <div 
-            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
+            className="flex items-center gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
             onClick={() => setActiveTab('kras')}
           >
-            <div className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-600 shadow-md shadow-brand-600/25 text-white font-black text-lg sm:text-xl tracking-tight">
-              <span>T</span>
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-accent-cyan rounded-full border-2 border-white dark:border-slate-950" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="font-extrabold text-lg sm:text-2xl tracking-tight text-slate-900 dark:text-white">
-                  taazaa<span className="text-brand-500">.</span>
-                </span>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 hidden xs:inline-block">
-                  ER Portal
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden lg:block">
-                KRA & Role Charter Governance
-              </p>
+            <div className="flex items-center gap-2">
+              <TaazaaLogo className="h-6 sm:h-7 w-auto" />
+              <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 hidden xs:inline-block">
+                ER Portal
+              </span>
             </div>
           </div>
 
@@ -98,83 +88,97 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             })}
           </nav>
 
-          {/* Utility Actions & Version Selector */}
+          {/* Utility Actions & Version Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* Version Switcher Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsVersionDropdownOpen(!isVersionDropdownOpen)}
-                className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs font-bold border transition-all active:scale-[0.96] ${
-                  isHistoricalVersion
-                    ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700 shadow-sm'
-                    : 'bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
-                }`}
-                title="Switch KRA Snapshot Version"
-              >
-                <History className="w-3.5 h-3.5 text-brand-500" />
-                <span className="max-w-[90px] sm:max-w-[120px] truncate">
-                  {activeVersion?.name || activeVersionId}
-                </span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
+            {/* Version Display: Interactive for Admin only; Read-Only badge for Public employees */}
+            {adminSession.isAuthenticated ? (
+              <div className="relative">
+                <button
+                  onClick={() => setIsVersionDropdownOpen(!isVersionDropdownOpen)}
+                  className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold border transition-all active:scale-[0.96] ${
+                    isHistoricalVersion
+                      ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700 shadow-sm'
+                      : 'bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+                  }`}
+                  title="Admin: Switch Historical KRA Snapshot"
+                >
+                  <History className="w-3.5 h-3.5 text-brand-500" />
+                  <span className="max-w-[85px] sm:max-w-[110px] truncate">
+                    {activeVersion?.name || activeVersionId}
+                  </span>
+                  <ChevronDown className="w-3 h-3 text-slate-400" />
+                </button>
 
-              {/* Dropdown Menu */}
-              <AnimatePresence>
-                {isVersionDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-left"
-                  >
-                    <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-800">
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 font-mono">
-                        Historical Version Snapshots
-                      </span>
-                    </div>
+                {/* Dropdown Menu (Admin Only) */}
+                <AnimatePresence>
+                  {isVersionDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-left"
+                    >
+                      <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 font-mono">
+                          Admin Version Switcher
+                        </span>
+                        <span className="text-[9px] font-bold text-brand-500 uppercase">
+                          Time-Travel
+                        </span>
+                      </div>
 
-                    <div className="max-h-60 overflow-y-auto space-y-1 py-1">
-                      {portalData.versions?.map((ver, idx) => {
-                        const isSelected = ver.id === activeVersionId;
-                        const isLive = idx === 0;
-                        return (
-                          <button
-                            key={ver.id}
-                            onClick={() => {
-                              switchVersion(ver.id);
-                              setIsVersionDropdownOpen(false);
-                            }}
-                            className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center justify-between ${
-                              isSelected
+                      <div className="max-h-60 overflow-y-auto space-y-1 py-1">
+                        {portalData.versions?.map((ver, idx) => {
+                          const isSelected = ver.id === activeVersionId;
+                          const isLive = idx === 0;
+                          return (
+                            <button
+                              key={ver.id}
+                              onClick={() => {
+                                switchVersion(ver.id);
+                                setIsVersionDropdownOpen(false);
+                              }}
+                              className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center justify-between ${
+                                isSelected
                                 ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/30'
                                 : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                            }`}
-                          >
-                            <div>
-                              <div className="flex items-center gap-1.5">
-                                <span>{ver.name}</span>
-                                {isLive && (
-                                  <span className="px-1.5 py-0.2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded text-[9px] font-black uppercase">
-                                    Live
-                                  </span>
-                                )}
+                              }`}
+                            >
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <span>{ver.name}</span>
+                                  {isLive && (
+                                    <span className="px-1.5 py-0.2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded text-[9px] font-black uppercase">
+                                      Live
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-[10px] text-slate-400 font-mono">
+                                  Effective: {ver.effectiveDate}
+                                </div>
                               </div>
-                              <div className="text-[10px] text-slate-400 font-mono">
-                                Effective: {ver.effectiveDate}
-                              </div>
-                            </div>
-                            {isSelected && (
-                              <span className="w-2 h-2 rounded-full bg-brand-500" />
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                              {isSelected && (
+                                <span className="w-2 h-2 rounded-full bg-brand-500" />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              // Public View: Clean Read-only Active Version Badge
+              <div 
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[11px] font-bold text-slate-600 dark:text-slate-400 select-none"
+                title={`Active Governance Version: ${activeVersion?.name || activeVersionId}`}
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="font-mono">{activeVersion?.versionNumber || portalData.version || 'v2026.08'}</span>
+              </div>
+            )}
 
             {/* Compare Trigger */}
             <button

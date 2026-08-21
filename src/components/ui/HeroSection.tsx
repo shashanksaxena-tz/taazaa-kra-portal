@@ -9,8 +9,7 @@ import {
   TrendingUp, 
   Target,
   History,
-  ArrowRight,
-  AlertCircle
+  ArrowRight
 } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
@@ -23,6 +22,7 @@ export const HeroSection: React.FC = () => {
     activeVersion,
     isHistoricalVersion,
     switchVersion,
+    adminSession,
   } = useKRA();
 
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -65,14 +65,14 @@ export const HeroSection: React.FC = () => {
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
         
-        {/* Historical Version Time-Travel Notice Banner */}
-        {isHistoricalVersion && (
+        {/* Historical Version Time-Travel Notice Banner (Admin Only) */}
+        {adminSession.isAuthenticated && isHistoricalVersion && (
           <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-amber-500/10 border-2 border-amber-500/30 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <History className="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0" />
               <div>
                 <h4 className="text-sm font-bold">
-                  Time-Travel Active: Viewing Archive "{activeVersion?.name}"
+                  Admin Time-Travel Active: Viewing Archive "{activeVersion?.name}"
                 </h4>
                 <p className="text-xs text-amber-700 dark:text-amber-300">
                   Effective Date: <strong>{activeVersion?.effectiveDate}</strong> • Archived on {activeVersion?.createdAt?.split('T')[0]}. This is a read-only historical snapshot.

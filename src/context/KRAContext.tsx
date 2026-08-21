@@ -368,12 +368,12 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const exportExcel = () => {
-    excelService.exportToExcel(portalData);
-    showToast('Generated and exported full Excel workbook (.xlsx)', 'success');
+    excelService.exportToExcel(portalData, activeVersion);
+    showToast('Generated and exported formatted Excel workbook (.xlsx)', 'success');
   };
 
   const exportCSV = () => {
-    excelService.exportToCSV(portalData);
+    excelService.exportToCSV(portalData, activeVersion);
     showToast('Exported Role Charters as CSV', 'success');
   };
 

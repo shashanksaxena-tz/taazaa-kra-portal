@@ -2,6 +2,8 @@ import React from 'react';
 import { useKRA } from '../../context/KRAContext';
 import { ShieldCheck, FileSpreadsheet, BookOpen, Layers } from 'lucide-react';
 
+import { TaazaaLogo } from './TaazaaLogo';
+
 interface FooterProps {
   onOpenAdminLogin: () => void;
 }
@@ -17,12 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
           {/* Col 1: Taazaa Brand */}
           <div className="space-y-3 md:col-span-1">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-brand-600 text-white font-black text-base flex items-center justify-center shadow-md shadow-brand-600/20">
-                T
-              </div>
-              <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
-                taazaa<span className="text-brand-500">.</span>
-              </span>
+              <TaazaaLogo className="h-6 w-auto" />
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
               Employee Relations & Performance Governance Portal. Standardizing role charters, growth pathways, and measurable OKRs across all departments.

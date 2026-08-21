@@ -21,6 +21,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TaazaaLogo } from '../ui/TaazaaLogo';
 
 interface RoleDetailModalProps {
   role: RoleCharter;
@@ -460,15 +461,13 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
         {/* Official Header Banner */}
         <div className="border-b-2 border-slate-900 pb-4 mb-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-900 text-white font-black text-2xl flex items-center justify-center">
-                T
-              </div>
-              <div>
-                <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+            <div className="flex items-center gap-4">
+              <TaazaaLogo variant="print" className="h-8 w-auto" />
+              <div className="border-l border-slate-300 pl-4">
+                <h1 className="text-xl font-extrabold tracking-tight text-slate-900 leading-tight">
                   TAAZAA INC.
                 </h1>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-600">
                   Employee Relations & Performance Governance Council
                 </p>
               </div>
@@ -476,8 +475,9 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
             <div className="text-right text-xs font-mono text-slate-600 space-y-0.5">
               <div><strong>DOC REF:</strong> {role.id.toUpperCase()}</div>
-              <div><strong>VERSION:</strong> {activeVersion?.versionNumber || portalData.version}</div>
-              <div><strong>DATE:</strong> {new Date().toISOString().split('T')[0]}</div>
+              <div><strong>VERSION:</strong> {activeVersion?.name || activeVersion?.versionNumber || portalData.version}</div>
+              <div><strong>EFFECTIVE:</strong> {activeVersion?.effectiveDate || '2026-08'}</div>
+              <div><strong>PRINTED:</strong> {new Date().toISOString().split('T')[0]}</div>
             </div>
           </div>
 
