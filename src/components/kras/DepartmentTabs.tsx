@@ -73,7 +73,7 @@ export const DepartmentTabs: React.FC = () => {
         </div>
       </div>
 
-      {/* Responsive Filter Grid (Fills full width seamlessly) */}
+      {/* Responsive Filter Grid (Zero orange) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 select-none">
         
         {/* All Departments Option */}
@@ -81,12 +81,12 @@ export const DepartmentTabs: React.FC = () => {
           onClick={() => setActiveDepartmentId('all')}
           className={`flex items-center justify-between p-4 rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] text-left border ${
             activeDepartmentId === 'all'
-              ? 'bg-[#FF5B22] text-white border-[#FF5B22] shadow-md shadow-[#FF5B22]/20'
+              ? 'bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-600/20'
               : 'bg-white dark:bg-slate-900/90 text-slate-800 dark:text-slate-200 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
           <div className="flex items-center gap-2.5">
-            <LayoutGrid className={`w-4 h-4 ${activeDepartmentId === 'all' ? 'text-white' : 'text-[#FF5B22]'}`} />
+            <LayoutGrid className={`w-4 h-4 ${activeDepartmentId === 'all' ? 'text-white' : 'text-brand-500'}`} />
             <span>All Areas</span>
           </div>
           <span
@@ -113,7 +113,7 @@ export const DepartmentTabs: React.FC = () => {
               onClick={() => setActiveDepartmentId(dept.id)}
               className={`flex items-center justify-between p-4 rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] text-left border ${
                 isSelected
-                  ? 'bg-[#FF5B22] text-white border-[#FF5B22] shadow-md shadow-[#FF5B22]/20'
+                  ? 'bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-600/20'
                   : 'bg-white dark:bg-slate-900/90 text-slate-800 dark:text-slate-200 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
@@ -121,7 +121,7 @@ export const DepartmentTabs: React.FC = () => {
                 <span className={`text-[10px] font-mono font-bold ${isSelected ? 'text-white/80' : 'text-slate-400'}`}>
                   {numStr}
                 </span>
-                <IconComponent className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-[#FF5B22]'}`} />
+                <IconComponent className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-brand-500'}`} />
                 <span className="truncate">{dept.name.split(' ')[0]}</span>
               </div>
               <span

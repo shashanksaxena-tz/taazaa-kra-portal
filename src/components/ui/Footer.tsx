@@ -17,11 +17,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
           {/* Col 1: Taazaa Brand */}
           <div className="space-y-3 md:col-span-1">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#FF5B22] text-white font-black text-base flex items-center justify-center shadow-md shadow-[#FF5B22]/20">
+              <div className="w-8 h-8 rounded-xl bg-brand-600 text-white font-black text-base flex items-center justify-center shadow-md shadow-brand-600/20">
                 T
               </div>
               <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
-                taazaa<span className="text-[#FF5B22]">.</span>
+                taazaa<span className="text-brand-500">.</span>
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
                       setActiveTab('kras');
                       window.scrollTo({ top: 380, behavior: 'smooth' });
                     }}
-                    className="hover:text-[#FF5B22] dark:hover:text-[#29E8AE] transition-colors"
+                    className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                   >
                     {dept.name} ({dept.roles.length})
                   </button>
@@ -67,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
                     setActiveTab('raci');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-[#FF5B22] dark:hover:text-[#29E8AE] transition-colors flex items-center gap-1.5"
+                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
                 >
                   <FileSpreadsheet className="w-3.5 h-3.5" />
                   <span>RACI Matrix (Delivery vs PMO)</span>
@@ -79,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
                     setActiveTab('frameworks');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-[#FF5B22] dark:hover:text-[#29E8AE] transition-colors flex items-center gap-1.5"
+                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
                 >
                   <BookOpen className="w-3.5 h-3.5" />
                   <span>Org Design & Frameworks</span>
@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
                     setActiveTab('kras');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-[#FF5B22] dark:hover:text-[#29E8AE] transition-colors flex items-center gap-1.5"
+                  className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
                 >
                   <Layers className="w-3.5 h-3.5" />
                   <span>Browse All 29 Role Charters</span>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
             ) : (
               <button
                 onClick={onOpenAdminLogin}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#FF5B22] hover:bg-[#E54510] text-white text-xs font-bold shadow-md shadow-[#FF5B22]/20 transition-colors"
+                className="btn-primary"
               >
                 <ShieldCheck className="w-4 h-4" />
                 <span>Admin Login (ER Team)</span>

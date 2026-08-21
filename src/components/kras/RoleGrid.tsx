@@ -97,7 +97,7 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
         {(searchQuery || selectedLevel !== 'all' || activeDepartmentId !== 'all') && (
           <button
             onClick={resetFilters}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-[#FF5B22] dark:hover:text-[#FF5B22] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#FF5B22]/50 transition-colors shadow-sm active:scale-[0.96]"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 transition-colors shadow-sm active:scale-[0.96]"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset Filters</span>
@@ -105,7 +105,7 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
         )}
       </div>
 
-      {/* Roles Cards Grid (4 Columns on Widescreen, 3 Columns on Desktop, 2 on Tablet, 1 on Mobile) */}
+      {/* Roles Cards Grid (4 Columns on Widescreen) */}
       {filteredRoles.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <AnimatePresence>
@@ -124,9 +124,9 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-col items-center justify-center p-16 text-center rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm my-8"
+          className="flex flex-col items-center justify-center p-16 text-center rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm my-8"
         >
-          <div className="p-4 rounded-3xl bg-orange-50 dark:bg-orange-950/40 text-[#FF5B22] mb-4">
+          <div className="p-4 rounded-3xl bg-brand-50 dark:bg-brand-950/40 text-brand-600 dark:text-brand-400 mb-4">
             <SearchX className="w-10 h-10" />
           </div>
           <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
@@ -137,7 +137,7 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
           </p>
           <button
             onClick={resetFilters}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FF5B22] hover:bg-[#E54510] text-white font-bold text-sm shadow-md shadow-[#FF5B22]/20 transition-all active:scale-[0.96]"
+            className="btn-primary"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Clear Filters & Show All</span>

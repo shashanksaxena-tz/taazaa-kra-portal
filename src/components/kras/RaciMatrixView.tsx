@@ -18,10 +18,10 @@ export const RaciMatrixView: React.FC = () => {
       return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800 font-extrabold';
     }
     if (v.includes('responsible') || v === 'r') {
-      return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950/60 dark:text-[#29E8AE] dark:border-emerald-800 font-extrabold';
+      return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800 font-extrabold';
     }
     if (v.includes('consulted') || v === 'c') {
-      return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800 font-bold';
+      return 'bg-brand-100 text-brand-800 border-brand-200 dark:bg-brand-950/60 dark:text-brand-300 dark:border-brand-800 font-bold';
     }
     return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 font-medium';
   };
@@ -29,12 +29,12 @@ export const RaciMatrixView: React.FC = () => {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-10">
       {/* Header Banner */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200/80 dark:border-slate-800 mb-8">
+      <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-brand-500/10 via-indigo-500/5 to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200/80 dark:border-slate-800 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <div className="heading-label-line" />
-              <span className="text-xs font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
                 GOVERNANCE & ACCOUNTABILITY
               </span>
             </div>
@@ -54,7 +54,7 @@ export const RaciMatrixView: React.FC = () => {
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
               placeholder="Filter activities..."
-              className="w-full pl-9 pr-3.5 py-2.5 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-[#FF5B22]"
+              className="w-full pl-9 pr-3.5 py-2.5 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
             />
           </div>
         </div>
@@ -62,7 +62,7 @@ export const RaciMatrixView: React.FC = () => {
         {/* RACI Definition Legend */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700/60 text-xs">
           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-[#29E8AE] font-extrabold flex items-center justify-center text-xs">
+            <span className="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-extrabold flex items-center justify-center text-xs">
               R
             </span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">
@@ -80,7 +80,7 @@ export const RaciMatrixView: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 font-extrabold flex items-center justify-center text-xs">
+            <span className="w-6 h-6 rounded-lg bg-brand-100 dark:bg-brand-950/80 text-brand-800 dark:text-brand-300 font-extrabold flex items-center justify-center text-xs">
               C
             </span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">

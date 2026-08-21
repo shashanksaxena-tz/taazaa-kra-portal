@@ -8,33 +8,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        taazaa: {
-          50: '#fff5f0',
-          100: '#ffe8de',
-          200: '#ffd3bf',
-          300: '#ffb394',
-          400: '#ff8659',
-          500: '#FF5B22', // Official Taazaa Vibrant Coral-Orange
-          600: '#e54510',
-          700: '#bf3308',
-          800: '#992a0a',
-          900: '#7c250c',
-          accent: '#29E8AE', // Taazaa Cyan / Mint Highlight
+        brand: {
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
+          950: '#1E1B4B',
         },
-        navy: {
-          700: '#1a1f4b',
-          800: '#0d1136',
-          900: '#07091E', // Official Taazaa Deep Dark Theme Base
-          950: '#040512',
+        slate: {
+          850: '#151E2E',
+          900: '#0F172A',
+          950: '#0B0F19',
+        },
+        accent: {
+          cyan: '#06B6D4',
+          emerald: '#10B981',
+          violet: '#8B5CF6',
         }
       },
       fontFamily: {
-        sans: ['DM Sans', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
     },
   },
   plugins: [],

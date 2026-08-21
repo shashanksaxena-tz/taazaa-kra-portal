@@ -6,12 +6,12 @@ import {
   ShieldCheck, 
   Lock, 
   LogOut, 
-  FileSpreadsheet,
-  BookOpen,
+  FileSpreadsheet, 
+  BookOpen, 
   Sun, 
   Moon, 
-  Menu,
-  X
+  Menu, 
+  X 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -40,25 +40,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
   ] as const;
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-[#07091E]/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-slate-950/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
       <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Official Taazaa Logo */}
+          {/* Brand Logo (Electric Indigo & Cyan) */}
           <div 
             className="flex items-center gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
             onClick={() => setActiveTab('kras')}
           >
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#FF5B22] shadow-md shadow-[#FF5B22]/25 text-white font-black text-xl tracking-tight">
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-brand-600 shadow-md shadow-brand-600/25 text-white font-black text-xl tracking-tight">
               <span>T</span>
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#29E8AE] rounded-full border-2 border-white dark:border-[#07091E]" />
+              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-accent-cyan rounded-full border-2 border-white dark:border-slate-950" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">
-                  taazaa<span className="text-[#FF5B22]">.</span>
+                  taazaa<span className="text-brand-500">.</span>
                 </span>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
                   ER Portal
                 </span>
               </div>
@@ -69,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900/90 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <nav className="hidden md:flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -79,8 +79,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                   onClick={() => setActiveTab(item.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
                     isActive
-                      ? 'bg-[#FF5B22] text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
+                      ? 'bg-brand-600 text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -98,14 +98,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               onClick={onOpenCompareModal}
               className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
                 comparisonRoles.length > 0
-                  ? 'bg-orange-50 dark:bg-slate-900 border-[#FF5B22] text-[#FF5B22] shadow-sm'
+                  ? 'bg-brand-50 dark:bg-brand-950/40 border-brand-500 text-brand-600 dark:text-brand-400 shadow-sm'
                   : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
-              <GitCompare className="w-4 h-4 text-[#FF5B22]" />
+              <GitCompare className="w-4 h-4 text-brand-500" />
               <span className="hidden sm:inline">Compare</span>
               {comparisonRoles.length > 0 && (
-                <span className="flex items-center justify-center w-5 h-5 text-xs font-black text-white bg-[#FF5B22] rounded-full">
+                <span className="flex items-center justify-center w-5 h-5 text-xs font-black text-white bg-brand-600 rounded-full">
                   {comparisonRoles.length}
                 </span>
               )}
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
                     activeTab === 'admin'
                       ? 'bg-emerald-600 text-white shadow-md'
-                      : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30'
+                      : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
                   }`}
                 >
                   <ShieldCheck className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             ) : (
               <button
                 onClick={onOpenAdminLogin}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#FF5B22] hover:bg-[#E54510] text-white shadow-md shadow-[#FF5B22]/20 transition-all active:scale-[0.96]"
+                className="btn-primary"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>Admin Login</span>
@@ -184,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                     }}
                     className={`w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold active:scale-[0.98] ${
                       isActive
-                        ? 'bg-[#FF5B22] text-white'
+                        ? 'bg-brand-600 text-white'
                         : 'text-slate-600 dark:text-slate-300'
                     }`}
                   >

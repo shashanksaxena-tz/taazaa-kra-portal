@@ -2,57 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-}
-
 @layer base {
   body {
-    @apply font-sans selection:bg-[#FF5B22] selection:text-white;
+    @apply font-sans bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+  
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
 }
 
-/* Taazaa Accent Bar & Heading Label */
 .heading-label-line {
-  width: 28px;
+  display: inline-block;
+  width: 24px;
   height: 3px;
-  background: linear-gradient(90deg, #FF5B22 0%, #29E8AE 100%);
   border-radius: 9999px;
+  background: linear-gradient(90deg, #6366F1 0%, #06B6D4 100%);
 }
 
-/* Tactile physical feedback for buttons and cards */
-.pressable {
-  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background-color 160ms ease-out;
-}
-.pressable:active {
-  transform: scale(0.97) !important;
+/* Linear-style Button */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-brand-600/20 transition-all active:scale-[0.97];
 }
 
-/* Smooth scrollbars */
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-xs sm:text-sm font-bold transition-all active:scale-[0.97];
+}
+
+/* Subtle Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.25);
+  background: rgba(100, 116, 139, 0.25);
   border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.5);
-}
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.5);
+  background: rgba(148, 163, 184, 0.2);
 }
 
 /* Print Optimization */
@@ -61,20 +54,10 @@
     background-color: white !important;
     color: black !important;
   }
-
-  header, footer, .print\\:hidden, button, [role="button"] {
+  header, footer, .print\\:hidden, button {
     display: none !important;
   }
-
   .print\\:block {
     display: block !important;
-  }
-
-  .modal-container, [data-modal] {
-    position: static !important;
-    max-height: none !important;
-    overflow: visible !important;
-    box-shadow: none !important;
-    border: none !important;
   }
 }

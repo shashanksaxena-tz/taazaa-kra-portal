@@ -3,22 +3,23 @@ import { RoleCharter, Department } from '../../types';
 import { useKRA } from '../../context/KRAContext';
 import { 
   X, 
+  Target, 
   Clock, 
+  BookOpen, 
+  Award, 
+  ArrowRight, 
   GitCompare, 
   Printer, 
-  Sparkles, 
+  Edit3, 
   CheckCircle2, 
-  ListChecks, 
-  Target, 
-  Award, 
   TrendingUp, 
-  Users, 
-  BookOpen, 
-  Edit3,
+  ListChecks, 
   ChevronRight,
-  ArrowRight
+  Shield,
+  Layers,
+  Sparkles
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface RoleDetailModalProps {
   role: RoleCharter;
@@ -39,12 +40,12 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
   const isCompared = comparisonRoles.some((r) => r.id === role.id);
 
   const tabs = [
-    { id: 'overview', label: 'Overview & Mission', icon: Sparkles },
-    { id: 'accountabilities', label: 'Core Accountabilities', icon: CheckCircle2 },
-    { id: 'responsibilities', label: 'Day-to-Day Responsibilities', icon: ListChecks },
-    { id: 'okrs', label: 'Quarterly OKRs & Metrics', icon: Target },
-    { id: 'competencies', label: 'Competency Framework', icon: Award },
-    { id: 'growth', label: 'Career Growth Ladder', icon: TrendingUp },
+    { id: 'overview', label: 'Overview', icon: BookOpen },
+    { id: 'accountabilities', label: 'Accountabilities', icon: Shield },
+    { id: 'responsibilities', label: 'Responsibilities', icon: ListChecks },
+    { id: 'okrs', label: 'OKRs & Metrics', icon: Target },
+    { id: 'competencies', label: 'Competencies', icon: Award },
+    { id: 'growth', label: 'Career Ladder', icon: TrendingUp },
   ];
 
   const handlePrint = () => {
@@ -52,33 +53,37 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/80 backdrop-blur-md overflow-y-auto print:p-0 print:bg-white print:static">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-950/70 backdrop-blur-md flex justify-end print:bg-white print:static">
       
-      {/* Modal Card */}
+      {/* Click outside backdrop to close */}
+      <div className="absolute inset-0" onClick={onClose} />
+
+      {/* Full-Height Slide-Over Charter Drawer */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.96 }}
-        transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-        className="relative w-full max-w-5xl max-h-[90vh] flex flex-col rounded-3xl bg-white dark:bg-[#07091E] border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden print:max-h-none print:shadow-none print:border-none"
+        initial={{ x: '100%', opacity: 0.5 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: '100%', opacity: 0 }}
+        transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+        className="relative z-10 w-full max-w-4xl h-full bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden text-left"
       >
         
-        {/* Modal Sticky Header */}
-        <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-[#0D1136]/80 backdrop-blur-md">
+        {/* Drawer Header (Sticky) */}
+        <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/90 backdrop-blur-md flex-shrink-0">
           <div className="flex items-start justify-between gap-4">
             
+            {/* Title & Metadata */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20">
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-200/70 dark:bg-slate-800 text-slate-800 dark:text-slate-200">
                   {department.name}
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
                   {role.level}
                 </span>
-                <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 font-semibold ml-1">
-                  <Clock className="w-3.5 h-3.5 text-[#FF5B22]" />
-                  <span>{role.experienceYears}</span>
-                </span>
+                <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                  <Clock className="w-3.5 h-3.5 text-brand-500" />
+                  <span>Exp: {role.experienceYears}</span>
+                </div>
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -86,53 +91,58 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
               </h2>
             </div>
 
-            {/* Header Actions */}
+            {/* Quick Utility Actions */}
             <div className="flex items-center gap-2 print:hidden">
+              
+              {/* Admin Edit Trigger */}
               {adminSession.isAuthenticated && onOpenAdminEdit && (
                 <button
                   onClick={() => {
                     onClose();
                     onOpenAdminEdit(role);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-[#29E8AE] text-xs font-bold border border-emerald-500/30 transition-colors active:scale-[0.94]"
-                  title="Edit this Role Charter in Admin Panel"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-sm transition-all active:scale-[0.96]"
                 >
-                  <Edit3 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Edit</span>
+                  <Edit3 className="w-3.5 h-3.5" />
+                  <span>Edit Charter</span>
                 </button>
               )}
 
+              {/* Compare Toggle */}
               <button
                 onClick={() => toggleCompareRole(role)}
-                className={`p-2.5 rounded-xl border transition-all active:scale-[0.92] ${
+                className={`p-2.5 rounded-xl border text-xs font-bold transition-all active:scale-[0.94] ${
                   isCompared
-                    ? 'bg-[#FF5B22] text-white border-[#FF5B22] shadow-sm'
-                    : 'bg-white dark:bg-[#0D1136] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-[#FF5B22]'
+                    ? 'bg-brand-600 text-white border-brand-600 shadow-sm'
+                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-brand-500'
                 }`}
-                title={isCompared ? 'Remove from comparison' : 'Compare with another role'}
+                title={isCompared ? 'Remove from comparison' : 'Add to comparison'}
               >
                 <GitCompare className="w-4 h-4" />
               </button>
 
+              {/* PDF Print Export */}
               <button
                 onClick={handlePrint}
-                className="p-2.5 rounded-xl bg-white dark:bg-[#0D1136] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors active:scale-[0.92]"
-                title="Print or Save as PDF"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors active:scale-[0.94]"
+                title="Print or Export as PDF"
               >
                 <Printer className="w-4 h-4" />
               </button>
 
+              {/* Close Drawer Button */}
               <button
                 onClick={onClose}
-                className="p-2.5 rounded-xl bg-white dark:bg-[#0D1136] text-slate-500 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors active:scale-[0.92]"
+                className="p-2.5 rounded-xl bg-slate-200/80 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors active:scale-[0.94]"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
+
             </div>
           </div>
 
-          {/* Sub-Tab Navigation Bar with Solid Readable Backgrounds */}
-          <div className="flex items-center gap-1.5 overflow-x-auto mt-6 pt-3 border-t border-slate-200 dark:border-white/10 print:hidden scrollbar-none select-none">
+          {/* Segmented Tab Navigation Bar */}
+          <div className="flex items-center gap-1.5 overflow-x-auto mt-6 p-1 bg-slate-200/60 dark:bg-slate-950/80 rounded-2xl print:hidden">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeSubTab === tab.id;
@@ -140,13 +150,13 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                 <button
                   key={tab.id}
                   onClick={() => setActiveSubTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all active:scale-[0.97] border ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all active:scale-[0.97] ${
                     isActive
-                      ? 'bg-[#FF5B22] text-white border-[#FF5B22] shadow-sm'
-                      : 'bg-white dark:bg-[#07091E] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border-slate-200 dark:border-white/10 hover:border-slate-300'
+                      ? 'bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -155,77 +165,84 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
         </div>
 
-        {/* Modal Scrollable Body */}
+        {/* Drawer Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-8">
           
-          {/* Tab 1: Overview & Mission */}
+          {/* Tab 1: Overview */}
           {(activeSubTab === 'overview' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
             <div className="space-y-6">
+              
               {/* Mission Statement Box */}
-              <div className="p-6 rounded-2xl bg-orange-500/5 border-2 border-[#FF5B22]/20 text-left">
-                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#FF5B22] mb-2">
-                  <Sparkles className="w-4 h-4" />
+              <div className="p-6 sm:p-7 rounded-3xl bg-brand-50/50 dark:bg-slate-800/60 border border-brand-500/20 text-left">
+                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2">
+                  <BookOpen className="w-4 h-4" />
                   <span>Core Mission Statement</span>
                 </div>
-                <p className="text-base sm:text-lg text-slate-800 dark:text-slate-100 font-medium leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-900 dark:text-white font-medium leading-relaxed">
                   "{role.mission}"
                 </p>
               </div>
 
-              {/* Summary & Practice Area */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 text-left">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 font-mono">
-                    <BookOpen className="w-4 h-4 text-[#FF5B22]" />
-                    <span>Practice Area</span>
-                  </div>
-                  <div className="text-sm font-bold text-slate-900 dark:text-white">
-                    {department.name}
-                  </div>
-                </div>
-
-                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 text-left">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 font-mono">
-                    <Clock className="w-4 h-4 text-[#29E8AE]" />
-                    <span>Experience Range</span>
-                  </div>
-                  <div className="text-sm font-bold text-slate-900 dark:text-white">
-                    {role.experienceYears}
-                  </div>
-                </div>
-              </div>
-
-              {/* Role Summary if available */}
+              {/* Summary */}
               {role.summary && (
-                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 text-left space-y-2">
-                  <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 font-mono">
-                    Role Overview & Scope
+                <div className="space-y-2">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-mono">
+                    Executive Summary
                   </h4>
-                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                     {role.summary}
                   </p>
                 </div>
               )}
+
+              {/* Highlights Metric Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                  <div className="text-xs text-slate-400 font-semibold mb-1">Accountabilities</div>
+                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                    {role.accountabilities?.length || 0} Areas
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                  <div className="text-xs text-slate-400 font-semibold mb-1">Target OKRs</div>
+                  <div className="text-2xl font-black text-brand-600 dark:text-brand-400">
+                    {role.metricsAndOkrs?.length || 0} Benchmarks
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                  <div className="text-xs text-slate-400 font-semibold mb-1">Competency Model</div>
+                  <div className="text-2xl font-black text-accent-cyan">
+                    {(role.competencies?.technical?.length || 0) + (role.competencies?.behavioral?.length || 0)} Skills
+                  </div>
+                </div>
+              </div>
+
             </div>
           )}
 
-          {/* Tab 2: Core Accountabilities */}
+          {/* Tab 2: Accountabilities */}
           {(activeSubTab === 'accountabilities' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
-            <div className="space-y-4 text-left">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#29E8AE]" />
-                <span>Core Accountabilities (What you own)</span>
-              </h3>
-              <div className="grid grid-cols-1 gap-3">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
+                <Shield className="w-4 h-4 text-brand-500" />
+                <span>Primary Accountabilities & Ownership Areas</span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Non-delegable organizational outcomes owned by this role.
+              </p>
+
+              <div className="space-y-3 mt-4">
                 {role.accountabilities?.map((acc, index) => (
                   <div
                     key={index}
-                    className="p-4 rounded-xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 flex items-start gap-3"
+                    className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 flex items-start gap-3.5 hover:border-brand-500/40 transition-colors"
                   >
-                    <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-orange-500/10 text-[#FF5B22] font-black text-xs flex-shrink-0 mt-0.5">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 font-black text-xs flex-shrink-0 mt-0.5">
                       {index + 1}
                     </span>
-                    <p className="text-sm text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                    <p className="text-sm text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
                       {acc}
                     </p>
                   </div>
@@ -234,21 +251,27 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
             </div>
           )}
 
-          {/* Tab 3: Day-to-Day Responsibilities */}
+          {/* Tab 3: Responsibilities */}
           {(activeSubTab === 'responsibilities' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
-            <div className="space-y-4 text-left">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <ListChecks className="w-5 h-5 text-[#FF5B22]" />
-                <span>Day-to-Day Responsibilities & Execution</span>
-              </h3>
-              <div className="grid grid-cols-1 gap-2.5">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
+                <ListChecks className="w-4 h-4 text-brand-500" />
+                <span>Operational Day-to-Day Responsibilities</span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Tactical execution, team collaboration, and technical delivery activities.
+              </p>
+
+              <div className="space-y-2.5 mt-4">
                 {role.responsibilities?.map((res, index) => (
                   <div
                     key={index}
-                    className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-200"
+                    className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 flex items-start gap-3"
                   >
-                    <ChevronRight className="w-4 h-4 text-[#FF5B22] flex-shrink-0 mt-0.5" />
-                    <span>{res}</span>
+                    <ChevronRight className="w-4 h-4 text-brand-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-slate-700 dark:text-slate-300 leading-normal">
+                      {res}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -257,37 +280,40 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
           {/* Tab 4: OKRs & Metrics */}
           {(activeSubTab === 'okrs' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
-            <div className="space-y-4 text-left">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Target className="w-5 h-5 text-[#FF5B22]" />
-                <span>Measurable Performance Metrics & OKRs</span>
-              </h3>
-              
-              <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-100 dark:bg-[#0D1136] text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-white/10">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
+                <Target className="w-4 h-4 text-brand-500" />
+                <span>Measurable OKRs & Performance Benchmarks</span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Objective criteria utilized during quarterly appraisal reviews and performance evaluations.
+              </p>
+
+              <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead className="bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
                     <tr>
-                      <th className="p-3.5 sm:p-4">Outcome Area</th>
-                      <th className="p-3.5 sm:p-4">Performance Metric</th>
-                      <th className="p-3.5 sm:p-4">Target Benchmark</th>
-                      <th className="p-3.5 sm:p-4">Cadence</th>
+                      <th className="p-4">Outcome Area</th>
+                      <th className="p-4">Key Metric</th>
+                      <th className="p-4">Target Benchmark</th>
+                      <th className="p-4">Cadence</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:border-white/10">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
                     {role.metricsAndOkrs?.map((okr, index) => (
-                      <tr key={index} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
-                        <td className="p-3.5 sm:p-4 font-bold text-slate-900 dark:text-white">
+                      <tr key={index} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                        <td className="p-4 font-bold text-slate-900 dark:text-white">
                           {okr.outcomeArea}
                         </td>
-                        <td className="p-3.5 sm:p-4 text-slate-700 dark:text-slate-300">
+                        <td className="p-4 text-slate-700 dark:text-slate-300">
                           {okr.metric}
                         </td>
-                        <td className="p-3.5 sm:p-4">
-                          <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20">
+                        <td className="p-4">
+                          <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
                             {okr.target}
                           </span>
                         </td>
-                        <td className="p-3.5 sm:p-4 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <td className="p-4 text-slate-500 font-mono text-xs">
                           {okr.frequency || 'Quarterly'}
                         </td>
                       </tr>
@@ -300,113 +326,119 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
           {/* Tab 5: Competencies */}
           {(activeSubTab === 'competencies' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
-            <div className="space-y-6 text-left">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Award className="w-5 h-5 text-[#29E8AE]" />
-                <span>Required Competency Matrix</span>
-              </h3>
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
+                <Award className="w-4 h-4 text-brand-500" />
+                <span>Required Competency & Skill Matrix</span>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Technical Competencies */}
-                <div className="space-y-3">
-                  <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 font-mono">
-                    Technical & Domain Competencies
+                
+                {/* Technical & Domain Skills */}
+                <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-3">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5 text-accent-cyan" />
+                    <span>Technical & Domain Skills</span>
                   </h4>
                   <div className="space-y-2">
                     {role.competencies?.technical?.map((t, idx) => (
-                      <div key={idx} className="p-3 rounded-xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                      <div key={idx} className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-800 dark:text-slate-200 font-medium">
                         {t}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Behavioral Competencies */}
-                <div className="space-y-3">
-                  <h4 className="text-xs font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 font-mono">
-                    Behavioral Competencies (Taazaa Values)
+                {/* Behavioral & Value Skills */}
+                <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-3">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>Values & Behavioral Traits</span>
                   </h4>
                   <div className="space-y-2">
                     {role.competencies?.behavioral?.map((b, idx) => (
-                      <div key={idx} className="p-3 rounded-xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                      <div key={idx} className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-800 dark:text-slate-200 font-medium">
                         {b}
                       </div>
                     ))}
                   </div>
                 </div>
+
               </div>
             </div>
           )}
 
-          {/* Tab 6: Growth Ladder */}
+          {/* Tab 6: Career Growth Ladder */}
           {(activeSubTab === 'growth' || typeof window !== 'undefined' && window.matchMedia('print').matches) && (
-            <div className="space-y-6 text-left">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-[#FF5B22]" />
-                <span>Career Progression Pathways</span>
-              </h3>
+            <div className="space-y-6">
+              <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
+                <TrendingUp className="w-4 h-4 text-brand-500" />
+                <span>Career Progression & Feeder Ladder</span>
+              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#0D1136] border border-slate-200 dark:border-white/10">
-                  <div className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3 font-mono">
-                    Feeder & Preceding Roles
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                {/* Feeder Roles */}
+                <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 space-y-3">
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-slate-400 font-mono">
+                    Feeder / Previous Roles
                   </div>
                   {role.careerPath?.previousRoles && role.careerPath.previousRoles.length > 0 ? (
                     <div className="space-y-2">
                       {role.careerPath.previousRoles.map((prev, idx) => (
-                        <div key={idx} className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                          <span>{prev.title}</span>
+                        <div key={idx} className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200">
+                          {prev.title}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-sm text-slate-500 dark:text-slate-400">Entry / Lateral Hire</div>
+                    <div className="text-xs text-slate-500 italic p-3">Entry / Lateral Hire</div>
                   )}
                 </div>
 
-                <div className="p-5 rounded-2xl bg-orange-500/10 border border-[#FF5B22]/30">
-                  <div className="text-xs font-bold text-[#FF5B22] uppercase tracking-wider mb-3 font-mono">
-                    Next Career Ladder Steps
+                {/* Elevation Targets */}
+                <div className="p-6 rounded-3xl bg-brand-50/50 dark:bg-brand-950/30 border border-brand-500/30 space-y-3">
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-400 font-mono">
+                    Next Elevation Target
                   </div>
                   {role.careerPath?.nextRoles && role.careerPath.nextRoles.length > 0 ? (
                     <div className="space-y-2">
                       {role.careerPath.nextRoles.map((nxt, idx) => (
-                        <div key={idx} className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                          <ArrowRight className="w-4 h-4 text-[#FF5B22]" />
+                        <div key={idx} className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-brand-500/40 text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                          <ArrowRight className="w-3.5 h-3.5 text-brand-500" />
                           <span>{nxt.title}</span>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="text-sm text-slate-500 dark:text-slate-400">Executive Leadership / Practice Directorship</div>
+                    <div className="text-xs text-brand-600 dark:text-brand-400 font-bold p-3">Directorship / Executive Practice Leadership</div>
                   )}
                 </div>
+
               </div>
             </div>
           )}
 
         </div>
 
-        {/* Modal Print & Footer Bar */}
-        <div className="p-4 sm:p-6 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0D1136] flex items-center justify-between gap-4">
-          <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-            Taazaa ER Governance • Role ID: <code className="font-mono text-slate-700 dark:text-slate-300">{role.id}</code>
+        {/* Drawer Footer (Sticky) */}
+        <div className="p-5 sm:p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/90 flex items-center justify-between gap-4 flex-shrink-0">
+          <div className="text-xs text-slate-400 font-mono">
+            Charter ID: <span className="text-slate-600 dark:text-slate-300 font-bold">{role.id}</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white text-xs font-bold transition-colors"
+              className="btn-secondary !py-2 !px-4"
             >
-              <Printer className="w-4 h-4" />
-              <span>Export PDF</span>
+              Export PDF
             </button>
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:bg-[#FF5B22] dark:hover:bg-[#FF5B22] dark:hover:text-white transition-colors"
+              className="btn-primary !py-2 !px-5"
             >
-              Close
+              Done
             </button>
           </div>
         </div>

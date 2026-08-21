@@ -16,7 +16,7 @@ export const FrameworksView: React.FC = () => {
       <div className="mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div className="inline-flex items-center gap-2 mb-2">
           <div className="heading-label-line" />
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             ORGANIZATIONAL ARCHITECTURE & FRAMEWORKS
           </span>
         </div>
@@ -33,10 +33,10 @@ export const FrameworksView: React.FC = () => {
         {allFrameworks.map((fw, idx) => (
           <div
             key={idx}
-            className="p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:shadow-lg hover:border-[#FF5B22]/50 transition-all flex flex-col justify-between"
+            className="p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:shadow-lg hover:border-brand-500/50 transition-all flex flex-col justify-between"
           >
             <div>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20 mb-3 inline-block">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 mb-3 inline-block">
                 {fw.departmentName}
               </span>
               <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
