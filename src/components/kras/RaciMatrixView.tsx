@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { FileSpreadsheet, Search, Sparkles, Check, Info } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Search } from 'lucide-react';
 
 export const RaciMatrixView: React.FC = () => {
   const { portalData } = useKRA();
@@ -24,18 +23,18 @@ export const RaciMatrixView: React.FC = () => {
     if (v.includes('consulted') || v === 'c') {
       return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800 font-bold';
     }
-    return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-navy-900 dark:text-slate-400 dark:border-slate-700 font-medium';
+    return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 font-medium';
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-10">
       {/* Header Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-slate-50 dark:from-navy-800 dark:to-navy-900 border border-slate-200/80 dark:border-slate-800 mb-8">
+      <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200/80 dark:border-slate-800 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <div className="heading-label-line" />
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
                 GOVERNANCE & ACCOUNTABILITY
               </span>
             </div>
@@ -48,14 +47,14 @@ export const RaciMatrixView: React.FC = () => {
           </div>
 
           {/* Search Box */}
-          <div className="relative w-full sm:w-64">
+          <div className="relative w-full sm:w-72">
             <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
             <input
               type="text"
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
               placeholder="Filter activities..."
-              className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-[#FF5B22]"
+              className="w-full pl-9 pr-3.5 py-2.5 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-[#FF5B22]"
             />
           </div>
         </div>
@@ -90,7 +89,7 @@ export const RaciMatrixView: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-navy-900 text-slate-800 dark:text-slate-300 font-extrabold flex items-center justify-center text-xs">
+            <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-slate-900 text-slate-800 dark:text-slate-300 font-extrabold flex items-center justify-center text-xs">
               I
             </span>
             <span className="text-slate-600 dark:text-slate-300 font-medium">
@@ -101,9 +100,9 @@ export const RaciMatrixView: React.FC = () => {
       </div>
 
       {/* RACI Table */}
-      <div className="overflow-x-auto rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-navy-800/90">
+      <div className="overflow-x-auto rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900/90">
         <table className="w-full text-left text-sm">
-          <thead className="bg-slate-50 dark:bg-navy-900 text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+          <thead className="bg-slate-50 dark:bg-slate-900 text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th className="p-4 sm:p-5 w-2/5">Operational Touchpoint & Activity</th>
               <th className="p-4 sm:p-5 text-center">Delivery Manager (DM)</th>
@@ -114,7 +113,7 @@ export const RaciMatrixView: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
             {filtered.map((row, idx) => (
-              <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-navy-700/40 transition-colors">
+              <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
                 <td className="p-4 sm:p-5 font-bold text-slate-900 dark:text-white">
                   {row.activity}
                 </td>

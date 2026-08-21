@@ -11,8 +11,7 @@ import {
   Sun, 
   Moon, 
   Menu,
-  X,
-  ArrowUpRight
+  X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -41,8 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
   ] as const;
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-[#07091E]/95 border-b border-slate-200 dark:border-white/10 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-[#07091E]/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+      <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Official Taazaa Logo */}
@@ -55,11 +54,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#29E8AE] rounded-full border-2 border-white dark:border-[#07091E]" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">
                   taazaa<span className="text-[#FF5B22]">.</span>
                 </span>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20">
                   ER Portal
                 </span>
               </div>
@@ -70,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 p-1 bg-slate-100 dark:bg-[#0D1136] rounded-xl border border-slate-200 dark:border-white/10">
+          <nav className="hidden md:flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900/90 rounded-2xl border border-slate-200/80 dark:border-slate-800">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -78,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
                     isActive
                       ? 'bg-[#FF5B22] text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
@@ -97,10 +96,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             {/* Compare Trigger */}
             <button
               onClick={onOpenCompareModal}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
+              className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
                 comparisonRoles.length > 0
-                  ? 'bg-orange-50 dark:bg-[#0D1136] border-[#FF5B22] text-[#FF5B22] shadow-sm'
-                  : 'bg-white dark:bg-[#0D1136] border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-white/20'
+                  ? 'bg-orange-50 dark:bg-slate-900 border-[#FF5B22] text-[#FF5B22] shadow-sm'
+                  : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               <GitCompare className="w-4 h-4 text-[#FF5B22]" />
@@ -116,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             <button
               onClick={toggleDarkMode}
               aria-label="Toggle Theme"
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#0D1136] dark:hover:bg-[#1a1f4b] text-slate-700 dark:text-slate-300 border border-transparent dark:border-white/10 transition-colors active:scale-[0.92]"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition-colors active:scale-[0.92]"
             >
               {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
             </button>
@@ -126,10 +125,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setActiveTab('admin')}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
                     activeTab === 'admin'
                       ? 'bg-emerald-600 text-white shadow-md'
-                      : 'bg-emerald-500/10 text-emerald-600 dark:text-[#29E8AE] border border-emerald-500/30'
+                      : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30'
                   }`}
                 >
                   <ShieldCheck className="w-4 h-4" />
@@ -138,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 <button
                   onClick={logoutAdmin}
                   title="Logout from Admin"
-                  className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors active:scale-[0.92]"
+                  className="p-2.5 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors active:scale-[0.92]"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -146,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             ) : (
               <button
                 onClick={onOpenAdminLogin}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#FF5B22] hover:bg-[#E54510] text-white shadow-md shadow-[#FF5B22]/20 transition-all active:scale-[0.96]"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#FF5B22] hover:bg-[#E54510] text-white shadow-md shadow-[#FF5B22]/20 transition-all active:scale-[0.96]"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>Admin Login</span>
@@ -156,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-slate-100 dark:bg-[#0D1136] text-slate-600 dark:text-slate-300"
+              className="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -171,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              className="md:hidden border-t border-slate-200 dark:border-white/10 py-3 space-y-1 overflow-hidden"
+              className="md:hidden border-t border-slate-200 dark:border-slate-800 py-3 space-y-1 overflow-hidden"
             >
               {navItems.map((item) => {
                 const Icon = item.icon;

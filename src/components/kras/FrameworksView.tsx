@@ -1,76 +1,58 @@
 import React from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { BookOpen, FileText, Layers, ExternalLink, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { BookOpen } from 'lucide-react';
 
 export const FrameworksView: React.FC = () => {
   const { portalData } = useKRA();
 
+  const allFrameworks = portalData.departments.flatMap((d) =>
+    (d.frameworks || []).map((f) => ({ ...f, departmentName: d.name }))
+  );
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-slate-50 dark:from-slate-800 dark:to-slate-900 border border-blue-200/80 dark:border-slate-800 mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 text-xs font-bold mb-2">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Organizational Architecture</span>
+    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-10">
+      
+      {/* Header */}
+      <div className="mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <div className="inline-flex items-center gap-2 mb-2">
+          <div className="heading-label-line" />
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#FF5B22] dark:text-[#29E8AE]">
+            ORGANIZATIONAL ARCHITECTURE & FRAMEWORKS
+          </span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-          Department Frameworks & Org Design Guides
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Department Frameworks & Competency Models
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">
-          High-level competency matrices, QA automation benchmarks, design OKR measurement methodologies, and delivery frameworks.
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2 max-w-3xl leading-relaxed">
+          Methodological blueprints, career progression rubrics, and engineering governance documents powering Taazaa's practices.
         </p>
       </div>
 
       {/* Frameworks Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {portalData.departments.map((dept) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allFrameworks.map((fw, idx) => (
           <div
-            key={dept.id}
-            className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4"
+            key={idx}
+            className="p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:shadow-lg hover:border-[#FF5B22]/50 transition-all flex flex-col justify-between"
           >
-            <div className="flex items-center gap-2.5">
-              <span className={`px-3 py-1 rounded-full text-xs font-bold border ${dept.badgeColor}`}>
-                {dept.name}
+            <div>
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-500/10 text-[#FF5B22] border border-[#FF5B22]/20 mb-3 inline-block">
+                {fw.departmentName}
               </span>
-              <span className="text-xs text-slate-400 font-semibold">
-                {dept.roles.length} Associated Charters
-              </span>
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
+                {fw.title}
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
+                {fw.summary}
+              </p>
             </div>
-
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {dept.description}
-            </p>
-
-            {dept.frameworks && dept.frameworks.length > 0 ? (
-              <div className="space-y-3 pt-2">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Governance Guides & Benchmark Docs:
-                </div>
-                {dept.frameworks.map((fw, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1.5"
-                  >
-                    <div className="flex items-start gap-2">
-                      <BookOpen className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                        {fw.title}
-                      </h4>
-                    </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 pl-6 leading-relaxed">
-                      {fw.summary}
-                    </p>
-                    <div className="text-[11px] text-slate-400 pl-6 font-mono">
-                      Source: {fw.source}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : null}
+            <div className="text-xs font-mono font-bold text-slate-400 pt-4 border-t border-slate-100 dark:border-slate-800 truncate">
+              Ref: {fw.source}
+            </div>
           </div>
         ))}
       </div>
+
     </div>
   );
 };
