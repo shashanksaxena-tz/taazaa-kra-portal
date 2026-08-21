@@ -12,11 +12,8 @@ import {
   Compass, 
   Sparkles, 
   FileText, 
-  ArrowRight, 
-  ShieldCheck, 
   Edit3,
   BookOpen,
-  ChevronRight,
   TrendingUp
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -48,20 +45,27 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
     window.print();
   };
 
+  const tabs = [
+    { id: 'overview', label: 'Mission & Overview', icon: Compass },
+    { id: 'accountabilities', label: 'Accountabilities & Activities', icon: FileText },
+    { id: 'competencies', label: 'Competency Framework', icon: Award },
+    { id: 'okrs', label: `OKRs & Metrics (${role.metricsAndOkrs?.length || 0})`, icon: Target },
+  ] as const;
+
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
       
       {/* Modal Container */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 15 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 15 }}
-        transition={{ duration: 0.2 }}
-        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden print:border-none print:shadow-none print:max-h-full print:m-0 print:p-0"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl overflow-hidden print:border-none print:shadow-none print:max-h-full print:m-0 print:p-0"
       >
         
         {/* Modal Header */}
-        <div className="p-6 sm:p-8 bg-gradient-to-r from-orange-50/70 via-amber-50/40 to-slate-50 dark:from-slate-800 dark:via-slate-900 dark:to-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <div className="p-6 sm:p-8 bg-gradient-to-r from-orange-50/60 via-amber-50/30 to-slate-50 dark:from-slate-900 dark:via-slate-900/90 dark:to-slate-900 border-b border-slate-200/80 dark:border-slate-800/80">
           <div className="flex items-start justify-between gap-4">
             <div>
               {/* Badges */}
@@ -94,7 +98,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                     onClose();
                     onEditInAdmin(role);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-300 dark:border-emerald-700 transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-300 dark:border-emerald-700 transition-colors active:scale-[0.94]"
                   title="Edit this Role Charter in Admin Panel"
                 >
                   <Edit3 className="w-4 h-4" />
@@ -104,9 +108,9 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
               <button
                 onClick={() => toggleCompareRole(role)}
-                className={`p-2.5 rounded-xl border transition-all ${
+                className={`p-2.5 rounded-xl border transition-all active:scale-[0.92] ${
                   isCompared
-                    ? 'bg-orange-500 text-white border-orange-500'
+                    ? 'bg-orange-500 text-white border-orange-500 shadow-sm'
                     : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-orange-400'
                 }`}
                 title={isCompared ? 'Remove from comparison' : 'Compare with another role'}
@@ -116,7 +120,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
               <button
                 onClick={handlePrint}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors active:scale-[0.92]"
                 title="Print or Save as PDF"
               >
                 <Printer className="w-4 h-4" />
@@ -124,62 +128,40 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
               <button
                 onClick={onClose}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors active:scale-[0.92]"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Sub-Tab Navigation Bar */}
-          <div className="flex items-center gap-2 overflow-x-auto mt-6 pt-2 border-t border-slate-200/80 dark:border-slate-700/60 print:hidden scrollbar-none">
-            <button
-              onClick={() => setActiveSubTab('overview')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                activeSubTab === 'overview'
-                  ? 'bg-orange-500 text-white shadow-sm'
-                  : 'bg-white dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              <Compass className="w-4 h-4" />
-              <span>Mission & Overview</span>
-            </button>
-
-            <button
-              onClick={() => setActiveSubTab('accountabilities')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                activeSubTab === 'accountabilities'
-                  ? 'bg-orange-500 text-white shadow-sm'
-                  : 'bg-white dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              <FileText className="w-4 h-4" />
-              <span>Accountabilities & Activities</span>
-            </button>
-
-            <button
-              onClick={() => setActiveSubTab('competencies')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                activeSubTab === 'competencies'
-                  ? 'bg-orange-500 text-white shadow-sm'
-                  : 'bg-white dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              <Award className="w-4 h-4" />
-              <span>Competency Framework</span>
-            </button>
-
-            <button
-              onClick={() => setActiveSubTab('okrs')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
-                activeSubTab === 'okrs'
-                  ? 'bg-orange-500 text-white shadow-sm'
-                  : 'bg-white dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              <Target className="w-4 h-4" />
-              <span>OKRs & Metrics ({role.metricsAndOkrs?.length || 0})</span>
-            </button>
+          {/* Sub-Tab Navigation Bar with Animated Pill */}
+          <div className="flex items-center gap-1.5 overflow-x-auto mt-6 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 print:hidden scrollbar-none select-none">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeSubTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveSubTab(tab.id)}
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-colors active:scale-[0.97] z-10 ${
+                    isActive
+                      ? 'text-white'
+                      : 'bg-white/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200/60 dark:border-slate-700/60'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSubModalTab"
+                      className="absolute inset-0 bg-orange-500 rounded-xl shadow-sm -z-10"
+                      transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
+                    />
+                  )}
+                  <Icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
 
         </div>
@@ -196,7 +178,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                   <Sparkles className="w-4 h-4" />
                   <span>Core Mission Statement</span>
                 </div>
-                <blockquote className="text-base sm:text-lg font-medium text-slate-800 dark:text-slate-100 leading-relaxed italic">
+                <blockquote className="text-base sm:text-lg font-semibold text-slate-900 dark:text-slate-100 leading-relaxed italic">
                   "{role.mission}"
                 </blockquote>
               </div>
@@ -221,7 +203,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                               <button
                                 key={pr.id}
                                 onClick={() => found && onSelectRole(found)}
-                                className="w-full text-left px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-orange-400 hover:text-orange-600 transition-colors"
+                                className="w-full text-left px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-orange-400 hover:text-orange-600 transition-colors active:scale-[0.98]"
                               >
                                 ← {pr.title}
                               </button>
@@ -244,7 +226,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                               <button
                                 key={nr.id}
                                 onClick={() => found && onSelectRole(found)}
-                                className="w-full text-left px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-orange-400 hover:text-orange-600 transition-colors"
+                                className="w-full text-left px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-orange-400 hover:text-orange-600 transition-colors active:scale-[0.98]"
                               >
                                 {nr.title} →
                               </button>
@@ -261,7 +243,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
               {/* Quick Summary of sections */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <div className="text-2xl font-black text-orange-600 dark:text-orange-400 mb-1">
                     {role.accountabilities?.length || 0}
                   </div>
@@ -269,7 +251,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                     Accountabilities
                   </div>
                 </div>
-                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <div className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mb-1">
                     {role.responsibilities?.length || 0}
                   </div>
@@ -277,7 +259,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                     Key Activities
                   </div>
                 </div>
-                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                   <div className="text-2xl font-black text-blue-600 dark:text-blue-400 mb-1">
                     {role.metricsAndOkrs?.length || 0}
                   </div>
@@ -450,7 +432,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 transition-colors active:scale-[0.96]"
             >
               <Printer className="w-4 h-4" />
               <span>Export / Print</span>
@@ -458,7 +440,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
 
             <button
               onClick={onClose}
-              className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-slate-900 dark:bg-orange-600 hover:bg-slate-800 dark:hover:bg-orange-500 shadow-sm transition-all"
+              className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-slate-900 dark:bg-orange-600 hover:bg-slate-800 dark:hover:bg-orange-500 shadow-sm transition-all active:scale-[0.96]"
             >
               Close
             </button>
