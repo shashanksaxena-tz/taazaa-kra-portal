@@ -47,7 +47,7 @@ const MainPortalContent: React.FC = () => {
         onOpenCompareModal={() => setIsCompareModalOpen(true)}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 print:hidden">
         {activeTab === 'kras' && (
           <>
             <HeroSection />

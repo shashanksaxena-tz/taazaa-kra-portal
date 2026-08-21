@@ -4,70 +4,168 @@ export const TaazaaBackgroundLayer: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none print:hidden">
       
-      {/* Ambient Radial Gradient Orbs with Taazaa Mint (#29E8AE) and Deep Midnight Glow */}
+      {/* 1. Seamless Full-Screen Interconnected Hexagon Tessellation (Shared-Side Honeycomb Grid) */}
+      <svg 
+        className="absolute inset-0 w-full h-full opacity-[0.12] dark:opacity-[0.22] text-[#29E8AE]" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          {/* Pattern with Shared-Edge Interconnected Hexagons */}
+          <pattern 
+            id="taazaa_hex_pattern" 
+            width="120" 
+            height="104" 
+            patternUnits="userSpaceOnUse"
+            patternTransform="scale(1)"
+          >
+            {/* Hexagon 1: Center (60, 52) Radius 32 */}
+            <path 
+              d="M60 20 L87.7 36 L87.7 68 L60 84 L32.3 68 L32.3 36 Z" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+            />
+            {/* Inner Isometric 3-Facet Y-lines (Taazaa brand logo mark geometry) */}
+            <path 
+              d="M60 52 L60 20 M60 52 L87.7 68 M60 52 L32.3 68" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+              strokeOpacity="0.8"
+            />
+            {/* Subtle Top-Facet Accent Fill */}
+            <path 
+              d="M60 20 L87.7 36 L60 52 L32.3 36 Z" 
+              fill="currentColor" 
+              fillOpacity="0.15" 
+            />
+
+            {/* Hexagon 2: Top-Left Shared Edge */}
+            <path 
+              d="M0 -32 L27.7 -16 L27.7 16 L0 32 L-27.7 16 L-27.7 -16 Z" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+            />
+            {/* Hexagon 3: Top-Right Shared Edge */}
+            <path 
+              d="M120 -32 L147.7 -16 L147.7 16 L120 32 L92.3 16 L92.3 -16 Z" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+            />
+            {/* Hexagon 4: Bottom-Left Shared Edge */}
+            <path 
+              d="M0 72 L27.7 88 L27.7 120 L0 136 L-27.7 120 L-27.7 88 Z" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+            />
+            {/* Hexagon 5: Bottom-Right Shared Edge */}
+            <path 
+              d="M120 72 L147.7 88 L147.7 120 L120 136 L92.3 120 L92.3 88 Z" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.2" 
+            />
+
+            {/* Connecting Hexagon Side Junction Nodes */}
+            <circle cx="60" cy="20" r="2.5" fill="#29E8AE" />
+            <circle cx="87.7" cy="36" r="2" fill="#29E8AE" fillOpacity="0.7" />
+            <circle cx="87.7" cy="68" r="2.5" fill="#29E8AE" />
+            <circle cx="60" cy="84" r="2" fill="#29E8AE" fillOpacity="0.7" />
+            <circle cx="32.3" cy="68" r="2.5" fill="#29E8AE" />
+            <circle cx="32.3" cy="36" r="2" fill="#29E8AE" fillOpacity="0.7" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#taazaa_hex_pattern)" />
+      </svg>
+
+      {/* 2. Floating Multi-Sized Hexagon Clusters with Shared Edges & Vibrant Taazaa Green Gradients */}
+      
+      {/* Cluster 1: Top-Right Giant Hexagon System */}
+      <div className="absolute -top-16 right-[-2%] sm:right-6 lg:right-16 w-[360px] sm:w-[540px] opacity-[0.28] dark:opacity-[0.42] transition-opacity">
+        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          {/* Main Giant Hexagon (Radius 80) */}
+          <path d="M150 40 L220 80 L220 160 L150 200 L80 160 L80 80 Z" fill="#07091E" stroke="#29E8AE" strokeWidth="2.5" />
+          {/* Internal Isometric Facets */}
+          <path d="M150 120 L150 40 M150 120 L220 160 M150 120 L80 160" stroke="#29E8AE" strokeWidth="2" />
+          <path d="M150 40 L220 80 L150 120 L80 80 Z" fill="#29E8AE" fillOpacity="0.35" />
+          <path d="M150 120 L220 80 V160 L150 200 Z" fill="#29E8AE" fillOpacity="0.2" />
+          <path d="M80 80 L150 120 V200 L80 160 Z" fill="#07091E" fillOpacity="0.5" />
+
+          {/* Connected Shared-Side Medium Hexagon Top-Right (Sharing edge M150 40 L220 80) */}
+          <path d="M150 40 L220 80 L220 0 L150 -40 L80 0 L80 40 Z" fill="none" stroke="#29E8AE" strokeWidth="1.8" strokeDasharray="4 4" />
+          
+          {/* Connected Shared-Side Hexagon Bottom-Right (Sharing edge M220 160 L150 200) */}
+          <path d="M220 160 L290 200 L290 280 L220 320 L150 280 L150 200 Z" fill="#29E8AE" fillOpacity="0.08" stroke="#29E8AE" strokeWidth="2" />
+          <path d="M220 240 L220 160 M220 240 L290 280 M220 240 L150 280" stroke="#29E8AE" strokeWidth="1.5" />
+
+          {/* Connected Shared-Side Small Hexagon Bottom-Left (Sharing edge M150 200 L80 160) */}
+          <path d="M150 200 L80 160 L30 190 L30 250 L80 280 L150 250 Z" fill="none" stroke="#29E8AE" strokeWidth="1.8" />
+          <path d="M80 220 L80 160 M80 220 L150 250 M80 220 L30 250" stroke="#29E8AE" strokeWidth="1.2" />
+
+          {/* Accent Glowing Vertices */}
+          <circle cx="150" cy="40" r="4" fill="#29E8AE" />
+          <circle cx="220" cy="80" r="3.5" fill="#29E8AE" />
+          <circle cx="220" cy="160" r="4" fill="#29E8AE" />
+          <circle cx="150" cy="200" r="4.5" fill="#29E8AE" />
+          <circle cx="80" cy="160" r="3.5" fill="#29E8AE" />
+          <circle cx="80" cy="80" r="4" fill="#29E8AE" />
+          <circle cx="150" cy="120" r="3" fill="#FFFFFF" />
+        </svg>
+      </div>
+
+      {/* Cluster 2: Mid-Left Hexagon Chain */}
+      <div className="absolute top-[38%] -left-12 sm:left-4 w-[280px] sm:w-[420px] opacity-[0.24] dark:opacity-[0.38] transition-opacity">
+        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          {/* Hexagon 1 */}
+          <path d="M100 30 L150 60 L150 120 L100 150 L50 120 L50 60 Z" fill="#07091E" fillOpacity="0.4" stroke="#29E8AE" strokeWidth="2" />
+          <path d="M100 90 L100 30 M100 90 L150 120 M100 90 L50 120" stroke="#29E8AE" strokeWidth="1.5" />
+          <path d="M100 30 L150 60 L100 90 L50 60 Z" fill="#29E8AE" fillOpacity="0.25" />
+
+          {/* Shared Edge Hexagon 2 (Right) */}
+          <path d="M150 60 L200 90 L200 150 L150 180 L100 150 L150 120 Z" fill="none" stroke="#29E8AE" strokeWidth="1.8" />
+          <path d="M150 120 L150 60 M150 120 L200 150 M150 120 L100 150" stroke="#29E8AE" strokeWidth="1.2" strokeOpacity="0.7" />
+
+          {/* Shared Edge Hexagon 3 (Bottom) */}
+          <path d="M100 150 L150 180 L150 240 L100 270 L50 240 L50 180 Z" fill="#29E8AE" fillOpacity="0.1" stroke="#29E8AE" strokeWidth="1.8" />
+
+          <circle cx="100" cy="30" r="3" fill="#29E8AE" />
+          <circle cx="150" cy="60" r="3" fill="#29E8AE" />
+          <circle cx="150" cy="120" r="3.5" fill="#29E8AE" />
+          <circle cx="100" cy="150" r="3.5" fill="#29E8AE" />
+          <circle cx="50" cy="120" r="3" fill="#29E8AE" />
+          <circle cx="50" cy="60" r="3" fill="#29E8AE" />
+        </svg>
+      </div>
+
+      {/* Cluster 3: Bottom-Right Large Hexagon Cluster */}
+      <div className="absolute bottom-10 right-4 sm:right-16 w-[300px] sm:w-[460px] opacity-[0.22] dark:opacity-[0.35] transition-opacity">
+        <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          <path d="M140 40 L195 72 L195 136 L140 168 L85 136 L85 72 Z" fill="#07091E" fillOpacity="0.6" stroke="#29E8AE" strokeWidth="2.2" />
+          <path d="M140 104 L140 40 M140 104 L195 136 M140 104 L85 136" stroke="#29E8AE" strokeWidth="1.6" />
+          <path d="M140 40 L195 72 L140 104 L85 72 Z" fill="#29E8AE" fillOpacity="0.3" />
+          <path d="M140 104 L195 72 V136 L140 168 Z" fill="#29E8AE" fillOpacity="0.15" />
+
+          {/* Outer Ring */}
+          <circle cx="140" cy="104" r="90" stroke="#29E8AE" strokeWidth="1" strokeDasharray="6 6" opacity="0.5" />
+          <circle cx="140" cy="40" r="3.5" fill="#29E8AE" />
+          <circle cx="195" cy="72" r="3" fill="#29E8AE" />
+          <circle cx="195" cy="136" r="3.5" fill="#29E8AE" />
+          <circle cx="140" cy="168" r="4" fill="#29E8AE" />
+          <circle cx="85" cy="136" r="3.5" fill="#29E8AE" />
+          <circle cx="85" cy="72" r="3" fill="#29E8AE" />
+        </svg>
+      </div>
+
+      {/* 3. Ambient Brand Radial Light Glows */}
       <div 
-        className="absolute -top-40 right-[-10%] w-[800px] h-[800px] rounded-full blur-[140px] opacity-[0.14] dark:opacity-[0.20]"
+        className="absolute -top-32 right-[-5%] w-[750px] h-[750px] rounded-full blur-[140px] opacity-[0.20] dark:opacity-[0.28]"
         style={{ background: 'radial-gradient(circle, #29E8AE 0%, rgba(6, 182, 212, 0.4) 50%, transparent 70%)' }}
       />
       <div 
-        className="absolute top-[40%] -left-48 w-[650px] h-[650px] rounded-full blur-[130px] opacity-[0.10] dark:opacity-[0.16]"
-        style={{ background: 'radial-gradient(circle, #06B6D4 0%, rgba(41, 232, 174, 0.3) 50%, transparent 70%)' }}
-      />
-      <div 
-        className="absolute bottom-10 right-[5%] w-[700px] h-[700px] rounded-full blur-[150px] opacity-[0.08] dark:opacity-[0.14]"
-        style={{ background: 'radial-gradient(circle, #29E8AE 0%, rgba(99, 102, 241, 0.2) 60%, transparent 70%)' }}
-      />
-
-      {/* Hexagonal Isometric Geometric Watermarks (Taazaa 3-Facet Brand Mark Motif) */}
-      
-      {/* Large Top-Right Isometric Hexagon Watermark */}
-      <svg 
-        className="absolute top-12 right-6 lg:right-24 w-[380px] sm:w-[540px] h-auto opacity-[0.035] dark:opacity-[0.055] text-brand-400 transition-opacity duration-300" 
-        viewBox="0 0 160 160" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Top Diamond */}
-        <path d="M80 15L125 41L80 67L35 41L80 15Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        {/* Right Facet */}
-        <path d="M80 67L125 41V93L80 119V67Z" fill="currentColor" fillOpacity="0.8" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        {/* Left Facet */}
-        <path d="M35 41L80 67V119L35 93V41Z" fill="currentColor" fillOpacity="0.5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        {/* Outer Accent Orbit Ring */}
-        <circle cx="80" cy="80" r="72" stroke="currentColor" strokeWidth="0.8" strokeDasharray="6 6" opacity="0.6" />
-      </svg>
-
-      {/* Mid-Left Floating Hexagon Group */}
-      <svg 
-        className="absolute top-[48%] -left-12 w-[320px] sm:w-[420px] h-auto opacity-[0.03] dark:opacity-[0.045] text-brand-400" 
-        viewBox="0 0 160 160" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M80 20L120 43L80 66L40 43L80 20Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M80 66L120 43V89L80 112V66Z" fill="currentColor" fillOpacity="0.7" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M40 43L80 66V112L40 89V43Z" fill="currentColor" fillOpacity="0.4" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-
-      {/* Bottom-Right Geometry */}
-      <svg 
-        className="absolute bottom-24 right-10 w-[260px] sm:w-[360px] h-auto opacity-[0.025] dark:opacity-[0.04] text-brand-400" 
-        viewBox="0 0 160 160" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M80 25L115 45L80 65L45 45L80 25Z" fill="currentColor" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M80 65L115 45V85L80 105V65Z" fill="currentColor" fillOpacity="0.75" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M45 45L80 65V105L45 85V45Z" fill="currentColor" fillOpacity="0.45" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-
-      {/* Micro-dot matrix grid texture */}
-      <div 
-        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.035]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #29E8AE 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }}
+        className="absolute bottom-10 left-[-10%] w-[650px] h-[650px] rounded-full blur-[140px] opacity-[0.14] dark:opacity-[0.22]"
+        style={{ background: 'radial-gradient(circle, #00D09C 0%, rgba(7, 9, 30, 0.6) 60%, transparent 75%)' }}
       />
     </div>
   );
