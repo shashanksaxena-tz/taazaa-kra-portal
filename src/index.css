@@ -4,14 +4,15 @@
 
 @layer base {
   body {
-    @apply font-sans bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+    @apply font-sans bg-slate-50 text-slate-900 dark:bg-[#07091E] dark:text-slate-100;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
   
   ::selection {
-    @apply bg-brand-500 text-white;
+    background-color: #29E8AE;
+    color: #07091E;
   }
 }
 
@@ -20,16 +21,16 @@
   width: 24px;
   height: 3px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #6366F1 0%, #06B6D4 100%);
+  background: linear-gradient(90deg, #29E8AE 0%, #06B6D4 100%);
 }
 
-/* Linear-style Button */
+/* Taazaa Official Buttons */
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-brand-600/20 transition-all active:scale-[0.97];
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-[#29E8AE] dark:hover:bg-[#20caa0] text-white dark:text-[#07091E] text-xs sm:text-sm font-bold shadow-md shadow-slate-900/10 dark:shadow-[#29E8AE]/20 transition-all active:scale-[0.97];
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-xs sm:text-sm font-bold transition-all active:scale-[0.97];
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#0B0F2A] text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-xs sm:text-sm font-bold transition-all active:scale-[0.97];
 }
 
 /* Subtle Scrollbar */
@@ -45,7 +46,7 @@
   border-radius: 9999px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
+  background: rgba(41, 232, 174, 0.25);
 }
 
 /* Professional Print Stylesheet */
