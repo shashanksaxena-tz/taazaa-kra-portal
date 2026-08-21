@@ -73,6 +73,18 @@ export interface RaciItem {
   productManager: string;
 }
 
+export interface KRAVersion {
+  id: string;
+  versionNumber: string;
+  name: string;
+  effectiveDate: string; // e.g. "2026-08", "2026-01", "2025-12", "2024-01"
+  createdAt: string;
+  createdBy: string;
+  notes?: string;
+  departments: Department[];
+  raciMatrix?: RaciItem[];
+}
+
 export interface PortalData {
   organization: string;
   portalTitle: string;
@@ -81,6 +93,8 @@ export interface PortalData {
   version: string;
   departments: Department[];
   raciMatrix: RaciItem[];
+  versions?: KRAVersion[];
+  activeVersionId?: string;
 }
 
 export interface GitHubConfig {

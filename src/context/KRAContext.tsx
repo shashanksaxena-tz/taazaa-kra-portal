@@ -1,7 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { PortalData, RoleCharter, Department, GitHubConfig, AdminSession, RaciItem } from '../types';
+import { 
+  PortalData, 
+  RoleCharter, 
+  Department, 
+  GitHubConfig, 
+  AdminSession, 
+  RaciItem, 
+  KRAVersion 
+} from '../types';
 import { storageService } from '../services/storageService';
 import { githubService, CommitResult } from '../services/githubService';
+import { excelService } from '../services/excelService';
 
 interface ToastInfo {
   id: string;
@@ -22,6 +31,13 @@ interface KRAContextType {
   activeTab: 'kras' | 'raci' | 'frameworks' | 'admin';
   toasts: ToastInfo[];
   
+  // Versioning
+  activeVersionId: string;
+  activeVersion?: KRAVersion;
+  isHistoricalVersion: boolean;
+  switchVersion: (versionId: string) => void;
+  createVersionSnapshot: (name: string, effectiveDate: string, notes?: string) => void;
+
   // Setters
   setActiveDepartmentId: (id: string) => void;
   setSearchQuery: (q: string) => void;
@@ -45,8 +61,14 @@ interface KRAContextType {
   updateRaciMatrix: (newMatrix: RaciItem[]) => void;
   saveGitHubConfig: (config: GitHubConfig) => void;
   commitToGitHub: (message?: string) => Promise<CommitResult>;
+
+  // Multi-Format Export & Import
   exportJSON: () => void;
   importJSON: (jsonStr: string) => boolean;
+  exportExcel: () => void;
+  exportCSV: () => void;
+  downloadTemplate: (format?: 'xlsx' | 'csv') => void;
+  importSpreadsheet: (file: File) => Promise<boolean>;
   resetToDefaults: () => void;
 }
 
@@ -61,6 +83,11 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [comparisonRoles, setComparisonRoles] = useState<RoleCharter[]>([]);
   const [activeTab, setActiveTab] = useState<'kras' | 'raci' | 'frameworks' | 'admin'>('kras');
   const [toasts, setToasts] = useState<ToastInfo[]>([]);
+
+  // Versioning state
+  const [activeVersionId, setActiveVersionId] = useState<string>(
+    () => portalData.activeVersionId || portalData.versions?.[0]?.id || 'v2026.08'
+  );
 
   const [adminSession, setAdminSession] = useState<AdminSession>(() => storageService.getAdminSession());
   const [gitHubConfig, setGitHubConfigState] = useState<GitHubConfig>(() => storageService.getGitHubConfig());
@@ -104,14 +131,16 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setComparisonRoles((prev) => {
       const exists = prev.some((r) => r.id === role.id);
       if (exists) {
+        showToast(`Removed "${role.title}" from comparison`, 'info');
         return prev.filter((r) => r.id !== role.id);
+      } else {
+        if (prev.length >= 3) {
+          showToast('You can compare a maximum of 3 roles simultaneously', 'error');
+          return prev;
+        }
+        showToast(`Added "${role.title}" to comparison`, 'success');
+        return [...prev, role];
       }
-      if (prev.length >= 2) {
-        showToast('You can compare maximum 2 roles at a time. Replacing the oldest one.', 'info');
-        return [prev[1], role];
-      }
-      showToast(`Added "${role.title}" to comparison matrix`, 'success');
-      return [...prev, role];
     });
   };
 
@@ -121,18 +150,79 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const clearComparison = () => {
     setComparisonRoles([]);
+    showToast('Comparison cleared', 'info');
   };
 
-  const loginAdmin = (passcode: string): boolean => {
-    // Standard passcode for Taazaa ER / HR admin
-    if (passcode === 'taazaa2026' || passcode === 'admin123' || passcode === 'taazaa-er') {
-      const session: AdminSession = { isAuthenticated: true, username: 'ER Admin', role: 'admin' };
+  // Switch between Active and Historical Versions
+  const activeVersion = portalData.versions?.find((v) => v.id === activeVersionId) || portalData.versions?.[0];
+  const isHistoricalVersion = Boolean(activeVersion && activeVersion.id !== portalData.versions?.[0]?.id);
+
+  const switchVersion = (versionId: string) => {
+    const targetVersion = portalData.versions?.find((v) => v.id === versionId);
+    if (!targetVersion) {
+      showToast('Selected version snapshot not found', 'error');
+      return;
+    }
+
+    setActiveVersionId(versionId);
+    setPortalData((prev) => ({
+      ...prev,
+      activeVersionId: versionId,
+      departments: targetVersion.departments,
+      raciMatrix: targetVersion.raciMatrix || prev.raciMatrix,
+    }));
+
+    if (versionId === portalData.versions?.[0]?.id) {
+      showToast(`Switched to Live Active Version (${targetVersion.name})`, 'success');
+    } else {
+      showToast(`Time Travel: Viewing Historical Archive "${targetVersion.name}"`, 'info');
+    }
+  };
+
+  // Create a new Version Snapshot
+  const createVersionSnapshot = (name: string, effectiveDate: string, notes?: string) => {
+    const newVersionId = `v${effectiveDate.replace('-', '.')}.${Date.now().toString().slice(-4)}`;
+    const newSnapshot: KRAVersion = {
+      id: newVersionId,
+      versionNumber: newVersionId,
+      name: name.trim(),
+      effectiveDate: effectiveDate.trim(),
+      createdAt: new Date().toISOString(),
+      createdBy: adminSession.username || 'ER Governance Admin',
+      notes: notes?.trim(),
+      departments: JSON.parse(JSON.stringify(portalData.departments)),
+      raciMatrix: JSON.parse(JSON.stringify(portalData.raciMatrix)),
+    };
+
+    const updatedVersions = [newSnapshot, ...(portalData.versions || [])];
+    const updatedData: PortalData = {
+      ...portalData,
+      version: newVersionId,
+      lastUpdated: new Date().toISOString().split('T')[0],
+      versions: updatedVersions,
+      activeVersionId: newVersionId,
+    };
+
+    setPortalData(updatedData);
+    setActiveVersionId(newVersionId);
+    storageService.saveData(updatedData);
+    showToast(`Version Snapshot "${name}" created and saved as active!`, 'success');
+  };
+
+  // Admin Auth
+  const loginAdmin = (password: string): boolean => {
+    if (password === 'taazaa2026' || password === 'admin') {
+      const session: AdminSession = {
+        isAuthenticated: true,
+        username: 'ER Governance Lead',
+        role: 'admin',
+      };
       setAdminSession(session);
       storageService.saveAdminSession(session);
-      showToast('Welcome to ER Admin Mode! You can now edit and manage KRAs.', 'success');
+      showToast('Admin workspace unlocked. Welcome!', 'success');
       return true;
     }
-    showToast('Invalid admin passcode. Please verify your credentials.', 'error');
+    showToast('Invalid passcode', 'error');
     return false;
   };
 
@@ -141,71 +231,78 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setAdminSession(session);
     storageService.clearAdminSession();
     setActiveTab('kras');
-    showToast('Logged out of Admin Mode.', 'info');
+    showToast('Logged out of Admin workspace', 'info');
   };
 
-  const persistData = (newData: PortalData) => {
-    setPortalData(newData);
-    storageService.saveData(newData);
-  };
-
+  // Role CRUD
   const updateRole = (departmentId: string, updatedRole: RoleCharter) => {
     const updatedDepartments = portalData.departments.map((dept) => {
       if (dept.id === departmentId) {
-        const updatedRoles = dept.roles.map((r) => (r.id === updatedRole.id ? updatedRole : r));
-        return { ...dept, roles: updatedRoles };
+        const roleExists = dept.roles.some((r) => r.id === updatedRole.id);
+        const roles = roleExists
+          ? dept.roles.map((r) => (r.id === updatedRole.id ? updatedRole : r))
+          : [...dept.roles, updatedRole];
+        return { ...dept, roles };
       }
-      return dept;
+      return {
+        ...dept,
+        roles: dept.roles.filter((r) => r.id !== updatedRole.id),
+      };
     });
 
-    const newData: PortalData = {
+    const updatedData: PortalData = {
       ...portalData,
-      lastUpdated: new Date().toISOString().split('T')[0],
       departments: updatedDepartments,
+      lastUpdated: new Date().toISOString().split('T')[0],
     };
-    persistData(newData);
-    showToast(`Role "${updatedRole.title}" updated successfully.`, 'success');
 
-    if (selectedRole && selectedRole.id === updatedRole.id) {
-      setSelectedRole(updatedRole);
-    }
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast(`Charter for "${updatedRole.title}" saved successfully`, 'success');
   };
 
   const addRole = (departmentId: string, newRole: RoleCharter) => {
     const updatedDepartments = portalData.departments.map((dept) => {
       if (dept.id === departmentId) {
-        return { ...dept, roles: [...dept.roles, newRole] };
+        return {
+          ...dept,
+          roles: [...dept.roles, newRole],
+        };
       }
       return dept;
     });
 
-    const newData: PortalData = {
+    const updatedData: PortalData = {
       ...portalData,
-      lastUpdated: new Date().toISOString().split('T')[0],
       departments: updatedDepartments,
+      lastUpdated: new Date().toISOString().split('T')[0],
     };
-    persistData(newData);
-    showToast(`New role "${newRole.title}" added to ${departmentId}!`, 'success');
+
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast(`New role "${newRole.title}" added to ${departmentId}`, 'success');
   };
 
   const deleteRole = (departmentId: string, roleId: string) => {
     const updatedDepartments = portalData.departments.map((dept) => {
       if (dept.id === departmentId) {
-        return { ...dept, roles: dept.roles.filter((r) => r.id !== roleId) };
+        return {
+          ...dept,
+          roles: dept.roles.filter((r) => r.id !== roleId),
+        };
       }
       return dept;
     });
 
-    const newData: PortalData = {
+    const updatedData: PortalData = {
       ...portalData,
-      lastUpdated: new Date().toISOString().split('T')[0],
       departments: updatedDepartments,
+      lastUpdated: new Date().toISOString().split('T')[0],
     };
-    persistData(newData);
-    showToast(`Role deleted successfully.`, 'info');
-    if (selectedRole && selectedRole.id === roleId) {
-      setSelectedRole(null);
-    }
+
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast('Role deleted', 'info');
   };
 
   const updateDepartmentInfo = (departmentId: string, info: Partial<Department>) => {
@@ -216,66 +313,131 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return dept;
     });
 
-    const newData: PortalData = {
+    const updatedData: PortalData = {
       ...portalData,
-      lastUpdated: new Date().toISOString().split('T')[0],
       departments: updatedDepartments,
+      lastUpdated: new Date().toISOString().split('T')[0],
     };
-    persistData(newData);
-    showToast(`Department information updated.`, 'success');
+
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
   };
 
   const updateRaciMatrix = (newMatrix: RaciItem[]) => {
-    const newData: PortalData = {
+    const updatedData: PortalData = {
       ...portalData,
-      lastUpdated: new Date().toISOString().split('T')[0],
       raciMatrix: newMatrix,
+      lastUpdated: new Date().toISOString().split('T')[0],
     };
-    persistData(newData);
-    showToast(`RACI Matrix updated.`, 'success');
+
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast('RACI Matrix saved', 'success');
   };
 
   const saveGitHubConfig = (config: GitHubConfig) => {
     setGitHubConfigState(config);
     storageService.saveGitHubConfig(config);
-    showToast('GitHub configuration saved.', 'success');
   };
 
   const commitToGitHub = async (customMessage?: string): Promise<CommitResult> => {
-    const result = await githubService.commitChanges(gitHubConfig, portalData, customMessage);
-    if (result.success) {
-      showToast(result.message, 'success');
-    } else {
-      showToast(result.message, 'error');
-    }
-    return result;
+    return await githubService.commitChanges(gitHubConfig, portalData, customMessage);
   };
 
+  // Export / Import Operations
   const exportJSON = () => {
     storageService.exportJSON(portalData);
-    showToast('Backup JSON exported to your Downloads folder.', 'success');
+    showToast('Exported backup JSON bundle', 'success');
   };
 
   const importJSON = (jsonStr: string): boolean => {
     try {
       const parsed = JSON.parse(jsonStr);
-      if (parsed && Array.isArray(parsed.departments)) {
-        persistData(parsed);
-        showToast('KRA dataset successfully imported and applied!', 'success');
+      if (parsed && Array.isArray(parsed.departments) && parsed.departments.length > 0) {
+        setPortalData(parsed);
+        storageService.saveData(parsed);
+        showToast(`Successfully imported ${parsed.departments.length} departments`, 'success');
         return true;
       }
-      showToast('Invalid JSON file format. Missing departments array.', 'error');
+      showToast('Invalid JSON schema', 'error');
       return false;
     } catch (e: any) {
-      showToast(`Failed to parse JSON: ${e.message}`, 'error');
+      showToast(`Import failed: ${e.message}`, 'error');
+      return false;
+    }
+  };
+
+  const exportExcel = () => {
+    excelService.exportToExcel(portalData);
+    showToast('Generated and exported full Excel workbook (.xlsx)', 'success');
+  };
+
+  const exportCSV = () => {
+    excelService.exportToCSV(portalData);
+    showToast('Exported Role Charters as CSV', 'success');
+  };
+
+  const downloadTemplate = (format: 'xlsx' | 'csv' = 'xlsx') => {
+    excelService.downloadTemplate(format);
+    showToast(`Downloaded KRA import template (${format.toUpperCase()})`, 'info');
+  };
+
+  const importSpreadsheet = async (file: File): Promise<boolean> => {
+    try {
+      const { roles, count } = await excelService.parseSpreadsheet(file);
+      if (count === 0) {
+        showToast('No valid roles detected in spreadsheet', 'error');
+        return false;
+      }
+
+      // Group roles by department
+      const deptMap: Record<string, RoleCharter[]> = {};
+      roles.forEach((r) => {
+        if (!deptMap[r.departmentId]) deptMap[r.departmentId] = [];
+        deptMap[r.departmentId].push(r);
+      });
+
+      const updatedDepartments = portalData.departments.map((dept) => {
+        const importedRolesForDept = deptMap[dept.id] || [];
+        if (importedRolesForDept.length === 0) return dept;
+
+        // Merge: update existing by title/id, append new
+        const existingRoles = [...dept.roles];
+        importedRolesForDept.forEach((impRole) => {
+          const matchIndex = existingRoles.findIndex(
+            (er) => er.id === impRole.id || er.title.toLowerCase() === impRole.title.toLowerCase()
+          );
+          if (matchIndex >= 0) {
+            existingRoles[matchIndex] = impRole;
+          } else {
+            existingRoles.push(impRole);
+          }
+        });
+
+        return { ...dept, roles: existingRoles };
+      });
+
+      const updatedData: PortalData = {
+        ...portalData,
+        departments: updatedDepartments,
+        lastUpdated: new Date().toISOString().split('T')[0],
+      };
+
+      setPortalData(updatedData);
+      storageService.saveData(updatedData);
+      showToast(`Successfully imported & merged ${count} roles from ${file.name}!`, 'success');
+      return true;
+    } catch (err: any) {
+      showToast(`Spreadsheet import error: ${err.message}`, 'error');
       return false;
     }
   };
 
   const resetToDefaults = () => {
-    const def = storageService.resetToDefault();
-    setPortalData(def);
-    showToast('Reset all KRAs and role charters to default factory version.', 'info');
+    const data = storageService.resetToDefault();
+    setPortalData(data);
+    setActiveVersionId('v2026.08');
+    showToast('Reset all roles to factory bundle', 'info');
   };
 
   return (
@@ -292,6 +454,11 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         isDarkMode,
         activeTab,
         toasts,
+        activeVersionId,
+        activeVersion,
+        isHistoricalVersion,
+        switchVersion,
+        createVersionSnapshot,
         setActiveDepartmentId,
         setSearchQuery,
         setSelectedLevel,
@@ -314,6 +481,10 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         commitToGitHub,
         exportJSON,
         importJSON,
+        exportExcel,
+        exportCSV,
+        downloadTemplate,
+        importSpreadsheet,
         resetToDefaults,
       }}
     >

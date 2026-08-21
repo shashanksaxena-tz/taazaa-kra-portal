@@ -11,7 +11,9 @@ import {
   Sun, 
   Moon, 
   Menu, 
-  X 
+  X,
+  History,
+  ChevronDown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -29,9 +31,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
     logoutAdmin,
     isDarkMode,
     toggleDarkMode,
+    portalData,
+    activeVersionId,
+    activeVersion,
+    switchVersion,
+    isHistoricalVersion,
   } = useKRA();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVersionDropdownOpen, setIsVersionDropdownOpen] = useState(false);
 
   const navItems = [
     { id: 'kras', label: 'Role Charters', icon: Layers },
@@ -41,28 +49,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-slate-950/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
-      <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo (Electric Indigo & Cyan) */}
           <div 
-            className="flex items-center gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
+            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
             onClick={() => setActiveTab('kras')}
           >
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-brand-600 shadow-md shadow-brand-600/25 text-white font-black text-xl tracking-tight">
+            <div className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-600 shadow-md shadow-brand-600/25 text-white font-black text-lg sm:text-xl tracking-tight">
               <span>T</span>
               <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-accent-cyan rounded-full border-2 border-white dark:border-slate-950" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-extrabold text-lg sm:text-2xl tracking-tight text-slate-900 dark:text-white">
                   taazaa<span className="text-brand-500">.</span>
                 </span>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 hidden xs:inline-block">
                   ER Portal
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden lg:block">
                 KRA & Role Charter Governance
               </p>
             </div>
@@ -77,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+                  className={`flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
                     isActive
                       ? 'bg-brand-600 text-white shadow-sm'
                       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
@@ -90,13 +98,88 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             })}
           </nav>
 
-          {/* Utility Actions */}
+          {/* Utility Actions & Version Selector */}
           <div className="flex items-center gap-2 sm:gap-3">
             
+            {/* Version Switcher Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsVersionDropdownOpen(!isVersionDropdownOpen)}
+                className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs font-bold border transition-all active:scale-[0.96] ${
+                  isHistoricalVersion
+                    ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700 shadow-sm'
+                    : 'bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+                }`}
+                title="Switch KRA Snapshot Version"
+              >
+                <History className="w-3.5 h-3.5 text-brand-500" />
+                <span className="max-w-[90px] sm:max-w-[120px] truncate">
+                  {activeVersion?.name || activeVersionId}
+                </span>
+                <ChevronDown className="w-3 h-3 text-slate-400" />
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isVersionDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-2 z-50 text-left"
+                  >
+                    <div className="px-3 py-2 border-b border-slate-100 dark:border-slate-800">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 font-mono">
+                        Historical Version Snapshots
+                      </span>
+                    </div>
+
+                    <div className="max-h-60 overflow-y-auto space-y-1 py-1">
+                      {portalData.versions?.map((ver, idx) => {
+                        const isSelected = ver.id === activeVersionId;
+                        const isLive = idx === 0;
+                        return (
+                          <button
+                            key={ver.id}
+                            onClick={() => {
+                              switchVersion(ver.id);
+                              setIsVersionDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center justify-between ${
+                              isSelected
+                                ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/30'
+                                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                            }`}
+                          >
+                            <div>
+                              <div className="flex items-center gap-1.5">
+                                <span>{ver.name}</span>
+                                {isLive && (
+                                  <span className="px-1.5 py-0.2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded text-[9px] font-black uppercase">
+                                    Live
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-[10px] text-slate-400 font-mono">
+                                Effective: {ver.effectiveDate}
+                              </div>
+                            </div>
+                            {isSelected && (
+                              <span className="w-2 h-2 rounded-full bg-brand-500" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Compare Trigger */}
             <button
               onClick={onOpenCompareModal}
-              className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
                 comparisonRoles.length > 0
                   ? 'bg-brand-50 dark:bg-brand-950/40 border-brand-500 text-brand-600 dark:text-brand-400 shadow-sm'
                   : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
@@ -125,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setActiveTab('admin')}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
+                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
                     activeTab === 'admin'
                       ? 'bg-emerald-600 text-white shadow-md'
                       : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
@@ -137,7 +220,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 <button
                   onClick={logoutAdmin}
                   title="Logout from Admin"
-                  className="p-2.5 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors active:scale-[0.92]"
+                  className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors active:scale-[0.92]"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -145,17 +228,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             ) : (
               <button
                 onClick={onOpenAdminLogin}
-                className="btn-primary"
+                className="btn-primary !px-3 sm:!px-5 !py-2 sm:!py-2.5 text-xs sm:text-sm"
               >
                 <Lock className="w-3.5 h-3.5" />
-                <span>Admin Login</span>
+                <span className="hidden xs:inline">Admin Login</span>
               </button>
             )}
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
+              className="md:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

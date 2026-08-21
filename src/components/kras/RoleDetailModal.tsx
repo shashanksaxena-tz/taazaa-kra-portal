@@ -289,8 +289,8 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                 Objective criteria utilized during quarterly appraisal reviews and performance evaluations.
               </p>
 
-              <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                <table className="w-full text-left text-xs sm:text-sm">
+              <div className="mt-4 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <table className="w-full text-left text-xs sm:text-sm min-w-[500px]">
                   <thead className="bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
                     <tr>
                       <th className="p-4">Outcome Area</th>
