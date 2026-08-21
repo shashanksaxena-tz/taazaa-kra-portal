@@ -57,7 +57,7 @@ export const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden py-8 sm:py-16 border-b border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-b from-indigo-50/40 via-white to-slate-50/50 dark:from-slate-900/60 dark:via-slate-950 dark:to-slate-950">
+    <div className="relative overflow-hidden py-8 sm:py-16 border-b border-slate-200/80 dark:border-slate-800/80 bg-transparent">
       
       {/* Subtle ambient lighting */}
       <div className="absolute top-0 right-10 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
