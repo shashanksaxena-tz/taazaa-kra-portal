@@ -124,6 +124,8 @@ export const HeroSection: React.FC = () => {
                 <input
                   ref={searchInputRef}
                   type="text"
+                  name="role-search"
+                  aria-label="Search role charters"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by role, skill, accountability, or metric (e.g. Lead Architect, QA Automation)..."

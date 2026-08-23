@@ -56,12 +56,17 @@ export const storageService = {
         (v) => v.id === DEFAULT_VERSION_ID || !['v2026.08', 'v2026.01', 'v2025.12', 'v2024.01'].includes(v.id)
       );
     }
-    return withBaseline(data);
+    const migrated = withBaseline(data);
+    migrated.schemaVersion = SCHEMA_VERSION;
+    return migrated;
   },
 
   saveData(data: PortalData): boolean {
     try {
-      localStorage.setItem(STORAGE_KEYS.krasData, JSON.stringify(data));
+      localStorage.setItem(
+        STORAGE_KEYS.krasData,
+        JSON.stringify({ ...data, schemaVersion: SCHEMA_VERSION })
+      );
       return true;
     } catch (e) {
       console.error('Failed to save to localStorage', e);

@@ -13,6 +13,7 @@ import { DEFAULT_VERSION_ID, ADMIN } from '../constants';
 import { sha256Hex } from '../utils';
 import { githubService, CommitResult } from '../services/githubService';
 import { excelService } from '../services/excelService';
+import { portalDataSchema } from '../schemas';
 
 interface ToastInfo {
   id: string;
@@ -359,13 +360,15 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const importJSON = (jsonStr: string): boolean => {
     try {
       const parsed = JSON.parse(jsonStr);
-      if (parsed && Array.isArray(parsed.departments) && parsed.departments.length > 0) {
-        setPortalData(parsed);
-        storageService.saveData(parsed);
-        showToast(`Successfully imported ${parsed.departments.length} departments`, 'success');
+      const validated = portalDataSchema.safeParse(parsed);
+      if (validated.success) {
+        const merged: PortalData = { ...parsed, ...validated.data };
+        setPortalData(merged);
+        storageService.saveData(merged);
+        showToast(`Successfully imported ${merged.departments.length} departments`, 'success');
         return true;
       }
-      showToast('Invalid JSON schema', 'error');
+      showToast(`Invalid JSON schema: ${validated.error.issues[0]?.message ?? 'unknown error'}`, 'error');
       return false;
     } catch (err: unknown) {
       showToast(`Import failed: ${err instanceof Error ? err.message : String(err)}`, 'error');

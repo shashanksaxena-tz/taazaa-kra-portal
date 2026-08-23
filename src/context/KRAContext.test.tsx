@@ -13,6 +13,8 @@ vi.mock('../services/storageService', () => ({
     clearAdminSession: vi.fn(),
     getGitHubConfig: vi.fn(() => ({ owner: '', repo: '', branch: 'main', filePath: 'x', token: '' })),
     saveGitHubConfig: vi.fn(),
+    resetToDefault: vi.fn(() => JSON.parse(JSON.stringify(fixture)) as PortalData),
+    exportJSON: vi.fn(),
   },
 }));
 
@@ -148,7 +150,8 @@ describe('JSON import/export roundtrip', () => {
     });
     expect(ok).toBe(true);
     expect(result.current.portalData.departments).toHaveLength(3);
-    expect(mockedSaveData).toHaveBeenCalledWith(payload);
+    expect(mockedSaveData).toHaveBeenCalledTimes(1);
+    expect(mockedSaveData.mock.calls[0][0].departments.map((d: Department) => d.id)).toContain('design');
   });
 
   it('importJSON rejects payloads with no departments', () => {
@@ -168,6 +171,32 @@ describe('JSON import/export roundtrip', () => {
       ok = result.current.importJSON('{definitely not json');
     });
     expect(ok).toBe(false);
+  });
+});
+
+describe('reset & theme', () => {
+  it('resetToDefaults restores factory data and the baseline version pointer', () => {
+    const { result } = renderPortal();
+    act(() => result.current.createVersionSnapshot('Q3 Freeze', '2026-09'));
+    expect(result.current.portalData.activeVersionId).not.toBe('v-current');
+
+    act(() => result.current.resetToDefaults());
+    expect(result.current.portalData.departments).toHaveLength(2);
+    expect(result.current.portalData.activeVersionId).toBe('v-current');
+    expect(storageService.resetToDefault).toHaveBeenCalled();
+  });
+
+  it('toggleDarkMode flips the theme and persists it to localStorage', () => {
+    localStorage.setItem('taazaa_theme', 'light');
+    const { result } = renderPortal();
+    expect(result.current.isDarkMode).toBe(false);
+
+    act(() => result.current.toggleDarkMode());
+    expect(result.current.isDarkMode).toBe(true);
+    expect(localStorage.getItem('taazaa_theme')).toBe('dark');
+
+    act(() => result.current.toggleDarkMode());
+    expect(localStorage.getItem('taazaa_theme')).toBe('light');
   });
 });
 

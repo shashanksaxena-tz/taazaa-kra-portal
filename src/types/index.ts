@@ -95,6 +95,8 @@ export interface PortalData {
   raciMatrix: RaciItem[];
   versions?: KRAVersion[];
   activeVersionId?: string;
+  /** Bumped when the persisted shape changes; drives localStorage migration. */
+  schemaVersion?: number;
 }
 
 export interface GitHubConfig {
@@ -112,22 +114,4 @@ export interface AdminSession {
   isAuthenticated: boolean;
   username: string;
   role: 'admin' | 'editor';
-}
-
-export interface CommitConflictInfo {
-  /** true when remote changed under us (sha mismatch) */
-  remoteChanged: boolean;
-}
-
-export interface ImportRowWarning {
-  row: number;
-  title: string;
-  message: string;
-}
-
-export interface ParsedImport {
-  roles: RoleCharter[];
-  count: number;
-  warnings: ImportRowWarning[];
-  unknownDepartments: string[];
 }

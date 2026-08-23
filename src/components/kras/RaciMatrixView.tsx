@@ -51,6 +51,8 @@ export const RaciMatrixView: React.FC = () => {
             <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
             <input
               type="text"
+              name="raci-filter"
+              aria-label="Filter RACI activities"
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
               placeholder="Filter activities..."

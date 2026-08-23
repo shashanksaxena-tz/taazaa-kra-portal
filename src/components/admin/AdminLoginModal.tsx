@@ -61,13 +61,16 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ isOpen, onClos
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+            <label htmlFor="admin-passcode" className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
               Admin Passcode
             </label>
             <div className="relative">
               <Key className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
               <input
                 type="password"
+                id="admin-passcode"
+                name="passcode"
+                autoComplete="current-password"
                 value={passcode}
                 onChange={(e) => {
                   setPasscode(e.target.value);

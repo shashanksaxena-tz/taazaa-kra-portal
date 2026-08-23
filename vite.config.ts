@@ -9,12 +9,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion'],
           icons: ['lucide-react'],
+          excel: ['xlsx']
         }
       }
     }

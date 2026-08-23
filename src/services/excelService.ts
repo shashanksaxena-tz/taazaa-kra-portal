@@ -3,13 +3,9 @@ import { PortalData, RoleCharter, MetricOKR, KRAVersion } from '../types';
 
 export const excelService = {
   /**
-   * Export Portal Data to a Professionally Formatted Multi-Sheet Excel Workbook (.xlsx)
+   * Build the multi-sheet governance workbook (pure — no download side effects).
    */
-  exportToExcel: (
-    portalData: PortalData, 
-    activeVersion?: KRAVersion, 
-    filename: string = 'Taazaa_KRA_Role_Charters.xlsx'
-  ) => {
+  buildWorkbook: (portalData: PortalData, activeVersion?: KRAVersion): XLSX.WorkBook => {
     const wb = XLSX.utils.book_new();
 
     const verName = activeVersion?.name || activeVersion?.versionNumber || portalData.version || 'Bundled Baseline';
@@ -188,8 +184,18 @@ export const excelService = {
     ];
     XLSX.utils.book_append_sheet(wb, wsLookups, 'Reference Lookups');
 
-    // Write and trigger download
-    XLSX.writeFile(wb, filename);
+    return wb;
+  },
+
+  /**
+   * Export Portal Data to a Professionally Formatted Multi-Sheet Excel Workbook (.xlsx)
+   */
+  exportToExcel: (
+    portalData: PortalData,
+    activeVersion?: KRAVersion,
+    filename: string = 'Taazaa_KRA_Role_Charters.xlsx'
+  ) => {
+    XLSX.writeFile(excelService.buildWorkbook(portalData, activeVersion), filename);
   },
 
   /**
@@ -306,27 +312,9 @@ export const excelService = {
     ];
 
     if (format === 'xlsx') {
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Template');
-
-      // Reference Lookups Sheet
-      const lookupRows = [
-        ['VALID HR OPTIONS REFERENCE'],
-        [],
-        ['Valid Departments', 'Valid Levels', 'Valid Cadences'],
-        ['Software Engineering', 'Associate (L1)', 'Per Sprint'],
-        ['Quality Assurance', 'Mid-Level (L2)', 'Monthly'],
-        ['UI/UX Design', 'Senior (L3)', 'Quarterly'],
-        ['Product Management', 'Lead (L4)', 'Bi-Annual'],
-        ['Program & Delivery', 'Management (L4-L5)', 'Annual'],
-        ['', 'Principal / Architect (L5)', ''],
-        ['', 'Executive / Director (L6)', ''],
-      ];
-      const wsRef = XLSX.utils.aoa_to_sheet(lookupRows);
-      XLSX.utils.book_append_sheet(wb, wsRef, 'Valid Values');
-
-      XLSX.writeFile(wb, 'Taazaa_KRA_Import_Template.xlsx');
+      XLSX.writeFile(excelService.buildTemplateWorkbook(), 'Taazaa_KRA_Import_Template.xlsx');
     } else {
+      const ws = XLSX.utils.aoa_to_sheet(templateHeader);
       const csvContent = XLSX.utils.sheet_to_csv(ws);
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -337,6 +325,92 @@ export const excelService = {
       link.click();
       document.body.removeChild(link);
     }
+  },
+
+  /**
+   * Build the import template workbook (pure — no download side effects).
+   */
+  buildTemplateWorkbook: (): XLSX.WorkBook => {
+    const templateHeader = [
+      ['TAAZAA INC. — ROLE CHARTER IMPORT TEMPLATE'],
+      ['Instructions: Fill in your role details below. Use the pipe symbol (|) to separate multiple bullet points.'],
+      [],
+      [
+        'Role Title',
+        'Department',
+        'Experience Level',
+        'Years of Experience',
+        'Core Mission Statement',
+        'Executive Summary',
+        'Core Accountabilities (Delimited by |)',
+        'Day-to-Day Responsibilities (Delimited by |)',
+        'Technical & Domain Skills (Delimited by |)',
+        'Behavioral & Values (Delimited by |)',
+        'OKRs (Outcome:Metric:Target:Frequency separated by |)',
+      ],
+      [
+        'Senior Software Engineer (Sample)',
+        'Software Engineering',
+        'Senior (L3)',
+        '4-6 Years',
+        'Design, implement, and maintain scalable software solutions with strong focus on code quality.',
+        'Core individual contributor leading module delivery and mentoring junior engineers.',
+        'Delivery of production-ready microservices | Adherence to code quality standards | Mentoring L1 and L2 engineers',
+        'Write unit and integration tests | Conduct peer code reviews | Participate in sprint planning',
+        'TypeScript, React, Node.js | Clean Architecture | PostgreSQL, Redis',
+        'Proactive Communication | Empathy and Mentorship | Critical Problem Solving',
+        'Delivery:On-time release rate:>92%:Quarterly | Quality:SonarQube Grade:A rating:Per Sprint',
+      ],
+      [
+        'Lead QA Automation Engineer (Sample)',
+        'Quality Assurance',
+        'Lead (L4)',
+        '6-8 Years',
+        'Lead QA automation architecture and test infrastructure across client projects.',
+        'Owns test strategy, CI test automation pipeline, and defect triage governance.',
+        'Zero critical defects leaked to production | 85%+ automated test coverage in CI/CD',
+        'Build Playwright/Cypress test frameworks | Guide QA team on automation standards',
+        'Playwright, TypeScript | CI/CD GitHub Actions | Performance Testing',
+        'Technical Leadership | Stakeholder Alignment | Continuous Improvement',
+        'Quality:Defect Escape Rate:<2%:Quarterly | Automation:CI Automation Pass Rate:>98%:Per Build',
+      ]
+    ];
+
+    const ws = XLSX.utils.aoa_to_sheet(templateHeader);
+    ws['!cols'] = [
+      { wch: 32 },
+      { wch: 24 },
+      { wch: 24 },
+      { wch: 18 },
+      { wch: 55 },
+      { wch: 45 },
+      { wch: 60 },
+      { wch: 60 },
+      { wch: 50 },
+      { wch: 50 },
+      { wch: 60 },
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Template');
+
+    // Reference Lookups Sheet
+    const lookupRows = [
+      ['VALID HR OPTIONS REFERENCE'],
+      [],
+      ['Valid Departments', 'Valid Levels', 'Valid Cadences'],
+      ['Software Engineering', 'Associate (L1)', 'Per Sprint'],
+      ['Quality Assurance', 'Mid-Level (L2)', 'Monthly'],
+      ['UI/UX Design', 'Senior (L3)', 'Quarterly'],
+      ['Product Management', 'Lead (L4)', 'Bi-Annual'],
+      ['Program & Delivery', 'Management (L4-L5)', 'Annual'],
+      ['', 'Principal / Architect (L5)', ''],
+      ['', 'Executive / Director (L6)', ''],
+    ];
+    const wsRef = XLSX.utils.aoa_to_sheet(lookupRows);
+    XLSX.utils.book_append_sheet(wb, wsRef, 'Valid Values');
+
+    return wb;
   },
 
   /**

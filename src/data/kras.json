@@ -3334,8 +3334,8 @@
       "activity": "Release Quality & Test Automation",
       "deliveryManager": "Informed",
       "programManager": "Informed",
-      "techLead": "Consulted",
-      "productManager": "Informed"
+      "techLead": "Accountable",
+      "productManager": "Consulted"
     },
     {
       "activity": "Client CSAT & Account Escalations",
