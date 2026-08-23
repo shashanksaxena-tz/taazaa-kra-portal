@@ -9,7 +9,8 @@ import {
   KRAVersion 
 } from '../types';
 import { storageService } from '../services/storageService';
-import { DEFAULT_VERSION_ID } from '../constants';
+import { DEFAULT_VERSION_ID, ADMIN } from '../constants';
+import { sha256Hex } from '../utils';
 import { githubService, CommitResult } from '../services/githubService';
 import { excelService } from '../services/excelService';
 
@@ -53,7 +54,7 @@ interface KRAContextType {
   removeToast: (id: string) => void;
 
   // Admin & Data operations
-  loginAdmin: (password: string) => boolean;
+  loginAdmin: (password: string) => Promise<boolean>;
   logoutAdmin: () => void;
   updateRole: (departmentId: string, updatedRole: RoleCharter) => void;
   addRole: (departmentId: string, newRole: RoleCharter) => void;
@@ -192,7 +193,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       name: name.trim(),
       effectiveDate: effectiveDate.trim(),
       createdAt: new Date().toISOString(),
-      createdBy: adminSession.username || 'ER Governance Admin',
+      createdBy: adminSession?.username || 'ER Governance Admin',
       notes: notes?.trim(),
       departments: JSON.parse(JSON.stringify(portalData.departments)),
       raciMatrix: JSON.parse(JSON.stringify(portalData.raciMatrix)),
@@ -214,8 +215,9 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Admin Auth
-  const loginAdmin = (password: string): boolean => {
-    if (password === 'taazaa2026' || password === 'admin') {
+  const loginAdmin = async (password: string): Promise<boolean> => {
+    const digest = await sha256Hex(password);
+    if (digest === ADMIN.passcodeSha256) {
       const session: AdminSession = {
         isAuthenticated: true,
         username: 'ER Governance Lead',

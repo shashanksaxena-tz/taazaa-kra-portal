@@ -15,14 +15,14 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ isOpen, onClos
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!passcode) {
       setError('Please provide administrative passcode');
       return;
     }
 
-    const success = loginAdmin(passcode);
+    const success = await loginAdmin(passcode);
     if (success) {
       setPasscode('');
       setError('');

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AdminLoginModal } from './AdminLoginModal';
 import { useKRA } from '../../context/KRAContext';
 
@@ -33,23 +33,23 @@ describe('AdminLoginModal', () => {
     expect(mockedUseKRA().loginAdmin).not.toHaveBeenCalled();
   });
 
-  it('shows a generic error and keeps the modal open on a wrong passcode', () => {
+  it('shows a generic error and keeps the modal open on a wrong passcode', async () => {
     render(<AdminLoginModal isOpen={true} onClose={vi.fn()} />);
     const input = screen.getByPlaceholderText(/enter passcode/i);
     fireEvent.change(input, { target: { value: 'wrong-code' } });
     fireEvent.click(screen.getByRole('button', { name: /authenticate/i }));
-    expect(mockedUseKRA().loginAdmin).toHaveBeenCalledWith('wrong-code');
-    expect(screen.getByText(/invalid admin passcode/i)).toBeInTheDocument();
+    await waitFor(() => expect(mockedUseKRA().loginAdmin).toHaveBeenCalledWith('wrong-code'));
+    expect(await screen.findByText(/invalid admin passcode/i)).toBeInTheDocument();
   });
 
-  it('clears the field and closes the modal on successful auth', () => {
+  it('clears the field and closes the modal on successful auth', async () => {
     const onClose = vi.fn();
-    mockedUseKRA.mockReturnValue({ loginAdmin: vi.fn().mockReturnValue(true) } as never);
+    mockedUseKRA.mockReturnValue({ loginAdmin: vi.fn().mockResolvedValue(true) } as never);
     render(<AdminLoginModal isOpen={true} onClose={onClose} />);
     const input = screen.getByPlaceholderText(/enter passcode/i) as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'taazaa2026' } });
     fireEvent.click(screen.getByRole('button', { name: /authenticate/i }));
-    expect(onClose).toHaveBeenCalledOnce();
+    await waitFor(() => expect(onClose).toHaveBeenCalledOnce());
   });
 
   it('does not leak the demo passcode in production builds', () => {
