@@ -12,7 +12,7 @@ export const excelService = {
   ) => {
     const wb = XLSX.utils.book_new();
 
-    const verName = activeVersion?.name || activeVersion?.versionNumber || portalData.version || 'v2026.08 (Active)';
+    const verName = activeVersion?.name || activeVersion?.versionNumber || portalData.version || 'Bundled Baseline';
     const verDate = activeVersion?.effectiveDate || portalData.lastUpdated || '2026-08';
     const exportTime = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
@@ -200,7 +200,7 @@ export const excelService = {
     activeVersion?: KRAVersion, 
     filename: string = 'Taazaa_KRA_Role_Charters.csv'
   ) => {
-    const verName = activeVersion?.name || activeVersion?.versionNumber || portalData.version || 'v2026.08 (Active)';
+    const verName = activeVersion?.name || activeVersion?.versionNumber || portalData.version || 'Bundled Baseline';
     const verDate = activeVersion?.effectiveDate || portalData.lastUpdated || '2026-08';
 
     const header = [
