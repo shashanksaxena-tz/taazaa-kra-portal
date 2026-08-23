@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -14,9 +15,14 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion'],
           icons: ['lucide-react'],
-          excel: ['xlsx']
         }
       }
     }
-  }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    include: ['src/**/*.test.{ts,tsx}'],
+  },
 });
