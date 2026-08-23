@@ -531,15 +531,18 @@ export const excelService = {
             }
 
             const deptName = row['Department'] || row['Department ID'] || 'engineering';
-            const deptId = String(deptName).toLowerCase().includes('qa') || String(deptName).toLowerCase().includes('quality')
-              ? 'quality'
-              : String(deptName).toLowerCase().includes('product')
-              ? 'product'
-              : String(deptName).toLowerCase().includes('ux') || String(deptName).toLowerCase().includes('design')
-              ? 'ux-ui'
-              : String(deptName).toLowerCase().includes('program') || String(deptName).toLowerCase().includes('delivery')
-              ? 'program'
-              : 'engineering';
+            // Map free-text department names to the dataset's canonical ids.
+            const deptLc = String(deptName).toLowerCase();
+            let deptId = 'engineering';
+            if (deptLc.includes('qa') || deptLc.includes('quality') || deptLc.includes('sdet')) {
+              deptId = 'qa';
+            } else if (deptLc.includes('ux') || deptLc.includes('design')) {
+              deptId = 'design';
+            } else if (deptLc.includes('program') || deptLc.includes('delivery')) {
+              deptId = 'program-management';
+            } else if (deptLc.includes('product')) {
+              deptId = 'product';
+            }
 
             const level = (row['Experience Level'] || row['Level'] || 'Mid-Level (L2)') as string;
             const experienceYears = (row['Years of Experience'] || row['Experience'] || row['Experience Required'] || '2-4 Years') as string;

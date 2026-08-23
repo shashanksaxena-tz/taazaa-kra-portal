@@ -32,16 +32,17 @@ describe('parseSpreadsheet', () => {
     expect(roles[0].level).toBe('Senior (L3)');
   });
 
-  it('maps department names to canonical department ids', async () => {
+  it('maps department names to canonical dataset ids', async () => {
     const file = await makeSheetFile([
       ['Role Title', 'Department'],
       ['QA Automation Lead', 'Quality Assurance'],
       ['Product Designer', 'UI/UX Design'],
       ['Delivery Manager', 'Program Delivery'],
+      ['SDET Platform Lead', 'SDET'],
       ['Backend Engineer', 'Backend'],
     ]);
     const { roles } = await excelService.parseSpreadsheet(file);
-    expect(roles.map((r) => r.departmentId)).toEqual(['quality', 'ux-ui', 'program', 'engineering']);
+    expect(roles.map((r) => r.departmentId)).toEqual(['qa', 'design', 'program-management', 'qa', 'engineering']);
   });
 
   it('splits pipe-delimited lists and colon-delimited OKRs', async () => {
@@ -77,7 +78,7 @@ describe('parseSpreadsheet', () => {
     const { roles, count } = await excelService.parseSpreadsheet(file);
     expect(count).toBe(1);
     expect(roles[0].title).toBe('Regression Test Engineer');
-    expect(roles[0].departmentId).toBe('quality');
+    expect(roles[0].departmentId).toBe('qa');
   });
 
   it('prefers the real header row over instruction prose mentioning roles', async () => {
