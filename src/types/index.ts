@@ -102,11 +102,32 @@ export interface GitHubConfig {
   repo: string;
   branch: string;
   filePath: string;
-  token: string;
+  /** Legacy direct mode only. Preferred: gatewayUrl with server-held token. */
+  token?: string;
+  /** Secure commit gateway endpoint (serverless fn holding the PAT server-side). */
+  gatewayUrl?: string;
 }
 
 export interface AdminSession {
   isAuthenticated: boolean;
   username: string;
   role: 'admin' | 'editor';
+}
+
+export interface CommitConflictInfo {
+  /** true when remote changed under us (sha mismatch) */
+  remoteChanged: boolean;
+}
+
+export interface ImportRowWarning {
+  row: number;
+  title: string;
+  message: string;
+}
+
+export interface ParsedImport {
+  roles: RoleCharter[];
+  count: number;
+  warnings: ImportRowWarning[];
+  unknownDepartments: string[];
 }
