@@ -24,10 +24,31 @@ const withBaseline = (data: PortalData): PortalData => {
   if (!next.versions || next.versions.length === 0) {
     next.versions = [generateBaselineVersion(next)];
     next.activeVersionId = DEFAULT_VERSION_ID;
-  } else if (!next.activeVersionId) {
+  } else if (!next.activeVersionId || !next.versions.some((v) => v.id === next.activeVersionId)) {
+    // Repair dangling active pointer (e.g. after migration drops a version).
     next.activeVersionId = next.versions[0]?.id || DEFAULT_VERSION_ID;
   }
   return next;
+};
+
+/** Legacy fabricated version ids injected by pre-review builds. */
+const LEGACY_VERSION_IDS = ['v2026.08', 'v2026.01', 'v2025.12', 'v2024.01'];
+
+/**
+ * Shared normalization applied to data from ANY source (localStorage, JSON import).
+ * Drops fabricated legacy versions, repairs the baseline + active pointer, and
+ * stamps the current schema version.
+ */
+export const normalizePortalData = (data: PortalData): PortalData => {
+  const next = structuredClone(data);
+  if (Array.isArray(next.versions)) {
+    next.versions = next.versions.filter(
+      (v) => v.id === DEFAULT_VERSION_ID || !LEGACY_VERSION_IDS.includes(v.id)
+    );
+  }
+  const migrated = withBaseline(next);
+  migrated.schemaVersion = SCHEMA_VERSION;
+  return migrated;
 };
 
 export const storageService = {
@@ -50,15 +71,7 @@ export const storageService = {
       data = structuredClone(defaultData) as PortalData;
     }
 
-    // Migration: drop legacy fabricated version history from older builds.
-    if (Array.isArray(data.versions)) {
-      data.versions = data.versions.filter(
-        (v) => v.id === DEFAULT_VERSION_ID || !['v2026.08', 'v2026.01', 'v2025.12', 'v2024.01'].includes(v.id)
-      );
-    }
-    const migrated = withBaseline(data);
-    migrated.schemaVersion = SCHEMA_VERSION;
-    return migrated;
+    return normalizePortalData(data);
   },
 
   saveData(data: PortalData): boolean {

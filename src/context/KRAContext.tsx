@@ -8,7 +8,7 @@ import {
   RaciItem, 
   KRAVersion 
 } from '../types';
-import { storageService } from '../services/storageService';
+import { storageService, normalizePortalData } from '../services/storageService';
 import { DEFAULT_VERSION_ID, ADMIN } from '../constants';
 import { sha256Hex } from '../utils';
 import { githubService, CommitResult } from '../services/githubService';
@@ -363,9 +363,11 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const validated = portalDataSchema.safeParse(parsed);
       if (validated.success) {
         const merged: PortalData = { ...parsed, ...validated.data };
-        setPortalData(merged);
-        storageService.saveData(merged);
-        showToast(`Successfully imported ${merged.departments.length} departments`, 'success');
+        const normalized = normalizePortalData(merged);
+        setPortalData(normalized);
+        setActiveVersionId(normalized.activeVersionId || DEFAULT_VERSION_ID);
+        storageService.saveData(normalized);
+        showToast(`Successfully imported ${normalized.departments.length} departments`, 'success');
         return true;
       }
       showToast(`Invalid JSON schema: ${validated.error.issues[0]?.message ?? 'unknown error'}`, 'error');

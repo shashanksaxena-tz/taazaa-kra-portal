@@ -213,6 +213,8 @@ export const excelService = {
       `# TAAZAA INC. ROLE CHARTERS SPECIFICATION`,
       `# VERSION: ${verName} | EFFECTIVE: ${verDate}`,
       `# EXPORTED: ${new Date().toISOString()}`,
+      `# HOW TO EDIT: Lists inside a cell are pipe-separated (Item A | Item B). OKRs use Outcome:Metric:Target:Frequency, pipe-joined. Department must be one of: Software Engineering, Quality Assurance, UI/UX Design, Product Management, Program & Delivery.`,
+      `# DO NOT edit Role ID of existing roles — changing it creates a new role on re-import. Leave the column out entirely if unsure.`,
       `Role ID,Role Title,Department,Level,Experience,Mission,Accountabilities,Responsibilities,Technical Skills,Behavioral Skills,OKRs`,
     ];
 
@@ -408,7 +410,53 @@ export const excelService = {
       ['', 'Executive / Director (L6)', ''],
     ];
     const wsRef = XLSX.utils.aoa_to_sheet(lookupRows);
+    wsRef['!cols'] = [{ wch: 28 }, { wch: 26 }, { wch: 14 }];
     XLSX.utils.book_append_sheet(wb, wsRef, 'Valid Values');
+
+    // Step-by-step instructions for every column and every portal feature
+    const instructionRows = [
+      ['TAAZAA KRA PORTAL — IMPORT / EDIT GUIDE (READ ME FIRST)'],
+      [],
+      ['PART 1 — HOW TO FILL THE TEMPLATE SHEET (COLUMN BY COLUMN)'],
+      ['Role Title', 'REQUIRED. Exact role name shown on cards and printouts, e.g. "Senior Software Engineer (SSE)". Leave blank to skip a row.'],
+      ['Department', 'REQUIRED. Must match one of the values in the "Valid Values" sheet (Software Engineering, Quality Assurance, UI/UX Design, Product Management, Program & Delivery). Unknown names fall back to Engineering.'],
+      ['Experience Level', 'Level band from "Valid Values" sheet, e.g. "Senior (L3)". Defaults to Mid-Level (L2) if blank.'],
+      ['Years of Experience', 'Free text range shown under the title, e.g. "4-6 Years".'],
+      ['Core Mission Statement', 'One-paragraph mission shown at the top of the charter. Keep under ~50 words.'],
+      ['Executive Summary', 'Short summary used in card previews and the Overview tab.'],
+      ['Core Accountabilities (Delimited by |)', 'Separate multiple items with a pipe: "Owns delivery | Reviews architecture | Mentors L2". Blank gets a default placeholder.'],
+      ['Day-to-Day Responsibilities (Delimited by |)', 'Same pipe rule. These render as a checklist in the Responsibilities tab.'],
+      ['Technical & Domain Skills (Delimited by |)', 'Pipe-separated technical competencies, e.g. "TypeScript | Kubernetes".'],
+      ['Behavioral & Values (Delimited by |)', 'Pipe-separated behavioral competencies, e.g. "Mentorship | Ownership".'],
+      ['OKRs (Outcome:Metric:Target:Frequency separated by |)', 'Format each OKR as Outcome:Metric:Target:Frequency, joined by pipes. Example: "Quality:Escaped defects:<2%:Quarterly". Frequency is optional (defaults Quarterly); anything after a 5th colon becomes Source Data. Rows with fewer than 3 colon-parts are skipped.'],
+      ['Role ID', 'Optional. Auto-generated from the title when blank. Editing an existing Role ID creates a NEW role instead of updating it.'],
+      [],
+      ['PART 2 — APPLICATION FEATURES EXPLAINED'],
+      ['Viewing Roles', 'Home > Role Charters. Use Search (title/skill/mission text), FILTER LEVEL buttons (L1-L6), or Solution Area tiles to narrow the 29 charters. Click any card\'s "View KRA" for the full six-tab charter drawer.'],
+      ['Comparing Roles', 'Click the compare icon on up to 3 cards, then press Compare in the top bar. The Comparative Matrix shows progression and accountability side-by-side. Max 3 roles; click a selected icon again to remove it.'],
+      ['RACI Matrix', 'Top nav > RACI Matrix. Shows who is Responsible/Accountable/Consulted/Informed per activity across Delivery Manager, Program Manager, Tech Lead and Product Manager. Every row must have exactly one Accountable.'],
+      ['Frameworks & OD', 'Top nav > Frameworks & OD. Department-level competency models and career ladders. Read-only reference content.'],
+      ['Versions & Snapshots', 'Admin Panel > Version History > "Create Version Snapshot". A snapshot FREEZES the current departments + RACI so you can time-travel later. The newest snapshot becomes Active. Switch versions from the selector in the top bar (admins only). Deleting/reverting snapshots is not supported — create carefully.'],
+      ['Adding a Role', 'Admin Panel > "Add Role Charter". Fill Basic Info, Accountabilities & Duties, Skills & Values, OKRs & Targets, then Save. The role appears immediately in its department grid and persists locally.'],
+      ['Editing / Deleting a Role', 'Open any charter > Edit (admin only). Changes save instantly to local storage. Delete asks for confirmation and removes the charter from that department.'],
+      ['Departments', 'Departments are fixed containers (5 solution areas). Admin Panel lets you edit department description/metadata; roles are assigned to departments via their departmentId. New departments require a JSON import.'],
+      ['Excel Import', 'Admin Panel > Excel/CSV Sync > choose .xlsx/.csv built from this Template. Header row is auto-detected; pipe lists and colon OKRs are parsed automatically. Imported roles are MERGED into matching departments (matched by Role ID).'],
+      ['JSON Import', 'Admin Panel > JSON upload. Replaces ALL data (departments, RACI, version history). You will be asked to confirm first — export a backup via Export JSON before importing. Legacy/fabricated version ids are dropped automatically during import.'],
+      ['Exporting Backups', 'Admin Panel > Export Excel (.xlsx) multi-sheet governance workbook, Export CSV flat file, or Export JSON full-fidelity backup. Always export JSON before large imports or manual edits.'],
+      ['Publishing to GitHub', 'Admin Panel > GitHub CI/CD tab. Configure owner/repo/token, Verify Access, then Publish. Writes src/data/kras.json to the repo; GitHub Pages redeploys automatically. Token stays in session storage only and is never persisted to disk.'],
+      ['Admin Access', 'Passcode-gated (default taazaa2026, override via VITE_ADMIN_PASSCODE_SHA256 env var). Session lasts for the browser tab lifetime only. Version switching, editing, importing and publishing all require admin mode.'],
+      ['Theme', 'Sun/moon toggle in the top bar. Persisted per browser in localStorage.'],
+      [],
+      ['PART 3 — GOLDEN RULES'],
+      ['1.', 'Always download Export JSON as a backup before bulk imports.'],
+      ['2.', 'Never edit Role IDs of existing roles unless you intend to create new ones.'],
+      ['3.', 'Keep pipe (|) and colon (:) characters out of regular text — they are structural delimiters.'],
+      ['4.', 'One Accountable per activity in the RACI matrix — enforced by tests.'],
+      ['5.', 'Create a version snapshot before major restructuring so you can roll back visually.'],
+    ];
+    const wsGuide = XLSX.utils.aoa_to_sheet(instructionRows);
+    wsGuide['!cols'] = [{ wch: 42 }, { wch: 130 }];
+    XLSX.utils.book_append_sheet(wb, wsGuide, 'Instructions');
 
     return wb;
   },

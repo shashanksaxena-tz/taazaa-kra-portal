@@ -4,19 +4,24 @@ import { KRAProvider, useKRA } from './KRAContext';
 import { storageService } from '../services/storageService';
 import type { PortalData, RoleCharter, Department } from '../types';
 
-vi.mock('../services/storageService', () => ({
-  storageService: {
-    getInitialData: vi.fn(),
-    saveData: vi.fn(),
-    getAdminSession: vi.fn(() => ({ isAuthenticated: false, username: '', role: 'editor' })),
-    saveAdminSession: vi.fn(),
-    clearAdminSession: vi.fn(),
-    getGitHubConfig: vi.fn(() => ({ owner: '', repo: '', branch: 'main', filePath: 'x', token: '' })),
-    saveGitHubConfig: vi.fn(),
-    resetToDefault: vi.fn(() => JSON.parse(JSON.stringify(fixture)) as PortalData),
-    exportJSON: vi.fn(),
-  },
-}));
+vi.mock('../services/storageService', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../services/storageService')>();
+  return {
+    ...actual,
+    storageService: {
+      ...actual.storageService,
+      getInitialData: vi.fn(),
+      saveData: vi.fn(),
+      getAdminSession: vi.fn(() => ({ isAuthenticated: false, username: '', role: 'editor' })),
+      saveAdminSession: vi.fn(),
+      clearAdminSession: vi.fn(),
+      getGitHubConfig: vi.fn(() => ({ owner: '', repo: '', branch: 'main', filePath: 'x', token: '' })),
+      saveGitHubConfig: vi.fn(),
+      resetToDefault: vi.fn(() => JSON.parse(JSON.stringify(fixture)) as PortalData),
+      exportJSON: vi.fn(),
+    },
+  };
+});
 
 const mockedSaveData = vi.mocked(storageService.saveData);
 
@@ -171,6 +176,41 @@ describe('JSON import/export roundtrip', () => {
       ok = result.current.importJSON('{definitely not json');
     });
     expect(ok).toBe(false);
+  });
+
+  it('importJSON migrates legacy fabricated versions and repairs the active pointer', () => {
+    const { result } = renderPortal();
+    const legacyPayload = JSON.parse(JSON.stringify(fixture));
+    legacyPayload.versions = [
+      { id: 'v2026.08', versionNumber: 'v2026.08', name: 'fake', effectiveDate: '2026-08' },
+      { id: 'v2024.01', versionNumber: 'v2024.01', name: 'fake-old', effectiveDate: '2024-01' },
+    ];
+    legacyPayload.activeVersionId = 'v2026.08';
+
+    let ok = false;
+    act(() => {
+      ok = result.current.importJSON(JSON.stringify(legacyPayload));
+    });
+
+    expect(ok).toBe(true);
+    const data = result.current.portalData;
+    expect(data.versions!.map((v) => v.id)).not.toContain('v2026.08');
+    expect(data.versions!.map((v) => v.id)).not.toContain('v2024.01');
+    expect(data.versions!.some((v) => v.id === data.activeVersionId)).toBe(true);
+    expect(data.schemaVersion).toBeDefined();
+  });
+
+  it('importJSON rejects a payload with an invalid version entry', () => {
+    const { result } = renderPortal();
+    const badVersion = JSON.parse(JSON.stringify(fixture));
+    badVersion.versions = [{ id: '', name: 'no id', effectiveDate: '' }];
+
+    let ok = true;
+    act(() => {
+      ok = result.current.importJSON(JSON.stringify(badVersion));
+    });
+    expect(ok).toBe(false);
+    expect(mockedSaveData).not.toHaveBeenCalled();
   });
 });
 

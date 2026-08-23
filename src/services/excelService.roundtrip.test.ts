@@ -45,9 +45,9 @@ describe('buildWorkbook (.xlsx export roundtrip)', () => {
 });
 
 describe('buildTemplateWorkbook', () => {
-  it('contains a Template sheet with the sample rows and a Valid Values sheet', () => {
+  it('contains Template, Valid Values and Instructions sheets with sample rows', () => {
     const wb = excelService.buildTemplateWorkbook();
-    expect(wb.SheetNames).toEqual(['Template', 'Valid Values']);
+    expect(wb.SheetNames).toEqual(['Template', 'Valid Values', 'Instructions']);
 
     const templateRows = XLSX.utils.sheet_to_json<unknown[]>(
       wb.Sheets['Template'], { header: 1 }
@@ -61,6 +61,14 @@ describe('buildTemplateWorkbook', () => {
       wb.Sheets['Valid Values'], { header: 1 }
     );
     expect(refRows.flat()).toContain('Quality Assurance');
+
+    const guideText = XLSX.utils
+      .sheet_to_json<unknown[]>(wb.Sheets['Instructions'], { header: 1 })
+      .flat()
+      .join('|');
+    expect(guideText).toContain('COLUMN BY COLUMN');
+    expect(guideText).toContain('Create Version Snapshot');
+    expect(guideText).toContain('exactly one Accountable');
   });
 
   it('is parseable by our own import (roundtrip guarantee)', async () => {

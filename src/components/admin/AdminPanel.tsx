@@ -182,6 +182,14 @@ export const AdminPanel: React.FC = () => {
   const handleJSONUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (
+      !window.confirm(
+        `Importing "${file.name}" will REPLACE all current role charters, departments and version history. This cannot be undone. Continue?`
+      )
+    ) {
+      if (jsonInputRef.current) jsonInputRef.current.value = '';
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (event) => {
       const content = event.target?.result as string;
