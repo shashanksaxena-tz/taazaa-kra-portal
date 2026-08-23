@@ -489,7 +489,7 @@ export const excelService = {
           const HEADER_HINTS = ['role title', 'title', 'department', 'experience level', 'mission'];
           const headerScore = (row: unknown[]): number =>
             Array.isArray(row)
-              ? row.reduce(
+              ? row.reduce<number>(
                   (score, cell) =>
                     typeof cell === 'string' &&
                     HEADER_HINTS.some((h) => cell.trim().toLowerCase().includes(h))
