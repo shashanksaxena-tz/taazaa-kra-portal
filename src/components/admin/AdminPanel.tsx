@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import { useKRA } from '../../context/KRAContext';
 import { RoleCharter, GitHubConfig } from '../../types';
 import { RoleEditorModal } from './RoleEditorModal';
+import { ImportGuide } from './ImportGuide';
+import { FeatureGuideModal } from './FeatureGuideModal';
 import { githubService } from '../../services/githubService';
-import { 
-  ShieldCheck, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  Github, 
-  Download, 
-  Upload, 
-  RotateCcw, 
-  Search, 
-  Loader2, 
+import {
+  ShieldCheck,
+  Plus,
+  Edit3,
+  Trash2,
+  Github,
+  Download,
+  Upload,
+  RotateCcw,
+  Search,
+  Loader2,
   FileSpreadsheet,
   FileText,
   History,
   Info,
+  AlertTriangle,
   X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,6 +52,7 @@ export const AdminPanel: React.FC = () => {
 
   // Role Editor state
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [editingRole, setEditingRole] = useState<RoleCharter | null>(null);
 
   // Version snapshot creation modal state
@@ -230,6 +234,13 @@ export const AdminPanel: React.FC = () => {
             Logged in as: <strong>{adminSession.username}</strong> ({adminSession.role}). Modify role specifications, track historical snapshots, import/export Excel & CSV files, and push commits to GitHub Pages.
           </p>
         </div>
+        <button
+          onClick={() => setIsGuideOpen(true)}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all active:scale-[0.97] shrink-0"
+        >
+          <Info className="w-4 h-4" />
+          <span>How does this work?</span>
+        </button>
 
         {/* Quick Actions */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -658,6 +669,18 @@ export const AdminPanel: React.FC = () => {
                 <span>Upload & Import Excel / CSV Spreadsheet</span>
               </button>
 
+              <div className="rounded-2xl border border-amber-500/40 bg-amber-50 dark:bg-amber-950/30 p-4 space-y-2">
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <p className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                    JSON import is different — it REPLACES all data
+                  </p>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 pl-6">
+                  Spreadsheets merge safely; a JSON backup import overwrites every role, department, RACI row and version in this portal. Export .JSON first if you might want to roll back.
+                </p>
+              </div>
+
               <input
                 ref={jsonInputRef}
                 type="file"
@@ -673,6 +696,10 @@ export const AdminPanel: React.FC = () => {
                 <span>Import JSON Backup Schema</span>
               </button>
             </div>
+
+            {/* In-app import instructions */}
+            <ImportGuide />
+
 
             {/* Factory Reset */}
             <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
@@ -898,6 +925,7 @@ export const AdminPanel: React.FC = () => {
         )}
       </AnimatePresence>
 
+      <FeatureGuideModal isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
     </div>
   );
 };
