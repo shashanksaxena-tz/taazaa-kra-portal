@@ -16,11 +16,9 @@ import {
   ListChecks, 
   ChevronRight,
   Shield,
-  Layers,
-  Sparkles,
-  FileCheck
+  Sparkles
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TaazaaLogo } from '../ui/TaazaaLogo';
 
 interface RoleDetailModalProps {

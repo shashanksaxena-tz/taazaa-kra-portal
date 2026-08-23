@@ -1,5 +1,6 @@
 import React from 'react';
 import { useKRA } from '../../context/KRAContext';
+import { RoleCharter } from '../../types';
 import { 
   Code2, 
   ShieldCheck, 
@@ -27,7 +28,7 @@ export const DepartmentTabs: React.FC = () => {
     selectedLevel,
   } = useKRA();
 
-  const filterRole = (r: any) => {
+  const filterRole = (r: RoleCharter) => {
     if (selectedLevel !== 'all' && r.level !== selectedLevel) return false;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -35,7 +36,7 @@ export const DepartmentTabs: React.FC = () => {
       const matchMission = r.mission?.toLowerCase().includes(q);
       const matchAccountabilities = r.accountabilities?.some((a: string) => a.toLowerCase().includes(q));
       const matchResponsibilities = r.responsibilities?.some((res: string) => res.toLowerCase().includes(q));
-      const matchMetrics = r.metricsAndOkrs?.some((m: any) => 
+      const matchMetrics = r.metricsAndOkrs?.some((m) => 
         m.metric?.toLowerCase().includes(q) || m.outcomeArea?.toLowerCase().includes(q)
       );
       if (!matchTitle && !matchMission && !matchAccountabilities && !matchResponsibilities && !matchMetrics) {

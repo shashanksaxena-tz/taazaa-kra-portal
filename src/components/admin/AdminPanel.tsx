@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { RoleCharter, GitHubConfig, KRAVersion } from '../../types';
+import { RoleCharter, GitHubConfig } from '../../types';
 import { RoleEditorModal } from './RoleEditorModal';
 import { githubService } from '../../services/githubService';
 import { 
@@ -13,16 +13,10 @@ import {
   Upload, 
   RotateCcw, 
   Search, 
-  CheckCircle2, 
-  AlertCircle, 
   Loader2, 
   FileSpreadsheet,
   FileText,
   History,
-  Calendar,
-  Layers,
-  ArrowRight,
-  Sparkles,
   Info,
   X
 } from 'lucide-react';
@@ -74,7 +68,6 @@ export const AdminPanel: React.FC = () => {
   const [isTestingGH, setIsTestingGH] = useState(false);
   const [isCommitting, setIsCommitting] = useState(false);
   const [ghStatus, setGhStatus] = useState<{ valid: boolean; message: string } | null>(null);
-  const [lastCommitUrl, setLastCommitUrl] = useState<string | null>(null);
 
   // File upload refs
   const spreadsheetInputRef = React.useRef<HTMLInputElement>(null);
@@ -133,8 +126,8 @@ export const AdminPanel: React.FC = () => {
       } else {
         showToast(res.message, 'error');
       }
-    } catch (err: any) {
-      setGhStatus({ valid: false, message: err.message || 'Verification failed' });
+    } catch (err: unknown) {
+      setGhStatus({ valid: false, message: err instanceof Error ? err.message || 'Verification failed' : 'Verification failed' });
     } finally {
       setIsTestingGH(false);
     }
@@ -163,12 +156,11 @@ export const AdminPanel: React.FC = () => {
       if (res.success) {
         showToast('Changes committed directly to GitHub! Deploy workflow triggered.', 'success');
         setCommitMessage('');
-        if (res.commitUrl) setLastCommitUrl(res.commitUrl);
       } else {
         showToast(res.message, 'error');
       }
-    } catch (err: any) {
-      showToast(err.message || 'Commit failed', 'error');
+    } catch (err: unknown) {
+      showToast(err instanceof Error ? err.message : 'Commit failed', 'error');
     } finally {
       setIsCommitting(false);
     }

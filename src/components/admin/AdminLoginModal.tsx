@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { X, Lock, Key, ShieldCheck } from 'lucide-react';
+import { X, Lock, Key } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface AdminLoginModalProps {
@@ -28,7 +28,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ isOpen, onClos
       setError('');
       onClose();
     } else {
-      setError('Invalid admin passcode. (Default demo: taazaa2026)');
+      setError(import.meta.env.DEV ? 'Invalid admin passcode. (Default demo: taazaa2026)' : 'Invalid admin passcode.');
     }
   };
 
@@ -73,7 +73,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ isOpen, onClos
                   setPasscode(e.target.value);
                   setError('');
                 }}
-                placeholder="Enter passcode (taazaa2026)..."
+                placeholder={import.meta.env.DEV ? 'Enter passcode (taazaa2026)...' : 'Enter passcode...'}
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500"
                 autoFocus
               />
@@ -93,11 +93,13 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ isOpen, onClos
           </button>
         </form>
 
-        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
-          <p className="text-[11px] text-slate-400">
-            Default demo passcode: <code className="font-bold text-brand-600 dark:text-brand-400">taazaa2026</code>
-          </p>
-        </div>
+        {import.meta.env.DEV && (
+          <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
+            <p className="text-[11px] text-slate-400">
+              Default demo passcode: <code className="font-bold text-brand-600 dark:text-brand-400">taazaa2026</code>
+            </p>
+          </div>
+        )}
       </motion.div>
     </div>
   );

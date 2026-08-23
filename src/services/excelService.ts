@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { PortalData, RoleCharter, Department, MetricOKR, KRAVersion } from '../types';
+import { PortalData, RoleCharter, MetricOKR, KRAVersion } from '../types';
 
 export const excelService = {
   /**
@@ -355,29 +355,29 @@ export const excelService = {
           const worksheet = workbook.Sheets[sheetName];
           
           // Use header row detection
-          const rawRows: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+          const rawRows: unknown[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
           if (!rawRows || rawRows.length === 0) {
             throw new Error('Spreadsheet appears to be empty.');
           }
 
           // Find the row index that contains column headers (contains 'Title' or 'Role')
-          let headerIdx = rawRows.findIndex((row: any[]) =>
+          let headerIdx = rawRows.findIndex((row) =>
             Array.isArray(row) && row.some((cell) => typeof cell === 'string' && (cell.toLowerCase().includes('title') || cell.toLowerCase().includes('role')))
           );
 
           if (headerIdx === -1) headerIdx = 0;
 
-          const headers: string[] = rawRows[headerIdx].map((h: any) => String(h || '').trim());
+          const headers: string[] = rawRows[headerIdx].map((h) => String(h || '').trim());
           const dataRows = rawRows.slice(headerIdx + 1);
 
           const parsedRoles: RoleCharter[] = [];
 
-          dataRows.forEach((rowArray: any[], rowIdx: number) => {
+          dataRows.forEach((rowArray, rowIdx: number) => {
             if (!rowArray || rowArray.length === 0) return;
 
             // Map array into row object using headers
-            const row: Record<string, any> = {};
+            const row: Record<string, unknown> = {};
             headers.forEach((h, i) => {
               row[h] = rowArray[i];
             });
@@ -399,14 +399,14 @@ export const excelService = {
               ? 'program'
               : 'engineering';
 
-            const level = row['Experience Level'] || row['Level'] || 'Mid-Level (L2)';
-            const experienceYears = row['Years of Experience'] || row['Experience'] || row['Experience Required'] || '2-4 Years';
-            const mission = row['Core Mission Statement'] || row['Mission'] || '';
-            const summary = row['Executive Summary'] || row['Summary'] || '';
+            const level = (row['Experience Level'] || row['Level'] || 'Mid-Level (L2)') as string;
+            const experienceYears = (row['Years of Experience'] || row['Experience'] || row['Experience Required'] || '2-4 Years') as string;
+            const mission = (row['Core Mission Statement'] || row['Mission'] || '') as string;
+            const summary = (row['Executive Summary'] || row['Summary'] || '') as string;
 
-            const parseList = (val: any): string[] => {
+            const parseList = (val: unknown): string[] => {
               if (!val) return [];
-              if (Array.isArray(val)) return val;
+              if (Array.isArray(val)) return val as string[];
               return String(val)
                 .split('|')
                 .map((s) => s.trim())
@@ -459,7 +459,7 @@ export const excelService = {
             }
 
             parsedRoles.push({
-              id: row['Role ID'] || `role-${Date.now()}-${rowIdx}`,
+              id: (row['Role ID'] || `role-${Date.now()}-${rowIdx}`) as string,
               title: String(title).trim(),
               departmentId: deptId,
               level,

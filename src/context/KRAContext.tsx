@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { 
   PortalData, 
   RoleCharter, 
@@ -9,6 +9,7 @@ import {
   KRAVersion 
 } from '../types';
 import { storageService } from '../services/storageService';
+import { DEFAULT_VERSION_ID } from '../constants';
 import { githubService, CommitResult } from '../services/githubService';
 import { excelService } from '../services/excelService';
 
@@ -86,7 +87,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Versioning state
   const [activeVersionId, setActiveVersionId] = useState<string>(
-    () => portalData.activeVersionId || portalData.versions?.[0]?.id || 'v2026.08'
+    () => portalData.activeVersionId || portalData.versions?.[0]?.id || DEFAULT_VERSION_ID
   );
 
   const [adminSession, setAdminSession] = useState<AdminSession>(() => storageService.getAdminSession());
@@ -111,8 +112,11 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, [isDarkMode]);
 
+  const toastSeqRef = useRef(0);
+
   const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
-    const id = Math.random().toString(36).substring(2, 9);
+    toastSeqRef.current += 1;
+    const id = `toast-${toastSeqRef.current}`;
     setToasts((prev) => [...prev, { id, type, message }]);
     setTimeout(() => {
       removeToast(id);
@@ -361,8 +365,8 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       showToast('Invalid JSON schema', 'error');
       return false;
-    } catch (e: any) {
-      showToast(`Import failed: ${e.message}`, 'error');
+    } catch (err: unknown) {
+      showToast(`Import failed: ${err instanceof Error ? err.message : String(err)}`, 'error');
       return false;
     }
   };
@@ -427,8 +431,8 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       storageService.saveData(updatedData);
       showToast(`Successfully imported & merged ${count} roles from ${file.name}!`, 'success');
       return true;
-    } catch (err: any) {
-      showToast(`Spreadsheet import error: ${err.message}`, 'error');
+    } catch (err: unknown) {
+      showToast(`Spreadsheet import error: ${err instanceof Error ? err.message : String(err)}`, 'error');
       return false;
     }
   };
@@ -436,7 +440,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const resetToDefaults = () => {
     const data = storageService.resetToDefault();
     setPortalData(data);
-    setActiveVersionId('v2026.08');
+    setActiveVersionId(data.activeVersionId || DEFAULT_VERSION_ID);
     showToast('Reset all roles to factory bundle', 'info');
   };
 

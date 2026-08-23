@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { RoleCharter, MetricOKR } from '../../types';
+import React, { useState } from 'react';
+import { RoleCharter, MetricOKR, PortalData } from '../../types';
 import { useKRA } from '../../context/KRAContext';
 import { 
   X, 
   Plus, 
   Trash2, 
-  Save, 
-  Sparkles, 
-  CheckCircle2, 
-  Target, 
-  Award,
-  Layers,
-  Clock,
-  HelpCircle
+  Save
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -45,16 +38,21 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
   const [domainComp, setDomainComp] = useState<string[]>([]);
   const [metrics, setMetrics] = useState<MetricOKR[]>([]);
 
-  // Temp string inputs for adding array items
-  const [newAcc, setNewAcc] = useState('');
-  const [newResp, setNewResp] = useState('');
-  const [newBeh, setNewBeh] = useState('');
-  const [newTech, setNewTech] = useState('');
-  const [newDomain, setNewDomain] = useState('');
-
   const [activeTab, setActiveTab] = useState<'basics' | 'accountability' | 'competencies' | 'metrics'>('basics');
 
-  useEffect(() => {
+  const [syncedProps, setSyncedProps] = useState<{
+    roleToEdit: RoleCharter | null;
+    defaultDeptId?: string;
+    portalData: PortalData;
+  } | null>(null);
+
+  if (
+    syncedProps === null ||
+    syncedProps.roleToEdit !== roleToEdit ||
+    syncedProps.defaultDeptId !== defaultDeptId ||
+    syncedProps.portalData !== portalData
+  ) {
+    setSyncedProps({ roleToEdit, defaultDeptId, portalData });
     if (roleToEdit) {
       setTitle(roleToEdit.title);
       setDepartmentId(roleToEdit.departmentId);
@@ -82,7 +80,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
         { outcomeArea: 'Delivery & Quality', metric: 'On-time delivery rate', target: '>90%', frequency: 'Quarterly', sourceData: 'Jira' }
       ]);
     }
-  }, [roleToEdit, defaultDeptId, portalData]);
+  }
 
   if (!isOpen) return null;
 

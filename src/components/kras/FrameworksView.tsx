@@ -1,6 +1,5 @@
 import React from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { BookOpen } from 'lucide-react';
 
 export const FrameworksView: React.FC = () => {
   const { portalData } = useKRA();

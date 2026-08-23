@@ -1,4 +1,6 @@
 import { GitHubConfig, PortalData } from '../types';
+import { utf8ToBase64 } from '../utils';
+import { errorMessage } from '../utils';
 
 export interface CommitResult {
   success: boolean;
@@ -8,15 +10,6 @@ export interface CommitResult {
 }
 
 export const githubService = {
-  // UTF-8 safe Base64 encoder for browser
-  utf8ToBase64(str: string): string {
-    return window.btoa(
-      encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-        String.fromCharCode(parseInt(p1, 16))
-      )
-    );
-  },
-
   async verifyRepoAccess(config: GitHubConfig): Promise<{ valid: boolean; message: string }> {
     if (!config.token || !config.owner || !config.repo) {
       return { valid: false, message: 'Please enter Repository Owner, Repo Name, and GitHub Token.' };
@@ -46,8 +39,8 @@ export const githubService = {
       }
 
       return { valid: true, message: `Connected to ${repoData.full_name} (${repoData.default_branch})` };
-    } catch (err: any) {
-      return { valid: false, message: `Network error connecting to GitHub: ${err.message || err}` };
+    } catch (err: unknown) {
+      return { valid: false, message: `Network error connecting to GitHub: ${errorMessage(err)}` };
     }
   },
 
@@ -84,12 +77,17 @@ export const githubService = {
 
       // 2. Prepare payload
       const jsonContent = JSON.stringify(data, null, 2);
-      const base64Content = this.utf8ToBase64(jsonContent);
+      const base64Content = utf8ToBase64(jsonContent);
 
       const commitMessage = customCommitMessage || 
         `chore(kras): update role charters and metrics via Admin Portal (${new Date().toLocaleString()})`;
 
-      const bodyPayload: any = {
+      const bodyPayload: {
+        message: string;
+        content: string;
+        branch: string;
+        sha?: string;
+      } = {
         message: commitMessage,
         content: base64Content,
         branch: branch,
@@ -125,10 +123,10 @@ export const githubService = {
         commitUrl: putData.commit?.html_url,
         sha: putData.commit?.sha,
       };
-    } catch (err: any) {
+    } catch (err: unknown) {
       return {
         success: false,
-        message: `Network failure while committing to GitHub: ${err.message || err}`,
+        message: `Network failure while committing to GitHub: ${errorMessage(err)}`,
       };
     }
   },

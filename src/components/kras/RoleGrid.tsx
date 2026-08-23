@@ -1,11 +1,12 @@
 import React from 'react';
 import { useKRA } from '../../context/KRAContext';
 import { RoleCard } from './RoleCard';
+import { RoleCharter } from '../../types';
 import { SearchX, RotateCcw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface RoleGridProps {
-  onSelectRole: (role: any) => void;
+  onSelectRole: (role: RoleCharter) => void;
 }
 
 export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {

@@ -31,7 +31,7 @@ const MainPortalContent: React.FC = () => {
     setSelectedRole(role);
   };
 
-  const handleEditInAdmin = (role: RoleCharter) => {
+  const handleEditInAdmin = () => {
     setActiveTab('admin');
   };
 

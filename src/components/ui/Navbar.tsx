@@ -176,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 title={`Active Governance Version: ${activeVersion?.name || activeVersionId}`}
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="font-mono">{activeVersion?.versionNumber || portalData.version || 'v2026.08'}</span>
+                <span className="font-mono">{activeVersion?.versionNumber || portalData.version || activeVersionId}</span>
               </div>
             )}
 

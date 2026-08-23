@@ -1,6 +1,6 @@
 import React from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { X, GitCompare, ArrowRight, ShieldCheck, Target, CheckCircle2 } from 'lucide-react';
+import { X, GitCompare, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface RoleComparatorModalProps {
