@@ -108,7 +108,7 @@ export const ImportGuide: React.FC = () => {
         <ul className="list-disc list-inside space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
           <li>Keep pipe (<code className="font-mono">|</code>) and colon (<code className="font-mono">:</code>) characters out of normal text — they are structural delimiters.</li>
           <li>Create a version snapshot before major restructuring so you can roll back visually.</li>
-          <li>Departments are fixed containers — a spreadsheet cannot create new ones (use JSON import).</li>
+          <li>Departments are configurable: names in the Department column that don't match an existing one create a NEW department automatically.</li>
           <li>Every RACI activity must have exactly one Accountable.</li>
         </ul>
       </Section>

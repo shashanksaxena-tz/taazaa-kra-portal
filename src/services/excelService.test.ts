@@ -32,17 +32,50 @@ describe('parseSpreadsheet', () => {
     expect(roles[0].level).toBe('Senior (L3)');
   });
 
-  it('maps department names to canonical dataset ids', async () => {
+  it('resolves department names against the passed-in departments (data-driven, no hardcoded ids)', async () => {
+    const known = [
+      { id: 'engineering', name: 'Engineering' },
+      { id: 'qa', name: 'Quality Assurance & SDET' },
+      { id: 'design', name: 'UI/UX & Product Design' },
+      { id: 'product', name: 'Product Management' },
+      { id: 'program-management', name: 'Program & Delivery Management' },
+    ];
     const file = await makeSheetFile([
       ['Role Title', 'Department'],
       ['QA Automation Lead', 'Quality Assurance'],
+      ['SDET Platform Lead', 'SDET'],
       ['Product Designer', 'UI/UX Design'],
       ['Delivery Manager', 'Program Delivery'],
-      ['SDET Platform Lead', 'SDET'],
       ['Backend Engineer', 'Backend'],
     ]);
-    const { roles } = await excelService.parseSpreadsheet(file);
-    expect(roles.map((r) => r.departmentId)).toEqual(['qa', 'design', 'program-management', 'qa', 'engineering']);
+    const { roles } = await excelService.parseSpreadsheet(file, known);
+    expect(roles.map((r) => r.departmentId)).toEqual([
+      'qa',
+      'qa',
+      'design',
+      'program-management',
+      'backend',
+    ]);
+  });
+
+  it('creates NEW department ids from unmatched names instead of dropping roles', async () => {
+    const known = [{ id: 'engineering', name: 'Engineering' }];
+    const file = await makeSheetFile([
+      ['Role Title', 'Department'],
+      ['Customer Success Manager', 'Customer Success'],
+      ['Support Engineer', 'Customer Success'],
+    ]);
+    const { roles, count, departmentNames } = await excelService.parseSpreadsheet(file, known);
+    expect(count).toBe(2);
+    expect(roles.every((r) => r.departmentId === 'customer-success')).toBe(true);
+    expect(departmentNames['customer-success']).toBe('Customer Success');
+  });
+
+  it('matches a department when the sheet name is contained in the real name', async () => {
+    const known = [{ id: 'qa', name: 'Quality Assurance & SDET' }];
+    const file = await makeSheetFile([['Role Title', 'Department'], ['X', 'Quality']]);
+    const { roles } = await excelService.parseSpreadsheet(file, known);
+    expect(roles[0].departmentId).toBe('qa');
   });
 
   it('splits pipe-delimited lists and colon-delimited OKRs', async () => {
@@ -75,7 +108,10 @@ describe('parseSpreadsheet', () => {
       ['Senior Software Engineer (Sample)', 'Software Engineering', 'Senior (L3)', '4-6 Years', 'Design scalable systems.'],
       ['Regression Test Engineer', 'Quality Assurance', 'Mid-Level (L2)', '2-4 Years', 'Verify imports end to end.'],
     ]);
-    const { roles, count } = await excelService.parseSpreadsheet(file);
+    const { roles, count } = await excelService.parseSpreadsheet(file, [
+      { id: 'engineering', name: 'Engineering' },
+      { id: 'qa', name: 'Quality Assurance & SDET' },
+    ]);
     expect(count).toBe(1);
     expect(roles[0].title).toBe('Regression Test Engineer');
     expect(roles[0].departmentId).toBe('qa');

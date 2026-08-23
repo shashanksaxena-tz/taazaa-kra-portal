@@ -40,6 +40,8 @@ export const AdminPanel: React.FC = () => {
     downloadTemplate,
     importSpreadsheet,
     resetToDefaults,
+    addDepartment,
+    removeDepartment,
     activeVersionId,
     switchVersion,
     createVersionSnapshot,
@@ -346,6 +348,7 @@ export const AdminPanel: React.FC = () => {
               <select
                 value={selectedDeptFilter}
                 onChange={(e) => setSelectedDeptFilter(e.target.value)}
+                aria-label="Filter by department"
                 className="px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200"
               >
                 <option value="all">All Departments</option>
@@ -355,6 +358,36 @@ export const AdminPanel: React.FC = () => {
                   </option>
                 ))}
               </select>
+              <button
+                onClick={() => {
+                  const name = window.prompt('New department name (e.g. "Customer Success"):');
+                  if (name !== null && name.trim()) {
+                    addDepartment(name);
+                    setSelectedDeptFilter(
+                      name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40)
+                    );
+                  }
+                }}
+                className="px-3 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold whitespace-nowrap transition-colors"
+                title="Create a new department"
+              >
+                + Dept
+              </button>
+              {selectedDeptFilter !== 'all' && (
+                <button
+                  onClick={() => {
+                    const dept = portalData.departments.find((d) => d.id === selectedDeptFilter);
+                    if (dept && window.confirm(`Delete empty department "${dept.name}"? Roles cannot live in it.`)) {
+                      removeDepartment(selectedDeptFilter);
+                      setSelectedDeptFilter('all');
+                    }
+                  }}
+                  className="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 text-xs font-bold whitespace-nowrap transition-colors"
+                  title="Remove the selected (empty) department"
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
 

@@ -1,5 +1,39 @@
 import * as XLSX from 'xlsx';
-import { PortalData, RoleCharter, MetricOKR, KRAVersion } from '../types';
+import { PortalData, Department, RoleCharter, MetricOKR, KRAVersion } from '../types';
+
+/**
+ * Resolve a free-text department name from a spreadsheet against the portal's
+ * actual departments. Match order: exact id → id substring → name substring
+ * (either direction). No match = new department with a slugified id.
+ */
+export const resolveDepartmentId = (
+  rawName: string,
+  knownDepartments: Pick<Department, 'id' | 'name'>[]
+): string => {
+  const name = rawName.trim();
+  if (!name) return knownDepartments[0]?.id ?? 'general';
+  const lc = name.toLowerCase();
+  // Delimiter-insensitive form so "Program Delivery" matches "Program & Delivery Management".
+  const condense = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const cName = condense(name);
+
+  const byIdExact = knownDepartments.find((d) => d.id.toLowerCase() === lc);
+  if (byIdExact) return byIdExact.id;
+
+  const byIdPartial = knownDepartments.find(
+    (d) => lc.includes(d.id.toLowerCase()) || d.id.toLowerCase().includes(lc)
+  );
+  if (byIdPartial) return byIdPartial.id;
+
+  const byName =
+    knownDepartments.find((d) => condense(d.name).includes(cName)) ??
+    knownDepartments.find((d) => cName.includes(condense(d.name)));
+  if (byName) return byName.id;
+
+  // New department — derive a stable id from the sheet's own naming.
+  const slug = lc.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+  return slug || 'general';
+};
 
 export const excelService = {
   /**
@@ -419,7 +453,7 @@ export const excelService = {
       [],
       ['PART 1 — HOW TO FILL THE TEMPLATE SHEET (COLUMN BY COLUMN)'],
       ['Role Title', 'REQUIRED. Exact role name shown on cards and printouts, e.g. "Senior Software Engineer (SSE)". Leave blank to skip a row.'],
-      ['Department', 'REQUIRED. Must match one of the values in the "Valid Values" sheet (Software Engineering, Quality Assurance, UI/UX Design, Product Management, Program & Delivery). Unknown names fall back to Engineering.'],
+      ['Department', 'Free text, e.g. "Quality Assurance" or a brand-new name like "Customer Success". Names are matched against your existing departments; an unmatched name creates a NEW department automatically.'],
       ['Experience Level', 'Level band from "Valid Values" sheet, e.g. "Senior (L3)". Defaults to Mid-Level (L2) if blank.'],
       ['Years of Experience', 'Free text range shown under the title, e.g. "4-6 Years".'],
       ['Core Mission Statement', 'One-paragraph mission shown at the top of the charter. Keep under ~50 words.'],
@@ -464,7 +498,10 @@ export const excelService = {
   /**
    * Parse an uploaded Excel (.xlsx, .xls) or CSV file into parsed Role Charters
    */
-  parseSpreadsheet: async (file: File): Promise<{ roles: RoleCharter[]; count: number }> => {
+  parseSpreadsheet: async (
+    file: File,
+    knownDepartments: Pick<Department, 'id' | 'name'>[] = []
+  ): Promise<{ roles: RoleCharter[]; count: number; departmentNames: Record<string, string> }> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -514,6 +551,7 @@ export const excelService = {
           const dataRows = rawRows.slice(headerIdx + 1);
 
           const parsedRoles: RoleCharter[] = [];
+          const departmentNames: Record<string, string> = {};
 
           dataRows.forEach((rowArray, rowIdx: number) => {
             if (!rowArray || rowArray.length === 0) return;
@@ -530,18 +568,13 @@ export const excelService = {
               return;
             }
 
-            const deptName = row['Department'] || row['Department ID'] || 'engineering';
-            // Map free-text department names to the dataset's canonical ids.
-            const deptLc = String(deptName).toLowerCase();
-            let deptId = 'engineering';
-            if (deptLc.includes('qa') || deptLc.includes('quality') || deptLc.includes('sdet')) {
-              deptId = 'qa';
-            } else if (deptLc.includes('ux') || deptLc.includes('design')) {
-              deptId = 'design';
-            } else if (deptLc.includes('program') || deptLc.includes('delivery')) {
-              deptId = 'program-management';
-            } else if (deptLc.includes('product')) {
-              deptId = 'product';
+            const deptName = row['Department'] || row['Department ID'] || 'General';
+            // Resolve against the portal's ACTUAL departments (passed in by the
+            // caller) — no hardcoded ids. Unmatched names become new departments.
+            const rawDept = String(deptName).trim();
+            const deptId = resolveDepartmentId(rawDept, knownDepartments);
+            if (!knownDepartments.some((d) => d.id === deptId)) {
+              departmentNames[deptId] = rawDept;
             }
 
             const level = (row['Experience Level'] || row['Level'] || 'Mid-Level (L2)') as string;
@@ -628,7 +661,7 @@ export const excelService = {
             });
           });
 
-          resolve({ roles: parsedRoles, count: parsedRoles.length });
+          resolve({ roles: parsedRoles, count: parsedRoles.length, departmentNames });
         } catch (error) {
           reject(error);
         }

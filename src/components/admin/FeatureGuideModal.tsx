@@ -37,7 +37,7 @@ const guide: GuideEntry[] = [
   {
     icon: <Building2 className="w-4 h-4" />,
     title: 'Departments',
-    body: 'There are 5 fixed solution areas (Engineering, Quality, UI/UX, Product, Program). Admin Panel lets you edit department metadata; roles belong to departments via their assignment. Creating brand-new departments requires a JSON import.',
+    body: 'Departments are fully configurable. Admin Panel → Roles tab: "+ Dept" creates one, "Delete" removes an empty one, and any spreadsheet import can introduce new departments — unmatched Department names in a sheet become new departments automatically. Roles are assigned to departments and can be moved by editing them.',
   },
   {
     icon: <Upload className="w-4 h-4" />,

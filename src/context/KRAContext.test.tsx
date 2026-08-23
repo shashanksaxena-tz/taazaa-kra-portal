@@ -109,6 +109,54 @@ describe('role management', () => {
     expect(quality.description).toBe('Quality first');
     expect(result.current.portalData.departments.find((d) => d.id === 'eng')!.name).toBe('Engineering');
   });
+
+  it('addDepartment creates a configurable department with a slugified id', () => {
+    const { result } = renderPortal();
+    let ok = false;
+    act(() => {
+      ok = result.current.addDepartment('Customer Success', 'Owns accounts');
+    });
+    expect(ok).toBe(true);
+    const created = result.current.portalData.departments.find((d) => d.id === 'customer-success');
+    expect(created?.name).toBe('Customer Success');
+    expect(created?.description).toBe('Owns accounts');
+    expect(mockedSaveData).toHaveBeenCalled();
+  });
+
+  it('addDepartment rejects duplicates and blank names', () => {
+    const { result } = renderPortal();
+    act(() => result.current.addDepartment('Customer Success'));
+    let dup = false;
+    act(() => {
+      dup = result.current.addDepartment('Customer Success');
+    });
+    expect(dup).toBe(false);
+
+    let blank = true;
+    act(() => {
+      blank = result.current.addDepartment('   ');
+    });
+    expect(blank).toBe(false);
+  });
+
+  it('removeDepartment deletes an empty department but refuses one holding roles', () => {
+    const { result } = renderPortal();
+    act(() => result.current.addDepartment('Temp Dept'));
+
+    let removedForEmpty = true;
+    act(() => {
+      removedForEmpty = result.current.removeDepartment('eng');
+    });
+    expect(removedForEmpty).toBe(false);
+    expect(result.current.portalData.departments.some((d) => d.id === 'eng')).toBe(true);
+
+    let ok = false;
+    act(() => {
+      ok = result.current.removeDepartment('temp-dept');
+    });
+    expect(ok).toBe(true);
+    expect(result.current.portalData.departments.some((d) => d.id === 'temp-dept')).toBe(false);
+  });
 });
 
 describe('version snapshots', () => {

@@ -61,6 +61,8 @@ interface KRAContextType {
   addRole: (departmentId: string, newRole: RoleCharter) => void;
   deleteRole: (departmentId: string, roleId: string) => void;
   updateDepartmentInfo: (departmentId: string, info: Partial<Department>) => void;
+  addDepartment: (name: string, description?: string) => boolean;
+  removeDepartment: (departmentId: string) => boolean;
   updateRaciMatrix: (newMatrix: RaciItem[]) => void;
   saveGitHubConfig: (config: GitHubConfig) => void;
   commitToGitHub: (message?: string) => Promise<CommitResult>;
@@ -319,7 +321,6 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
       return dept;
     });
-
     const updatedData: PortalData = {
       ...portalData,
       departments: updatedDepartments,
@@ -328,6 +329,64 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     setPortalData(updatedData);
     storageService.saveData(updatedData);
+  };
+
+  const addDepartment = (name: string, description?: string): boolean => {
+    const trimmed = name.trim();
+    if (!trimmed) {
+      showToast('Department name is required', 'error');
+      return false;
+    }
+    const id = trimmed
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 40);
+    if (!id) {
+      showToast('Department name must contain letters or numbers', 'error');
+      return false;
+    }
+    if (portalData.departments.some((d) => d.id === id)) {
+      showToast(`Department "${trimmed}" already exists`, 'error');
+      return false;
+    }
+    const newDept: Department = {
+      id,
+      name: trimmed,
+      roles: [],
+      tagline: 'Custom solution area',
+      description: description ?? '',
+      icon: 'Layers',
+      color: '#64748b',
+      badgeColor: '#e2e8f0',
+    };
+    const updatedData: PortalData = {
+      ...portalData,
+      departments: [...portalData.departments, newDept],
+      lastUpdated: new Date().toISOString().split('T')[0],
+    };
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast(`Department "${trimmed}" created`, 'success');
+    return true;
+  };
+
+  const removeDepartment = (departmentId: string): boolean => {
+    const dept = portalData.departments.find((d) => d.id === departmentId);
+    if (!dept) return false;
+    if (dept.roles.length > 0) {
+      showToast(`Move or delete the ${dept.roles.length} role(s) in "${dept.name}" first`, 'error');
+      return false;
+    }
+    const updatedData: PortalData = {
+      ...portalData,
+      departments: portalData.departments.filter((d) => d.id !== departmentId),
+      lastUpdated: new Date().toISOString().split('T')[0],
+    };
+    setPortalData(updatedData);
+    storageService.saveData(updatedData);
+    showToast(`Department "${dept.name}" removed`, 'info');
+    return true;
   };
 
   const updateRaciMatrix = (newMatrix: RaciItem[]) => {
@@ -395,7 +454,10 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const importSpreadsheet = async (file: File): Promise<boolean> => {
     try {
-      const { roles, count } = await excelService.parseSpreadsheet(file);
+      const { roles, count, departmentNames } = await excelService.parseSpreadsheet(
+        file,
+        portalData.departments
+      );
       if (count === 0) {
         showToast('No valid roles detected in spreadsheet', 'error');
         return false;
@@ -408,7 +470,26 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         deptMap[r.departmentId].push(r);
       });
 
-      const updatedDepartments = portalData.departments.map((dept) => {
+      // Create departments that don't exist yet (spreadsheet-driven config).
+      const DEFAULT_DEPT_STYLE = {
+        tagline: 'Custom solution area',
+        description: '',
+        icon: 'Layers',
+        color: '#64748b',
+        badgeColor: '#e2e8f0',
+      };
+      const newDepartments: Department[] = Object.keys(deptMap)
+        .filter((id) => !portalData.departments.some((d) => d.id === id))
+        .map((id) => ({
+          id,
+          name: departmentNames[id] || id,
+          roles: [],
+          ...DEFAULT_DEPT_STYLE,
+        }));
+
+      const allDepartments = [...portalData.departments, ...newDepartments];
+
+      const updatedDepartments = allDepartments.map((dept) => {
         const importedRolesForDept = deptMap[dept.id] || [];
         if (importedRolesForDept.length === 0) return dept;
 
@@ -487,6 +568,8 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         addRole,
         deleteRole,
         updateDepartmentInfo,
+        addDepartment,
+        removeDepartment,
         updateRaciMatrix,
         saveGitHubConfig,
         commitToGitHub,
