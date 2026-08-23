@@ -62,6 +62,35 @@ describe('parseSpreadsheet', () => {
     const file = await makeSheetFile([], 'Empty');
     await expect(excelService.parseSpreadsheet(file)).rejects.toThrow(/empty/i);
   });
+
+  it('parses the portal\'s OWN downloaded template even with its banner row intact (regression)', async () => {
+    // Reproduces live bug: banner "TAAZAA INC. — ROLE CHARTER IMPORT TEMPLATE"
+    // contains the word "role" and used to win header detection at index 0.
+    const file = await makeSheetFile([
+      ['TAAZAA INC. — ROLE CHARTER IMPORT TEMPLATE'],
+      ['Instructions: Fill in your role details below.'],
+      [],
+      ['Role Title', 'Department', 'Experience Level', 'Years of Experience', 'Core Mission Statement'],
+      ['Senior Software Engineer (Sample)', 'Software Engineering', 'Senior (L3)', '4-6 Years', 'Design scalable systems.'],
+      ['Regression Test Engineer', 'Quality Assurance', 'Mid-Level (L2)', '2-4 Years', 'Verify imports end to end.'],
+    ]);
+    const { roles, count } = await excelService.parseSpreadsheet(file);
+    expect(count).toBe(1);
+    expect(roles[0].title).toBe('Regression Test Engineer');
+    expect(roles[0].departmentId).toBe('quality');
+  });
+
+  it('prefers the real header row over instruction prose mentioning roles', async () => {
+    const file = await makeSheetFile([
+      ['How to add a new role for your department and team'],
+      ['Another prose line about role charters and titles'],
+      [],
+      ['Role Title', 'Department', 'Experience Level'],
+      ['Platform Engineer', 'Software Engineering', 'Senior (L3)'],
+    ]);
+    const { roles } = await excelService.parseSpreadsheet(file);
+    expect(roles.map((r) => r.title)).toEqual(['Platform Engineer']);
+  });
 });
 
 describe('exportToCSV', () => {

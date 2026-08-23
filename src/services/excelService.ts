@@ -483,11 +483,31 @@ export const excelService = {
             throw new Error('Spreadsheet appears to be empty.');
           }
 
-          // Find the row index that contains column headers (contains 'Title' or 'Role')
-          let headerIdx = rawRows.findIndex((row) =>
-            Array.isArray(row) && row.some((cell) => typeof cell === 'string' && (cell.toLowerCase().includes('title') || cell.toLowerCase().includes('role')))
-          );
+          // Find the true header row: score every row against known column names so
+          // banner rows like "TAAZAA INC. — ROLE CHARTER IMPORT TEMPLATE" (which
+          // contain the word "role") don't win over the real header row.
+          const HEADER_HINTS = ['role title', 'title', 'department', 'experience level', 'mission'];
+          const headerScore = (row: unknown[]): number =>
+            Array.isArray(row)
+              ? row.reduce(
+                  (score, cell) =>
+                    typeof cell === 'string' &&
+                    HEADER_HINTS.some((h) => cell.trim().toLowerCase().includes(h))
+                      ? score + 1
+                      : score,
+                  0
+                )
+              : 0;
 
+          let headerIdx = -1;
+          let bestScore = 1; // require at least 2 matching hint cells to qualify
+          rawRows.forEach((row, i) => {
+            const s = headerScore(row);
+            if (s > bestScore) {
+              bestScore = s;
+              headerIdx = i;
+            }
+          });
           if (headerIdx === -1) headerIdx = 0;
 
           const headers: string[] = rawRows[headerIdx].map((h) => String(h || '').trim());
@@ -505,8 +525,8 @@ export const excelService = {
             });
 
             const title = row['Role Title'] || row['Title'] || row['role'] || row['Role'] || '';
-            if (!title || String(title).trim().length === 0 || String(title).includes('Sample') && rowIdx > 1) {
-              // skip empty or guideline rows
+            if (!title || String(title).trim().length === 0 || /sample/i.test(String(title))) {
+              // skip empty rows, guideline prose, and template sample rows
               return;
             }
 
