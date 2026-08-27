@@ -26,3 +26,4 @@ dist-ssr
 # Local agent tooling state
 .lavish/
 .omc/
+.vercel
