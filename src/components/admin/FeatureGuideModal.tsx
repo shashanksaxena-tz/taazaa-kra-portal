@@ -12,7 +12,7 @@ const guide: GuideEntry[] = [
   {
     icon: <Users className="w-4 h-4" />,
     title: 'Viewing & finding roles',
-    body: 'Use Search (matches titles, skills, missions), the FILTER LEVEL buttons (L1–L6) or Solution Area tiles to narrow charters. Click "View KRA" on any card for the full six-tab charter: Overview, Accountabilities, Responsibilities, OKRs & Metrics, Competencies and Career Ladder. Export PDF prints an executive charter.',
+    body: 'Use Search (matches titles, skills, missions), the FILTER LEVEL buttons (L1–L6) or Solution Area tiles to narrow charters. Click "View KRA" on any card for the full six-tab charter: Overview, Accountabilities, Responsibilities, KRAs & Metrics, Competencies and Career Ladder. Export PDF prints an executive charter.',
   },
   {
     icon: <Table2 className="w-4 h-4" />,
@@ -27,7 +27,7 @@ const guide: GuideEntry[] = [
   {
     icon: <PlusCircle className="w-4 h-4" />,
     title: 'Adding a role',
-    body: 'Admin Panel → "Add Role Charter". Fill Basic Info, Accountabilities & Duties, Skills & Values and OKRs & Targets, then save. The role appears instantly in its department and persists locally. Bulk-add many roles via Excel import instead.',
+    body: 'Admin Panel → "Add Role Charter". Fill Basic Info, Accountabilities & Duties, Skills & Values and KRAs & Targets, then save. The role appears instantly in its department and persists locally. Bulk-add many roles via Excel import instead.',
   },
   {
     icon: <Edit3 className="w-4 h-4" />,

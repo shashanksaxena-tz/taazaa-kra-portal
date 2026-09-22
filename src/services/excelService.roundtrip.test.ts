@@ -55,7 +55,7 @@ describe('buildTemplateWorkbook', () => {
     const flat = templateRows.flat().join('|');
     expect(flat).toContain('Role Title');
     expect(flat).toContain('Senior Software Engineer (Sample)');
-    expect(flat).toContain('OKRs (Outcome:Metric:Target:Frequency separated by |)');
+    expect(flat).toContain('KRAs (Outcome:Metric:Target:Frequency separated by |)');
 
     const refRows = XLSX.utils.sheet_to_json<unknown[]>(
       wb.Sheets['Valid Values'], { header: 1 }

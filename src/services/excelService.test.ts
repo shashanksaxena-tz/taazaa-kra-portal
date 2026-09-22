@@ -78,15 +78,15 @@ describe('parseSpreadsheet', () => {
     expect(roles[0].departmentId).toBe('qa');
   });
 
-  it('splits pipe-delimited lists and colon-delimited OKRs', async () => {
+  it('splits pipe-delimited lists and colon-delimited KRAs', async () => {
     const file = await makeSheetFile([
-      ['Role Title', 'Department', 'Core Accountabilities (Delimited by |)', 'OKRs (Outcome:Metric:Target:Frequency separated by |)'],
+      ['Role Title', 'Department', 'Core Accountabilities (Delimited by |)', 'KRAs (Outcome:Metric:Target:Frequency separated by |)'],
       ['Platform Engineer', 'Engineering', 'Design systems | Review code', 'Quality & Delivery:Sprint velocity:+15%:Quarterly | Security:Critical vulns:0 open:Monthly'],
     ]);
 
     const { roles } = await excelService.parseSpreadsheet(file);
     expect(roles[0].accountabilities).toEqual(['Design systems', 'Review code']);
-    expect(roles[0].metricsAndOkrs).toEqual([
+    expect(roles[0].metricsAndKras).toEqual([
       expect.objectContaining({ outcomeArea: 'Quality & Delivery', metric: 'Sprint velocity', target: '+15%', frequency: 'Quarterly' }),
       expect.objectContaining({ outcomeArea: 'Security', metric: 'Critical vulns', target: '0 open', frequency: 'Monthly' }),
     ]);
@@ -164,7 +164,7 @@ describe('exportToCSV', () => {
               experienceYears: '2-4 Years',
               mission: 'Test mission',
               accountabilities: ['A1', 'A2'],
-              metricsAndOkrs: [{ outcomeArea: 'Q', metric: 'M', target: 'T' }],
+              metricsAndKras: [{ outcomeArea: 'Q', metric: 'M', target: 'T' }],
             },
           ],
         },

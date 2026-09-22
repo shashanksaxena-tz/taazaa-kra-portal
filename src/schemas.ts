@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const metricOkrSchema = z.object({
+export const metricKraSchema = z.object({
   outcomeArea: z.string().default('Quality & Delivery'),
   metric: z.string().default(''),
   target: z.string().default(''),
@@ -27,8 +27,7 @@ export const roleCharterSchema = z.object({
     .partial()
     .nullish()
     .transform((v) => v ?? {}),
-  metricsAndOkrs: z.array(metricOkrSchema).nullish().transform((v) => v ?? []),
-  kras: z.array(z.unknown()).nullish().transform((v) => v ?? []),
+  metricsAndKras: z.array(metricKraSchema).nullish().transform((v) => v ?? []),
 });
 
 export const departmentSchema = z.object({

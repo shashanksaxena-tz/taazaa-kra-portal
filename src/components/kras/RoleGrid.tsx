@@ -49,7 +49,7 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
         ...(item.competencies?.technical || []),
         ...(item.competencies?.domain || []),
       ].some((c) => c.toLowerCase().includes(q));
-      const matchMetrics = item.metricsAndOkrs?.some(
+      const matchMetrics = item.metricsAndKras?.some(
         (m) => m.metric?.toLowerCase().includes(q) || m.outcomeArea?.toLowerCase().includes(q)
       );
 

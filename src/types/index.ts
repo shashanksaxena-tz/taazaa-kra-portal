@@ -7,7 +7,7 @@ export type ExperienceLevel =
   | 'Principal / Architect (L5)'
   | 'Executive / Director (L6)';
 
-export interface MetricOKR {
+export interface MetricKRA {
   outcomeArea: string;
   metric: string;
   target: string;
@@ -42,7 +42,7 @@ export interface RoleCharter {
   accountabilities: string[];
   responsibilities: string[];
   competencies: CompetencyGroup;
-  metricsAndOkrs: MetricOKR[];
+  metricsAndKras: MetricKRA[];
   careerPath: CareerPath;
   sourceDoc?: string;
 }

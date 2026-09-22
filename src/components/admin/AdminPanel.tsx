@@ -400,7 +400,7 @@ export const AdminPanel: React.FC = () => {
                   <th className="p-4">Department</th>
                   <th className="p-4">Level</th>
                   <th className="p-4">Experience</th>
-                  <th className="p-4 text-center">OKRs</th>
+                  <th className="p-4 text-center">KRAs</th>
                   <th className="p-4 text-right">Actions</th>
                 </tr>
               </thead>
@@ -422,7 +422,7 @@ export const AdminPanel: React.FC = () => {
                       {role.experienceYears}
                     </td>
                     <td className="p-4 text-center text-xs font-bold text-brand-600 dark:text-brand-400">
-                      {role.metricsAndOkrs?.length || 0}
+                      {role.metricsAndKras?.length || 0}
                     </td>
                     <td className="p-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
@@ -581,7 +581,7 @@ export const AdminPanel: React.FC = () => {
                       Microsoft Excel Workbook (.xlsx)
                     </h4>
                     <p className="text-[11px] text-slate-500">
-                      Multi-tab spreadsheet: Role Charters, OKR Targets & RACI Matrix.
+                      Multi-tab spreadsheet: Role Charters, KRA Targets & RACI Matrix.
                     </p>
                   </div>
                 </div>
@@ -891,7 +891,7 @@ export const AdminPanel: React.FC = () => {
                   Create KRA Version Snapshot
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
-                  Locks in the current state of all role charters and OKRs into a versioned historical archive.
+                  Locks in the current state of all role charters and KRAs into a versioned historical archive.
                 </p>
               </div>
 

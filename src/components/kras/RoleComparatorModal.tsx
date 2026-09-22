@@ -129,16 +129,16 @@ export const RoleComparatorModal: React.FC<RoleComparatorModalProps> = ({ isOpen
                     </ul>
                   </div>
 
-                  {/* OKRs */}
+                  {/* KRAs */}
                   <div className="space-y-2">
                     <div className="text-xs font-bold text-slate-900 dark:text-white">
                       Key Benchmark Targets
                     </div>
                     <div className="space-y-2">
-                      {role.metricsAndOkrs?.slice(0, 3).map((okr, idx) => (
+                      {role.metricsAndKras?.slice(0, 3).map((kra, idx) => (
                         <div key={idx} className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 text-xs">
-                          <div className="font-bold text-slate-900 dark:text-white">{okr.outcomeArea}: {okr.metric}</div>
-                          <div className="text-brand-600 dark:text-brand-400 font-extrabold mt-1">Target: {okr.target}</div>
+                          <div className="font-bold text-slate-900 dark:text-white">{kra.outcomeArea}: {kra.metric}</div>
+                          <div className="text-brand-600 dark:text-brand-400 font-extrabold mt-1">Target: {kra.target}</div>
                         </div>
                       ))}
                     </div>

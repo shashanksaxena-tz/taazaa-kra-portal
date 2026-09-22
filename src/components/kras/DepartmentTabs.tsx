@@ -36,7 +36,7 @@ export const DepartmentTabs: React.FC = () => {
       const matchMission = r.mission?.toLowerCase().includes(q);
       const matchAccountabilities = r.accountabilities?.some((a: string) => a.toLowerCase().includes(q));
       const matchResponsibilities = r.responsibilities?.some((res: string) => res.toLowerCase().includes(q));
-      const matchMetrics = r.metricsAndOkrs?.some((m) => 
+      const matchMetrics = r.metricsAndKras?.some((m) =>
         m.metric?.toLowerCase().includes(q) || m.outcomeArea?.toLowerCase().includes(q)
       );
       if (!matchTitle && !matchMission && !matchAccountabilities && !matchResponsibilities && !matchMetrics) {

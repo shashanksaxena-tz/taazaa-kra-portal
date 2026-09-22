@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RoleCharter, MetricOKR, PortalData } from '../../types';
+import { RoleCharter, MetricKRA, PortalData } from '../../types';
 import { useKRA } from '../../context/KRAContext';
 import { 
   X, 
@@ -36,7 +36,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
   const [behavioralComp, setBehavioralComp] = useState<string[]>([]);
   const [technicalComp, setTechnicalComp] = useState<string[]>([]);
   const [domainComp, setDomainComp] = useState<string[]>([]);
-  const [metrics, setMetrics] = useState<MetricOKR[]>([]);
+  const [metrics, setMetrics] = useState<MetricKRA[]>([]);
 
   const [activeTab, setActiveTab] = useState<'basics' | 'accountability' | 'competencies' | 'metrics'>('basics');
 
@@ -64,7 +64,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
       setBehavioralComp(roleToEdit.competencies?.behavioral || []);
       setTechnicalComp(roleToEdit.competencies?.technical || []);
       setDomainComp(roleToEdit.competencies?.domain || []);
-      setMetrics(roleToEdit.metricsAndOkrs || []);
+      setMetrics(roleToEdit.metricsAndKras || []);
     } else {
       setTitle('');
       setDepartmentId(defaultDeptId || portalData.departments[0]?.id || 'engineering');
@@ -106,7 +106,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
         technical: technicalComp.filter((t) => t.trim().length > 0),
         domain: domainComp.filter((d) => d.trim().length > 0),
       },
-      metricsAndOkrs: metrics.filter((m) => m.metric?.trim().length > 0),
+      metricsAndKras: metrics.filter((m) => m.metric?.trim().length > 0),
       careerPath: roleToEdit?.careerPath || { previousRoles: [], nextRoles: [] },
       summary: roleToEdit?.summary || '',
     };
@@ -133,7 +133,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
     setMetrics(metrics.filter((_, i) => i !== idx));
   };
 
-  const handleMetricChange = (idx: number, field: keyof MetricOKR, value: string) => {
+  const handleMetricChange = (idx: number, field: keyof MetricKRA, value: string) => {
     const updated = [...metrics];
     updated[idx] = { ...updated[idx], [field]: value };
     setMetrics(updated);
@@ -206,7 +206,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
                 : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            OKRs & Targets ({metrics.length})
+            KRAs & Targets ({metrics.length})
           </button>
         </div>
 
@@ -438,7 +438,7 @@ export const RoleEditorModal: React.FC<RoleEditorModalProps> = ({
           {activeTab === 'metrics' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <label className="block text-xs font-bold uppercase text-slate-500">Measurable OKRs & Targets</label>
+                <label className="block text-xs font-bold uppercase text-slate-500">Measurable KRAs & Targets</label>
                 <button
                   type="button"
                   onClick={addMetricRow}

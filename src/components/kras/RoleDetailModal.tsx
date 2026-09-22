@@ -43,7 +43,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
     { id: 'overview', label: 'Overview', icon: BookOpen },
     { id: 'accountabilities', label: 'Accountabilities', icon: Shield },
     { id: 'responsibilities', label: 'Responsibilities', icon: ListChecks },
-    { id: 'okrs', label: 'OKRs & Metrics', icon: Target },
+    { id: 'kras', label: 'KRAs & Metrics', icon: Target },
     { id: 'competencies', label: 'Competencies', icon: Award },
     { id: 'growth', label: 'Career Ladder', icon: TrendingUp },
   ];
@@ -210,9 +210,9 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                   </div>
 
                   <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
-                    <div className="text-xs text-slate-400 font-semibold mb-1">Target OKRs</div>
+                    <div className="text-xs text-slate-400 font-semibold mb-1">Target KRAs</div>
                     <div className="text-2xl font-black text-brand-600 dark:text-brand-400">
-                      {role.metricsAndOkrs?.length || 0} Benchmarks
+                      {role.metricsAndKras?.length || 0} Benchmarks
                     </div>
                   </div>
 
@@ -283,12 +283,12 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
               </div>
             )}
 
-            {/* Tab 4: OKRs & Metrics */}
-            {activeSubTab === 'okrs' && (
+            {/* Tab 4: KRAs & Metrics */}
+            {activeSubTab === 'kras' && (
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
                   <Target className="w-4 h-4 text-brand-500" />
-                  <span>Measurable OKRs & Performance Benchmarks</span>
+                  <span>Measurable KRAs & Performance Benchmarks</span>
                 </div>
                 <p className="text-xs text-slate-500">
                   Objective criteria utilized during quarterly appraisal reviews and performance evaluations.
@@ -305,21 +305,21 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                      {role.metricsAndOkrs?.map((okr, index) => (
+                      {role.metricsAndKras?.map((kra, index) => (
                         <tr key={index} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
                           <td className="p-4 font-bold text-slate-900 dark:text-white">
-                            {okr.outcomeArea}
+                            {kra.outcomeArea}
                           </td>
                           <td className="p-4 text-slate-700 dark:text-slate-300">
-                            {okr.metric}
+                            {kra.metric}
                           </td>
                           <td className="p-4">
                             <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
-                              {okr.target}
+                              {kra.target}
                             </span>
                           </td>
                           <td className="p-4 text-slate-500 font-mono text-xs">
-                            {okr.frequency || 'Quarterly'}
+                            {kra.frequency || 'Quarterly'}
                           </td>
                         </tr>
                       ))}
@@ -548,10 +548,10 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
           </ul>
         </div>
 
-        {/* Section 4: Measurable OKRs & Benchmarks Table */}
+        {/* Section 4: Measurable KRAs & Benchmarks Table */}
         <div className="mb-6 print-avoid-break">
           <h3 className="text-xs font-extrabold uppercase tracking-wider bg-slate-100 p-2 border-l-4 border-slate-900 mb-3 text-slate-900">
-            4. Measurable OKRs & Performance Evaluation Benchmarks
+            4. Measurable KRAs & Performance Evaluation Benchmarks
           </h3>
           <table className="w-full text-left text-xs border border-slate-300">
             <thead>
@@ -564,13 +564,13 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
-              {role.metricsAndOkrs?.map((okr, idx) => (
+              {role.metricsAndKras?.map((kra, idx) => (
                 <tr key={idx}>
-                  <td className="p-2.5 font-bold border-r border-slate-200">{okr.outcomeArea}</td>
-                  <td className="p-2.5 border-r border-slate-200">{okr.metric}</td>
-                  <td className="p-2.5 font-bold border-r border-slate-200">{okr.target}</td>
-                  <td className="p-2.5 border-r border-slate-200">{okr.frequency || 'Quarterly'}</td>
-                  <td className="p-2.5 text-slate-600">{okr.sourceData || 'Jira / Audit'}</td>
+                  <td className="p-2.5 font-bold border-r border-slate-200">{kra.outcomeArea}</td>
+                  <td className="p-2.5 border-r border-slate-200">{kra.metric}</td>
+                  <td className="p-2.5 font-bold border-r border-slate-200">{kra.target}</td>
+                  <td className="p-2.5 border-r border-slate-200">{kra.frequency || 'Quarterly'}</td>
+                  <td className="p-2.5 text-slate-600">{kra.sourceData || 'Jira / Audit'}</td>
                 </tr>
               ))}
             </tbody>

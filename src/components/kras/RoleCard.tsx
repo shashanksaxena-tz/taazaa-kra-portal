@@ -82,7 +82,7 @@ export const RoleCard: React.FC<RoleCardProps> = ({ role, department, onSelect }
         {/* Metric Badges */}
         <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
           <Target className="w-3.5 h-3.5 text-brand-500" />
-          <span>{role.metricsAndOkrs?.length || 0} OKRs</span>
+          <span>{role.metricsAndKras?.length || 0} KRAs</span>
         </div>
 
         {/* Action Controls */}

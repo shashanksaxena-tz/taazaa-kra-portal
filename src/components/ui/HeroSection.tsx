@@ -29,6 +29,10 @@ export const HeroSection: React.FC = () => {
 
   const totalRoles = portalData.departments.reduce((acc, d) => acc + d.roles.length, 0);
   const totalDepts = portalData.departments.length;
+  const rolesWithKras = portalData.departments
+    .flatMap((d) => d.roles)
+    .filter((r) => (r.metricsAndKras || []).length > 0).length;
+  const percentWithKras = totalRoles === 0 ? 0 : Math.round((rolesWithKras / totalRoles) * 100);
 
   const levels = [
     { label: 'All Levels', value: 'all' },
@@ -197,10 +201,10 @@ export const HeroSection: React.FC = () => {
                 <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase text-slate-400">Target</span>
               </div>
               <div className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white group-hover:text-accent-cyan transition-colors tracking-tight">
-                100%
+                {percentWithKras}%
               </div>
               <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                Measurable OKRs
+                Roles with Measurable KRAs
               </div>
             </div>
           </div>

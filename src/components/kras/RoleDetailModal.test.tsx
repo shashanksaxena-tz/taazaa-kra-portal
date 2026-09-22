@@ -21,7 +21,7 @@ const role = {
   accountabilities: ['Delivery predictability'],
   responsibilities: ['Code review'],
   competencies: { technical: ['TypeScript'], behavioral: ['Mentoring'] },
-  metricsAndOkrs: [
+  metricsAndKras: [
     { outcomeArea: 'Quality', metric: 'Escaped defects', target: '< 2%', frequency: 'Quarterly' },
   ],
 } as unknown as RoleCharter;

@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
               <TaazaaLogo className="h-6 w-auto" />
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Employee Relations & Performance Governance Portal. Standardizing role charters, growth pathways, and measurable OKRs across all departments.
+              Employee Relations & Performance Governance Portal. Standardizing role charters, growth pathways, and measurable KRAs across all departments.
             </p>
             <div className="text-[11px] text-slate-400 font-mono">
               Version {portalData.version} • Updated {portalData.lastUpdated}

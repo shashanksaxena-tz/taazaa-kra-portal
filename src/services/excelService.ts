@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { PortalData, Department, RoleCharter, MetricOKR, KRAVersion } from '../types';
+import { PortalData, Department, RoleCharter, MetricKRA, KRAVersion } from '../types';
 
 /**
  * Resolve a free-text department name from a spreadsheet against the portal's
@@ -110,10 +110,10 @@ export const excelService = {
     XLSX.utils.book_append_sheet(wb, wsRoles, 'Role Charters');
 
     // ==========================================
-    // SHEET 2: OKRs & BENCHMARKS
+    // SHEET 2: KRAs & BENCHMARKS
     // ==========================================
-    const okrHeaderRows = [
-      ['TAAZAA INC. — MEASURABLE OKRS & PERFORMANCE BENCHMARKS'],
+    const kraHeaderRows = [
+      ['TAAZAA INC. — MEASURABLE KRAS & PERFORMANCE BENCHMARKS'],
       [`SNAPSHOT VERSION: ${verName} | EFFECTIVE DATE: ${verDate}`],
       [],
       [
@@ -128,23 +128,23 @@ export const excelService = {
       ]
     ];
 
-    const okrDataRows = portalData.departments.flatMap((dept) =>
+    const kraDataRows = portalData.departments.flatMap((dept) =>
       dept.roles.flatMap((role) =>
-        (role.metricsAndOkrs || []).map((okr) => [
+        (role.metricsAndKras || []).map((kra) => [
           role.title,
           dept.name,
           role.level,
-          okr.outcomeArea,
-          okr.metric,
-          okr.target,
-          okr.frequency || 'Quarterly',
-          okr.sourceData || 'Jira / Direct Audit',
+          kra.outcomeArea,
+          kra.metric,
+          kra.target,
+          kra.frequency || 'Quarterly',
+          kra.sourceData || 'Jira / Direct Audit',
         ])
       )
     );
 
-    const wsOKRs = XLSX.utils.aoa_to_sheet([...okrHeaderRows, ...okrDataRows]);
-    wsOKRs['!cols'] = [
+    const wsKRAs = XLSX.utils.aoa_to_sheet([...kraHeaderRows, ...kraDataRows]);
+    wsKRAs['!cols'] = [
       { wch: 32 }, // Role Title
       { wch: 24 }, // Department
       { wch: 24 }, // Level
@@ -154,7 +154,7 @@ export const excelService = {
       { wch: 18 }, // Cadence
       { wch: 24 }, // Source Data
     ];
-    XLSX.utils.book_append_sheet(wb, wsOKRs, 'OKRs & Benchmarks');
+    XLSX.utils.book_append_sheet(wb, wsKRAs, 'KRAs & Benchmarks');
 
     // ==========================================
     // SHEET 3: RACI MATRIX
@@ -247,15 +247,15 @@ export const excelService = {
       `# TAAZAA INC. ROLE CHARTERS SPECIFICATION`,
       `# VERSION: ${verName} | EFFECTIVE: ${verDate}`,
       `# EXPORTED: ${new Date().toISOString()}`,
-      `# HOW TO EDIT: Lists inside a cell are pipe-separated (Item A | Item B). OKRs use Outcome:Metric:Target:Frequency, pipe-joined. Department must be one of: Software Engineering, Quality Assurance, UI/UX Design, Product Management, Program & Delivery.`,
+      `# HOW TO EDIT: Lists inside a cell are pipe-separated (Item A | Item B). KRAs use Outcome:Metric:Target:Frequency, pipe-joined. Department must be one of: Software Engineering, Quality Assurance, UI/UX Design, Product Management, Program & Delivery.`,
       `# DO NOT edit Role ID of existing roles — changing it creates a new role on re-import. Leave the column out entirely if unsure.`,
-      `Role ID,Role Title,Department,Level,Experience,Mission,Accountabilities,Responsibilities,Technical Skills,Behavioral Skills,OKRs`,
+      `Role ID,Role Title,Department,Level,Experience,Mission,Accountabilities,Responsibilities,Technical Skills,Behavioral Skills,KRAs`,
     ];
 
     const rows = portalData.departments.flatMap((dept) =>
       dept.roles.map((role) => {
         const escapeCSV = (val: string) => `"${(val || '').replace(/"/g, '""')}"`;
-        const okrsStr = role.metricsAndOkrs?.map((m) => `${m.outcomeArea}:${m.metric}:${m.target}`).join(' | ') || '';
+        const krasStr = role.metricsAndKras?.map((m) => `${m.outcomeArea}:${m.metric}:${m.target}`).join(' | ') || '';
         return [
           escapeCSV(role.id),
           escapeCSV(role.title),
@@ -267,7 +267,7 @@ export const excelService = {
           escapeCSV(role.responsibilities?.join(' | ') || ''),
           escapeCSV(role.competencies?.technical?.join(' | ') || ''),
           escapeCSV(role.competencies?.behavioral?.join(' | ') || ''),
-          escapeCSV(okrsStr),
+          escapeCSV(krasStr),
         ].join(',');
       })
     );
@@ -302,7 +302,7 @@ export const excelService = {
         'Day-to-Day Responsibilities (Delimited by |)',
         'Technical & Domain Skills (Delimited by |)',
         'Behavioral & Values (Delimited by |)',
-        'OKRs (Outcome:Metric:Target:Frequency separated by |)',
+        'KRAs (Outcome:Metric:Target:Frequency separated by |)',
       ],
       [
         'Senior Software Engineer (Sample)',
@@ -382,7 +382,7 @@ export const excelService = {
         'Day-to-Day Responsibilities (Delimited by |)',
         'Technical & Domain Skills (Delimited by |)',
         'Behavioral & Values (Delimited by |)',
-        'OKRs (Outcome:Metric:Target:Frequency separated by |)',
+        'KRAs (Outcome:Metric:Target:Frequency separated by |)',
       ],
       [
         'Senior Software Engineer (Sample)',
@@ -462,7 +462,7 @@ export const excelService = {
       ['Day-to-Day Responsibilities (Delimited by |)', 'Same pipe rule. These render as a checklist in the Responsibilities tab.'],
       ['Technical & Domain Skills (Delimited by |)', 'Pipe-separated technical competencies, e.g. "TypeScript | Kubernetes".'],
       ['Behavioral & Values (Delimited by |)', 'Pipe-separated behavioral competencies, e.g. "Mentorship | Ownership".'],
-      ['OKRs (Outcome:Metric:Target:Frequency separated by |)', 'Format each OKR as Outcome:Metric:Target:Frequency, joined by pipes. Example: "Quality:Escaped defects:<2%:Quarterly". Frequency is optional (defaults Quarterly); anything after a 5th colon becomes Source Data. Rows with fewer than 3 colon-parts are skipped.'],
+      ['KRAs (Outcome:Metric:Target:Frequency separated by |)', 'Format each KRA as Outcome:Metric:Target:Frequency, joined by pipes. Example: "Quality:Escaped defects:<2%:Quarterly". Frequency is optional (defaults Quarterly); anything after a 5th colon becomes Source Data. Rows with fewer than 3 colon-parts are skipped.'],
       ['Role ID', 'Optional. Auto-generated from the title when blank. Editing an existing Role ID creates a NEW role instead of updating it.'],
       [],
       ['PART 2 — APPLICATION FEATURES EXPLAINED'],
@@ -471,10 +471,10 @@ export const excelService = {
       ['RACI Matrix', 'Top nav > RACI Matrix. Shows who is Responsible/Accountable/Consulted/Informed per activity across Delivery Manager, Program Manager, Tech Lead and Product Manager. Every row must have exactly one Accountable.'],
       ['Frameworks & OD', 'Top nav > Frameworks & OD. Department-level competency models and career ladders. Read-only reference content.'],
       ['Versions & Snapshots', 'Admin Panel > Version History > "Create Version Snapshot". A snapshot FREEZES the current departments + RACI so you can time-travel later. The newest snapshot becomes Active. Switch versions from the selector in the top bar (admins only). Deleting/reverting snapshots is not supported — create carefully.'],
-      ['Adding a Role', 'Admin Panel > "Add Role Charter". Fill Basic Info, Accountabilities & Duties, Skills & Values, OKRs & Targets, then Save. The role appears immediately in its department grid and persists locally.'],
+      ['Adding a Role', 'Admin Panel > "Add Role Charter". Fill Basic Info, Accountabilities & Duties, Skills & Values, KRAs & Targets, then Save. The role appears immediately in its department grid and persists locally.'],
       ['Editing / Deleting a Role', 'Open any charter > Edit (admin only). Changes save instantly to local storage. Delete asks for confirmation and removes the charter from that department.'],
       ['Departments', 'Departments are fixed containers (5 solution areas). Admin Panel lets you edit department description/metadata; roles are assigned to departments via their departmentId. New departments require a JSON import.'],
-      ['Excel Import', 'Admin Panel > Excel/CSV Sync > choose .xlsx/.csv built from this Template. Header row is auto-detected; pipe lists and colon OKRs are parsed automatically. Imported roles are MERGED into matching departments (matched by Role ID).'],
+      ['Excel Import', 'Admin Panel > Excel/CSV Sync > choose .xlsx/.csv built from this Template. Header row is auto-detected; pipe lists and colon KRAs are parsed automatically. Imported roles are MERGED into matching departments (matched by Role ID).'],
       ['JSON Import', 'Admin Panel > JSON upload. Replaces ALL data (departments, RACI, version history). You will be asked to confirm first — export a backup via Export JSON before importing. Legacy/fabricated version ids are dropped automatically during import.'],
       ['Exporting Backups', 'Admin Panel > Export Excel (.xlsx) multi-sheet governance workbook, Export CSV flat file, or Export JSON full-fidelity backup. Always export JSON before large imports or manual edits.'],
       ['Publishing to GitHub', 'Admin Panel > GitHub CI/CD tab. Configure owner/repo/token, Verify Access, then Publish. Writes src/data/kras.json to the repo; GitHub Pages redeploys automatically. Token stays in session storage only and is never persisted to disk.'],
@@ -615,17 +615,17 @@ export const excelService = {
               row['Behavioral Skills']
             );
 
-            const rawOkrs = row['OKRs (Outcome:Metric:Target:Frequency separated by |)'] ||
-                            row['OKRs (Outcome:Metric:Target)'] ||
-                            row['OKRs'];
+            const rawKras = row['KRAs (Outcome:Metric:Target:Frequency separated by |)'] ||
+                            row['KRAs (Outcome:Metric:Target)'] ||
+                            row['KRAs'];
 
-            const metricsAndOkrs: MetricOKR[] = [];
-            if (rawOkrs) {
-              const okrItems = parseList(rawOkrs);
-              okrItems.forEach((item) => {
+            const metricsAndKras: MetricKRA[] = [];
+            if (rawKras) {
+              const kraItems = parseList(rawKras);
+              kraItems.forEach((item) => {
                 const parts = item.split(':').map((p) => p.trim());
                 if (parts.length >= 3) {
-                  metricsAndOkrs.push({
+                  metricsAndKras.push({
                     outcomeArea: parts[0] || 'Quality & Delivery',
                     metric: parts[1] || '',
                     target: parts[2] || '',
@@ -651,7 +651,7 @@ export const excelService = {
                 behavioral: behavioral.length > 0 ? behavioral : ['Accountability & Team Collaboration'],
                 domain: [],
               },
-              metricsAndOkrs: metricsAndOkrs.length > 0 ? metricsAndOkrs : [
+              metricsAndKras: metricsAndKras.length > 0 ? metricsAndKras : [
                 { outcomeArea: 'Delivery', metric: 'On-time milestone delivery', target: '>90%', frequency: 'Quarterly', sourceData: 'Jira' }
               ],
               careerPath: {

@@ -9,7 +9,7 @@ const columnRules: [string, string][] = [
   ['Core Mission Statement', 'One paragraph, ~50 words max.'],
   ['Executive Summary', 'Short preview used on cards and the Overview tab.'],
   ['Accountabilities / Responsibilities / Skills', 'Separate multiple items with a pipe: "Owns delivery | Reviews code".'],
-  ['OKRs', 'Format: Outcome:Metric:Target:Frequency — joined by pipes. Rows with fewer than 3 colon-parts are skipped.'],
+  ['KRAs', 'Format: Outcome:Metric:Target:Frequency — joined by pipes. Rows with fewer than 3 colon-parts are skipped.'],
   ['Role ID', 'Optional. Never edit an existing Role ID — changing it creates a NEW role instead of updating.'],
 ];
 
@@ -85,7 +85,7 @@ export const ImportGuide: React.FC = () => {
         </div>
         <div className="rounded-xl bg-slate-100 dark:bg-slate-800 p-3 font-mono text-[11px] text-slate-700 dark:text-slate-300 space-y-1">
           <div><span className="text-slate-400">Lists →</span> Design systems | Review code | Mentor L2</div>
-          <div><span className="text-slate-400">OKRs →</span> Quality:Escaped defects:&lt;2%:Quarterly | Security:Critical vulns:0 open</div>
+          <div><span className="text-slate-400">KRAs →</span> Quality:Escaped defects:&lt;2%:Quarterly | Security:Critical vulns:0 open</div>
         </div>
       </Section>
 

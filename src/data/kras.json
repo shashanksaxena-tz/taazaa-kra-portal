@@ -51,7 +51,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Application performance & scalability",
               "metric": "Avg. API response <200ms; Downtime <5 mins/quarter",
@@ -160,7 +160,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Feature Development",
               "metric": "Delivery of well-designed, tested, and maintainable code.",
@@ -258,7 +258,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Design & Delivery",
               "metric": "Own design and delivery of complex, cross-team features or services; ensure robustness, maintainability, and performance of critical code paths.",
@@ -373,7 +373,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Delivery",
               "metric": "90% features delivered on time and bug-free",
@@ -465,7 +465,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Architecture Quality",
               "metric": "• Documents and Diagrams on design of implemented structure • Documents related to performance benchmark • Documents related to Observability implementation.",
@@ -570,7 +570,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Enterprise architecture vision",
               "metric": "Roadmaps documented, reviewed with C-suite quarterly",
@@ -661,7 +661,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Architecture Leadership",
               "metric": "Define and own system architecture for large-scale platforms.",
@@ -771,7 +771,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Application performance",
               "metric": "API response <200ms, <5 min downtime/quarter",
@@ -885,7 +885,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -958,7 +958,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Defect Detection Efficiency",
               "metric": "% of defects found before production",
@@ -1059,7 +1059,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -1139,7 +1139,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Automation Coverage",
               "metric": "% of regression test cases automated",
@@ -1232,7 +1232,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Test Case Execution",
               "metric": "≥95% accuracy in executing test cases.",
@@ -1431,7 +1431,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -1506,7 +1506,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -1607,7 +1607,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -1692,7 +1692,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Execution Metric",
               "metric": "Understanding",
@@ -1782,7 +1782,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Execution Metric",
               "metric": "Understanding",
@@ -1872,7 +1872,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Execution Metric",
               "metric": "Understanding",
@@ -1976,7 +1976,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Requirement Clarity & Accuracy",
               "metric": "# of UAT queries from stakeholders (Count)",
@@ -2055,7 +2055,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Strategic Alignment",
               "metric": "% of prioritized backlog items linked to Business Goals.",
@@ -2139,7 +2139,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Stakeholder Alignment",
               "metric": "Stakeholder Confidence Index",
@@ -2242,7 +2242,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Stakeholder Alignment",
               "metric": "Stakeholder Confidence Index",
@@ -2355,7 +2355,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Financial Health",
               "metric": "Portfolio Profitability (GM%)",
@@ -2562,7 +2562,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Sprint Delivery & Quality",
               "metric": "On-time delivery with zero critical defect leakage in production",
@@ -2635,7 +2635,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Strategic Alignment",
               "metric": "Ensure the program delivers outcomes aligned with business strategy.",
@@ -2833,7 +2833,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Financial Health",
               "metric": "Portfolio Profitability (GM%)",
@@ -3031,7 +3031,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Financial Health",
               "metric": "Portfolio Profitability (GM%)",
@@ -3231,7 +3231,7 @@
               "High reliability, proactive escalation paths, and risk mitigation strategies"
             ]
           },
-          "metricsAndOkrs": [
+          "metricsAndKras": [
             {
               "outcomeArea": "Portfolio Health",
               "metric": "Portfolio Health Index",
