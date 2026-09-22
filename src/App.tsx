@@ -14,6 +14,12 @@ import { ToastContainer } from './components/ui/ToastContainer';
 import { Footer } from './components/ui/Footer';
 import { TaazaaBackgroundLayer } from './components/ui/TaazaaBackgroundLayer';
 import { RoleCharter } from './types';
+import { getSection, SectionId } from './config/navigation';
+import { SECTION_REGISTRY } from './components/sections/registry';
+import { EmptyState } from './components/shared/EmptyState';
+
+// Task 7 replaces this with the real Home dashboard.
+const HomePage: React.FC<{ onSelectRole: (role: RoleCharter) => void }> = () => <div />;
 
 const MainPortalContent: React.FC = () => {
   const {
@@ -49,6 +55,8 @@ const MainPortalContent: React.FC = () => {
       />
 
       <main className="flex-1 print:hidden">
+        {activeTab === 'home' && <HomePage onSelectRole={handleSelectRole} />}
+
         {activeTab === 'roles' && activeSubTab === 'charters' && (
           <>
             <HeroSection />
@@ -57,9 +65,18 @@ const MainPortalContent: React.FC = () => {
           </>
         )}
 
-        {activeTab === 'accountability' && activeSubTab === 'raci' && <RaciMatrixView />}
-
-        {activeTab === 'resources' && activeSubTab === 'frameworks' && <FrameworksView />}
+        {activeTab !== 'admin' && activeTab !== 'home' && !(activeTab === 'roles' && activeSubTab === 'charters') && (() => {
+          const key = `${activeTab}.${activeSubTab}`;
+          const Registered = SECTION_REGISTRY[key];
+          if (Registered) return <Registered />;
+          const subTab = getSection(activeTab as SectionId).subTabs.find((s) => s.id === activeSubTab);
+          return (
+            <EmptyState
+              title={subTab?.label ?? 'Not documented yet'}
+              description={subTab?.emptyDescription}
+            />
+          );
+        })()}
 
         {activeTab === 'admin' && <AdminPanel />}
       </main>
