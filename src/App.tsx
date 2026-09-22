@@ -6,8 +6,6 @@ import { DepartmentTabs } from './components/kras/DepartmentTabs';
 import { RoleGrid } from './components/kras/RoleGrid';
 import { RoleDetailModal } from './components/kras/RoleDetailModal';
 import { RoleComparatorModal } from './components/kras/RoleComparatorModal';
-import { RaciMatrixView } from './components/kras/RaciMatrixView';
-import { FrameworksView } from './components/kras/FrameworksView';
 import { AdminPanel } from './components/admin/AdminPanel';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { ToastContainer } from './components/ui/ToastContainer';
