@@ -1361,7 +1361,7 @@
             },
             {
               "outcomeArea": "Business Alignment",
-              "metric": "QA metrics mapped to business OKRs.",
+              "metric": "QA metrics mapped to business KRAs.",
               "target": "Meet quarterly benchmark",
               "sourceData": "Sprint Reports / Client CSAT",
               "frequency": "Quarterly"
@@ -1916,7 +1916,7 @@
       ],
       "frameworks": [
         {
-          "title": "Design OKRs & Metrics Measurement Guide",
+          "title": "Design KRAs & Metrics Measurement Guide",
           "summary": "Tracks Design System Adoption, Usability Test Success Rate (SUS > 80), Hand-off Efficiency, and Stakeholder CSAT.",
           "source": "Design_Roles_OKRs_with_Targets.docx"
         }
@@ -2150,7 +2150,7 @@
             {
               "outcomeArea": "Strategic Execution",
               "metric": "Business Goal Attainment Rate",
-              "target": "% of OKRs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
+              "target": "% of KRAs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
               "sourceData": "Sprint Reports / Client CSAT",
               "frequency": "Quarterly"
             },
@@ -2253,7 +2253,7 @@
             {
               "outcomeArea": "Strategic Execution",
               "metric": "Business Goal Attainment Rate",
-              "target": "% of OKRs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
+              "target": "% of KRAs/KPIs achieved per quarter (e.g., \"75% of Q2 goals met\").",
               "sourceData": "Sprint Reports / Client CSAT",
               "frequency": "Quarterly"
             },
@@ -2293,7 +2293,7 @@
       ],
       "frameworks": [
         {
-          "title": "Product & Business Analysis OKR Framework",
+          "title": "Product & Business Analysis KRA Framework",
           "summary": "Measures Requirements Clarity, Sprint Acceptance Rate (>95%), Feature Adoption, and Stakeholder Alignment Index.",
           "source": "Product Team OKRs -Draft 2.docx"
         }
@@ -2639,7 +2639,7 @@
             {
               "outcomeArea": "Strategic Alignment",
               "metric": "Ensure the program delivers outcomes aligned with business strategy.",
-              "target": "• 95% of program objectives aligned to company OKRs • 95% of projects delivering on intended outcomes",
+              "target": "• 95% of program objectives aligned to company KRAs • 95% of projects delivering on intended outcomes",
               "sourceData": "Sprint Reports / Client CSAT",
               "frequency": "Quarterly"
             },
