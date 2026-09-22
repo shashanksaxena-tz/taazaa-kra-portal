@@ -34,17 +34,35 @@ const withBaseline = (data: PortalData): PortalData => {
 /** Legacy fabricated version ids injected by pre-review builds. */
 const LEGACY_VERSION_IDS = ['v2026.08', 'v2026.01', 'v2025.12', 'v2024.01'];
 
+/** Renames a role's legacy `metricsAndOkrs` field (pre-rename) to `metricsAndKras` in place. */
+const migrateLegacyRole = (role: Record<string, unknown>): Record<string, unknown> => {
+  if ('metricsAndOkrs' in role || !('metricsAndKras' in role)) {
+    const { metricsAndOkrs, ...rest } = role as { metricsAndOkrs?: unknown };
+    return { ...rest, metricsAndKras: role.metricsAndKras ?? metricsAndOkrs ?? [] };
+  }
+  return role;
+};
+
+const migrateLegacyDepartments = (departments: PortalData['departments']): PortalData['departments'] =>
+  (departments ?? []).map((dept) => ({
+    ...dept,
+    roles: (dept.roles ?? []).map(
+      (role) => migrateLegacyRole(role as unknown as Record<string, unknown>) as unknown as typeof dept.roles[number]
+    ),
+  }));
+
 /**
  * Shared normalization applied to data from ANY source (localStorage, JSON import).
- * Drops fabricated legacy versions, repairs the baseline + active pointer, and
- * stamps the current schema version.
+ * Migrates legacy role field names, drops fabricated legacy versions, repairs the
+ * baseline + active pointer, and stamps the current schema version.
  */
 export const normalizePortalData = (data: PortalData): PortalData => {
   const next = structuredClone(data);
+  next.departments = migrateLegacyDepartments(next.departments);
   if (Array.isArray(next.versions)) {
-    next.versions = next.versions.filter(
-      (v) => v.id === DEFAULT_VERSION_ID || !LEGACY_VERSION_IDS.includes(v.id)
-    );
+    next.versions = next.versions
+      .filter((v) => v.id === DEFAULT_VERSION_ID || !LEGACY_VERSION_IDS.includes(v.id))
+      .map((v) => ({ ...v, departments: migrateLegacyDepartments(v.departments) }));
   }
   const migrated = withBaseline(next);
   migrated.schemaVersion = SCHEMA_VERSION;

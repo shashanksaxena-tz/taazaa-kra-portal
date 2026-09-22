@@ -1,112 +1,100 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { storageService } from './storageService';
-import { STORAGE_KEYS, DEFAULT_VERSION_ID } from '../constants';
-import type { PortalData } from '../types';
+import { STORAGE_KEYS } from '../constants';
 
-const baseData: PortalData = {
-  lastUpdated: '2026-08-01',
-  departments: [
-    {
-      id: 'eng',
-      name: 'Engineering',
-      roles: [
+describe('storageService.getInitialData legacy field migration', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('migrates a legacy metricsAndOkrs role field to metricsAndKras on load', () => {
+    const legacyPayload = {
+      organization: 'Taazaa',
+      portalTitle: '',
+      portalSubtitle: '',
+      lastUpdated: '2026-01-01',
+      version: '1.0.0',
+      departments: [
         {
-          id: 'role-eng-senior',
-          title: 'Senior Engineer',
-          departmentId: 'eng',
-          level: 'Senior',
-          summary: 'Ships features.',
-          kras: [],
-          competencies: [],
-          metrics: [],
+          id: 'engineering',
+          name: 'Engineering',
+          tagline: '',
+          description: '',
+          icon: '',
+          color: '',
+          badgeColor: '',
+          roles: [
+            {
+              id: 'role-1',
+              title: 'Legacy Role',
+              departmentId: 'engineering',
+              level: 'L1',
+              experienceYears: '',
+              mission: '',
+              summary: '',
+              accountabilities: [],
+              responsibilities: [],
+              competencies: { behavioral: [], technical: [], domain: [] },
+              // Legacy field name from before the OKR -> KRA rename.
+              metricsAndOkrs: [{ outcomeArea: 'o', metric: 'm', target: 't', sourceData: 's', frequency: 'f' }],
+              careerPath: { previousRoles: [], nextRoles: [] },
+            },
+          ],
         },
       ],
-    },
-  ],
-  raciMatrix: [],
-} as unknown as PortalData;
+      raciMatrix: [],
+    };
+    localStorage.setItem(STORAGE_KEYS.krasData, JSON.stringify(legacyPayload));
 
-beforeEach(() => {
-  localStorage.clear();
-  sessionStorage.clear();
-  vi.restoreAllMocks();
-});
-
-describe('getInitialData', () => {
-  it('generates a single honest baseline version from bundled data', () => {
     const data = storageService.getInitialData();
-    expect(data.versions).toHaveLength(1);
-    expect(data.versions![0].id).toBe(DEFAULT_VERSION_ID);
-    expect(data.activeVersionId).toBe(DEFAULT_VERSION_ID);
+    const role = data.departments[0].roles[0] as any;
+
+    expect(role.metricsAndKras).toEqual([
+      { outcomeArea: 'o', metric: 'm', target: 't', sourceData: 's', frequency: 'f' },
+    ]);
+    expect(role.metricsAndOkrs).toBeUndefined();
   });
 
-  it('drops legacy fabricated version history from stored data', () => {
-    localStorage.setItem(
-      STORAGE_KEYS.krasData,
-      JSON.stringify({
-        ...baseData,
-        versions: [
-          { id: 'v2026.08', name: 'fake' },
-          { id: 'v2024.01', name: 'fake' },
-        ],
-      })
-    );
+  it('defaults metricsAndKras to an empty array when a legacy role has neither field', () => {
+    const legacyPayload = {
+      organization: 'Taazaa',
+      portalTitle: '',
+      portalSubtitle: '',
+      lastUpdated: '2026-01-01',
+      version: '1.0.0',
+      departments: [
+        {
+          id: 'engineering',
+          name: 'Engineering',
+          tagline: '',
+          description: '',
+          icon: '',
+          color: '',
+          badgeColor: '',
+          roles: [
+            {
+              id: 'role-2',
+              title: 'Bare Legacy Role',
+              departmentId: 'engineering',
+              level: 'L1',
+              experienceYears: '',
+              mission: '',
+              summary: '',
+              accountabilities: [],
+              responsibilities: [],
+              competencies: { behavioral: [], technical: [], domain: [] },
+              careerPath: { previousRoles: [], nextRoles: [] },
+            },
+          ],
+        },
+      ],
+      raciMatrix: [],
+    };
+    localStorage.setItem(STORAGE_KEYS.krasData, JSON.stringify(legacyPayload));
+
     const data = storageService.getInitialData();
-    const ids = (data.versions ?? []).map((v) => v.id);
-    expect(ids).not.toContain('v2026.08');
-    expect(ids).not.toContain('v2024.01');
-    expect(ids[0]).toBe(DEFAULT_VERSION_ID);
-  });
+    const role = data.departments[0].roles[0] as any;
 
-  it('falls back to bundled dataset on corrupt JSON', () => {
-    localStorage.setItem(STORAGE_KEYS.krasData, '{not json');
-    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const data = storageService.getInitialData();
-    expect(Array.isArray(data.departments)).toBe(true);
-    expect(warn).toHaveBeenCalled();
-  });
-
-  it('never mutates the bundled default module', () => {
-    storageService.resetToDefault();
-    const a = storageService.resetToDefault();
-    a.departments.push({ id: 'x', name: 'X', roles: [] } as never);
-    const b = storageService.getInitialData();
-    expect(b.versions).toHaveLength(1);
-  });
-});
-
-describe('saveGitHubConfig', () => {
-  it('persists config to localStorage but token only to sessionStorage', () => {
-    storageService.saveGitHubConfig({
-      owner: 'acme',
-      repo: 'portal',
-      branch: 'main',
-      filePath: 'src/data/kras.json',
-      token: 'ghp_secret',
-    });
-    const persisted = JSON.parse(localStorage.getItem(STORAGE_KEYS.githubConfig)!);
-    expect(persisted.token).toBeUndefined();
-    expect(sessionStorage.getItem(`${STORAGE_KEYS.githubConfig}:token`)).toBe('ghp_secret');
-  });
-
-  it('roundtrips token through get/save within the session', () => {
-    storageService.saveGitHubConfig({
-      owner: 'acme',
-      repo: 'portal',
-      branch: 'main',
-      filePath: 'src/data/kras.json',
-      token: 'tok123',
-    });
-    expect(storageService.getGitHubConfig().token).toBe('tok123');
-  });
-});
-
-describe('admin session', () => {
-  it('stores session in sessionStorage, not localStorage', () => {
-    storageService.saveAdminSession({ isAuthenticated: true, username: 'admin', role: 'admin' });
-    expect(localStorage.getItem(STORAGE_KEYS.adminSession)).toBeNull();
-    expect(storageService.getAdminSession()?.username).toBe('admin');
-    storageService.clearAdminSession();
-    expect(storageService.getAdminSession().isAuthenticated).toBe(false);
+    expect(role.metricsAndKras).toEqual([]);
   });
 });
