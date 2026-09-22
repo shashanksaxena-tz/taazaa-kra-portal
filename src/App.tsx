@@ -17,9 +17,7 @@ import { RoleCharter } from './types';
 import { getSection, SectionId } from './config/navigation';
 import { SECTION_REGISTRY } from './components/sections/registry';
 import { EmptyState } from './components/shared/EmptyState';
-
-// Task 7 replaces this with the real Home dashboard.
-const HomePage: React.FC<{ onSelectRole: (role: RoleCharter) => void }> = () => <div />;
+import { HomePage } from './components/home/HomePage';
 
 const MainPortalContent: React.FC = () => {
   const {
