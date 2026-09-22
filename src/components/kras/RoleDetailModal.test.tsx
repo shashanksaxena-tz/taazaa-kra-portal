@@ -76,4 +76,10 @@ describe('RoleDetailModal print structure', () => {
     fireEvent.click(closeBtn!);
     expect(onClose).toHaveBeenCalledOnce();
   });
+
+  it('renders no bare quote marks when the role has no documented mission', () => {
+    const roleWithoutMission = { ...role, mission: '', summary: '' } as RoleCharter;
+    const { container } = render(<RoleDetailModal role={roleWithoutMission} department={department} onClose={vi.fn()} />);
+    expect(container.textContent).not.toContain('""');
+  });
 });

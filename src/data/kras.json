@@ -21,7 +21,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "2-4 Years",
           "mission": "The core mission of the Software Engineer is to deliver high-quality, well-tested, and maintainable code while collaborating with the team to ensure timely delivery of features and smooth product performance.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Application performance & scalability",
             "Quality of deliveries",
@@ -123,7 +123,7 @@
           "level": "Senior (L3)",
           "experienceYears": "4-6 Years",
           "mission": "To design, implement, and maintain scalable software solutions with strong focus on code quality, mentoring juniors, and driving delivery predictability. The SSE ensures technical soundness of features, reduces production issues, and enhances team velocity through proactive contribution and leadership.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Feature Development",
             "Code Quality & Reviews",
@@ -226,7 +226,7 @@
           "level": "Lead (L4)",
           "experienceYears": "6-8 Years",
           "mission": "To lead technical delivery by architecting scalable solutions, ensuring engineering excellence, mentoring senior and junior engineers, and aligning technical execution with business objectives. The LSE is accountable for delivery predictability, quality, and technical innovation, while also driving ownership of modules and ensuring cross-functional collaboration.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Design & Delivery",
             "System Performance & Reliability",
@@ -343,7 +343,7 @@
           "level": "Lead (L4)",
           "experienceYears": "5-7 Years",
           "mission": "The core mission of the Module Lead is to plan, deliver, and ensure the health of a module/microservice by balancing technical excellence with delivery commitments, while coaching and enabling a squad to perform at their best.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Delivery",
             "Code Quality",
@@ -432,7 +432,7 @@
           "level": "Lead (L4)",
           "experienceYears": "6-8 Years",
           "mission": "The core mission of the Technical Lead is to architect and oversee end-to-end delivery of a large product/feature set, ensuring technical robustness, scalability, and alignment with organizational goals.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Architecture Quality",
             "Delivery",
@@ -523,7 +523,7 @@
           "level": "Principal / Architect (L5)",
           "experienceYears": "10-14+ Years",
           "mission": "Define enterprise-wide architecture vision and ensure strategic alignment of technology to business goals, while enabling innovation and scalability.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Enterprise architecture vision",
             "Innovation",
@@ -609,7 +609,7 @@
           "level": "Principal / Architect (L5)",
           "experienceYears": "10-14+ Years",
           "mission": "To provide deep technical expertise, thought leadership, and architectural direction across multiple teams. The Principal Engineer ensures scalability, security, and performance of large-scale systems, sets engineering standards, and mentors senior engineers to drive excellence across the organization. They influence business and product strategy through technology insights.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Architecture Leadership",
             "Technology Strategy",
@@ -700,7 +700,7 @@
           "level": "Principal / Architect (L5)",
           "experienceYears": "8-11 Years",
           "mission": "Ensure scalable, secure, and compliant architecture for products while enabling delivery velocity and reducing technical debt.",
-          "summary": "Key role in Engineering driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Application performance",
             "Delivery excellence",
@@ -825,7 +825,7 @@
           "level": "Associate (L1)",
           "experienceYears": "0-2 Years",
           "mission": "Support test automation and quality assurance activities. Execute test cases, log defects, and validate fixes. Contribute to building automation scripts under guidance.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "% of test cases executed vs. planned.",
             "Defect detection effectiveness.",
@@ -897,7 +897,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "2-4 Years",
           "mission": "The core mission of the QA Engineer is to ensure product quality through structured testing, defect prevention, and continuous feedback throughout the SDLC.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Defect Detection Efficiency",
             "Test Coverage",
@@ -1002,7 +1002,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "1-3 Years",
           "mission": "Independently design, develop, and execute automated tests. Ensure end-to-end test coverage for features. Drive quality standards within sprint teams.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "% automation coverage per sprint.",
             "Reduction in escaped defects.",
@@ -1072,7 +1072,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "2-4 Years",
           "mission": "The core mission of the SDET is to design, develop, and maintain robust automation frameworks and tools, enabling faster, reliable, and repeatable testing to ensure high product quality throughout the SDLC.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Automation Coverage",
             "Framework Stability",
@@ -1169,7 +1169,7 @@
           "level": "Senior (L3)",
           "experienceYears": "4-7 Years",
           "mission": "",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [],
           "responsibilities": [],
           "competencies": {
@@ -1192,7 +1192,7 @@
               }
             ]
           },
-          "sourceDoc": "QA_Role_Charters.docx"
+          "sourceDoc": ""
         },
         {
           "id": "senior-sdet",
@@ -1201,7 +1201,7 @@
           "level": "Senior (L3)",
           "experienceYears": "4-6 Years",
           "mission": "Lead automation initiatives across modules. Define and enforce best practices in QA automation. Collaborate with architects for scalable test frameworks.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Increase regression automation coverage.",
             "Time saved by reusable QA libraries.",
@@ -1271,7 +1271,7 @@
           "level": "Principal / Architect (L5)",
           "experienceYears": "8-12+ Years",
           "mission": "Own QA strategy and automation roadmap organization-wide. Align QA with business goals, product roadmap, and engineering excellence. Drive innovation in quality engineering practices.",
-          "summary": "Key role in Quality Assurance & SDET driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Organization-wide automation coverage %.",
             "Escaped defect rate at org level.",
@@ -1400,7 +1400,7 @@
           "level": "Associate (L1)",
           "experienceYears": "0-2 Years",
           "mission": "To support the design team in creating user-centered, visually appealing, and usable digital products while learning and growing in UX research, design, and collaboration practices.",
-          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Understanding",
             "Analysis",
@@ -1487,7 +1487,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "2-4 Years",
           "mission": "To independently contribute to the design process by applying UX research, analysis, and design skills to create intuitive, user-centered solutions while supporting senior designers in workshops, usability testing, and stakeholder communications.",
-          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Understanding",
             "Analysis",
@@ -1575,7 +1575,7 @@
           "level": "Senior (L3)",
           "experienceYears": "4-6 Years",
           "mission": "To lead and deliver high-quality, user-centered digital experiences by applying advanced UX research, design strategy, and visual execution skills, while mentoring junior designers and collaborating with stakeholders to align design outcomes with business goals.",
-          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Understanding",
             "Analysis",
@@ -1665,7 +1665,7 @@
           "level": "Lead (L4)",
           "experienceYears": "6-8 Years",
           "mission": "To lead design strategy, drive user-centered innovation, and ensure the delivery of exceptional user experiences by connecting research insights with design execution, mentoring team members, and aligning stakeholders across business, design, and technology.",
-          "summary": "Key role in UI/UX & Product Design driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Understanding",
             "Analysis",
@@ -1775,7 +1775,7 @@
           "level": "Mid-Level (L2)",
           "experienceYears": "2-4 Years",
           "mission": "",
-          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Requirement Clarity & Accuracy",
             "Effective Collaboration with Teams",
@@ -1862,7 +1862,7 @@
           "level": "Senior (L3)",
           "experienceYears": "4-6 Years",
           "mission": "",
-          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Strategic Alignment",
             "Agile Readiness",
@@ -1954,7 +1954,7 @@
           "level": "Senior (L3)",
           "experienceYears": "6-9 Years",
           "mission": "",
-          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Stakeholder Alignment",
             "Strategic Execution",
@@ -2049,7 +2049,7 @@
           "level": "Management (L4-L5)",
           "experienceYears": "4-7 Years",
           "mission": "Drive strategic product initiatives that align with business goals, solve real user problems, and maximize market impact through data-driven decision-making and cross-functional leadership.",
-          "summary": "Key role in Product Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Stakeholder Alignment",
             "Strategic Execution",
@@ -2201,7 +2201,7 @@
           "level": "Senior (L3)",
           "experienceYears": "6-9 Years",
           "mission": "Drive high-complexity, multi-stream technical programs with strong financial discipline, proactive risk foresight, and architectural alignment, ensuring predictable delivery and sustained client confidence",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Financial Health",
             "Revenue Assurance",
@@ -2407,7 +2407,7 @@
           "level": "Management (L4-L5)",
           "experienceYears": "8-12 Years",
           "mission": "Own end-to-end delivery outcomes for assigned client accounts or programs, ensuring predictable delivery, healthy margins, strong client relationships, and high-performing teams.",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Delivery predictability across multiple projects/programs",
             "Account-level financial performance (revenue, margin, billing)",
@@ -2511,7 +2511,7 @@
           "level": "Management (L4-L5)",
           "experienceYears": "6-10 Years",
           "mission": "A program manager is responsible for managing a group of projects that collectively deliver outcomes with company's strategic goals. A program manager ensures alignment across projects, manages dependencies and ensures outcome that delivers business value.",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Strategic Alignment",
             "Delivery & Execution",
@@ -2685,7 +2685,7 @@
           "level": "Management (L4-L5)",
           "experienceYears": "3-6 Years",
           "mission": "Own end-to-end project delivery with full P&L accountability, while ensuring profitable execution, healthy & engaged teams, controlled attrition, timely hiring/backfills, and predictable client outcomes.",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Financial Health",
             "Revenue Assurance",
@@ -2883,7 +2883,7 @@
           "level": "Management (L4-L5)",
           "experienceYears": "3-6 Years",
           "mission": "Own end-to-end project delivery with full P&L accountability, while ensuring profitable execution, healthy & engaged teams, controlled attrition, timely hiring/backfills, and predictable client outcomes.",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Financial Health",
             "Revenue Assurance",
@@ -3081,7 +3081,7 @@
           "level": "Executive / Director (L6)",
           "experienceYears": "12-16+ Years",
           "mission": "Own Taazaa's delivery portfolio outcomes by setting direction, building delivery leadership capability, and scaling delivery systems that enable profitable growth and sustained client trust.",
-          "summary": "Key role in Program & Delivery Management driving technical delivery, quality, and stakeholder value.",
+          "summary": "",
           "accountabilities": [
             "Portfolio-level delivery performance across programs and accounts",
             "Delivery P&L, utilization, and margin optimization",

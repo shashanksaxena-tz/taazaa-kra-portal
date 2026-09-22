@@ -92,6 +92,30 @@ describe('parseSpreadsheet', () => {
     ]);
   });
 
+  it('leaves accountabilities, responsibilities, competencies, and metricsAndKras empty rather than inventing placeholder content for a sparse row', async () => {
+    const file = await makeSheetFile([
+      ['Role Title', 'Department'],
+      ['Bare Role', 'Engineering'],
+    ]);
+    const { roles } = await excelService.parseSpreadsheet(file);
+    expect(roles[0].accountabilities).toEqual([]);
+    expect(roles[0].responsibilities).toEqual([]);
+    expect(roles[0].competencies.technical).toEqual([]);
+    expect(roles[0].competencies.behavioral).toEqual([]);
+    expect(roles[0].metricsAndKras).toEqual([]);
+  });
+
+  it('does not fabricate frequency/sourceData for a KRA row missing those columns', async () => {
+    const file = await makeSheetFile([
+      ['Role Title', 'Department', 'KRAs (Outcome:Metric:Target:Frequency separated by |)'],
+      ['Platform Engineer', 'Engineering', 'Quality:Sprint velocity:+15%'],
+    ]);
+    const { roles } = await excelService.parseSpreadsheet(file);
+    expect(roles[0].metricsAndKras).toEqual([
+      { outcomeArea: 'Quality', metric: 'Sprint velocity', target: '+15%', frequency: '', sourceData: '' },
+    ]);
+  });
+
   it('rejects an empty spreadsheet with a clear error', async () => {
     const file = await makeSheetFile([], 'Empty');
     await expect(excelService.parseSpreadsheet(file)).rejects.toThrow(/empty/i);

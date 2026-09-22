@@ -184,7 +184,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                     <span>Core Mission Statement</span>
                   </div>
                   <p className="text-base sm:text-lg text-slate-900 dark:text-white font-medium leading-relaxed">
-                    "{role.mission}"
+                    {role.mission ? `"${role.mission}"` : 'No mission statement documented for this role yet.'}
                   </p>
                 </div>
 
@@ -319,7 +319,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                             </span>
                           </td>
                           <td className="p-4 text-slate-500 font-mono text-xs">
-                            {kra.frequency || 'Quarterly'}
+                            {kra.frequency || '—'}
                           </td>
                         </tr>
                       ))}
@@ -508,7 +508,7 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
           </h3>
           <div className="p-4 border border-slate-200 rounded-lg bg-slate-50/50 mb-3">
             <p className="text-sm font-semibold italic text-slate-900 leading-relaxed">
-              "{role.mission}"
+              {role.mission ? `"${role.mission}"` : 'No mission statement documented for this role yet.'}
             </p>
           </div>
           {role.summary && (
@@ -569,8 +569,8 @@ export const RoleDetailModal: React.FC<RoleDetailModalProps> = ({
                   <td className="p-2.5 font-bold border-r border-slate-200">{kra.outcomeArea}</td>
                   <td className="p-2.5 border-r border-slate-200">{kra.metric}</td>
                   <td className="p-2.5 font-bold border-r border-slate-200">{kra.target}</td>
-                  <td className="p-2.5 border-r border-slate-200">{kra.frequency || 'Quarterly'}</td>
-                  <td className="p-2.5 text-slate-600">{kra.sourceData || 'Jira / Audit'}</td>
+                  <td className="p-2.5 border-r border-slate-200">{kra.frequency || '—'}</td>
+                  <td className="p-2.5 text-slate-600">{kra.sourceData || '—'}</td>
                 </tr>
               ))}
             </tbody>

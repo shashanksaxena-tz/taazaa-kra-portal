@@ -47,7 +47,7 @@ describe('storageService.getInitialData legacy field migration', () => {
     localStorage.setItem(STORAGE_KEYS.krasData, JSON.stringify(legacyPayload));
 
     const data = storageService.getInitialData();
-    const role = data.departments[0].roles[0] as any;
+    const role = data.departments[0].roles[0] as unknown as { metricsAndKras: unknown[]; metricsAndOkrs?: unknown };
 
     expect(role.metricsAndKras).toEqual([
       { outcomeArea: 'o', metric: 'm', target: 't', sourceData: 's', frequency: 'f' },
@@ -93,7 +93,7 @@ describe('storageService.getInitialData legacy field migration', () => {
     localStorage.setItem(STORAGE_KEYS.krasData, JSON.stringify(legacyPayload));
 
     const data = storageService.getInitialData();
-    const role = data.departments[0].roles[0] as any;
+    const role = data.departments[0].roles[0] as unknown as { metricsAndKras: unknown[]; metricsAndOkrs?: unknown };
 
     expect(role.metricsAndKras).toEqual([]);
   });

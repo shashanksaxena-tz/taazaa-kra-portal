@@ -137,8 +137,8 @@ export const excelService = {
           kra.outcomeArea,
           kra.metric,
           kra.target,
-          kra.frequency || 'Quarterly',
-          kra.sourceData || 'Jira / Direct Audit',
+          kra.frequency || '',
+          kra.sourceData || '',
         ])
       )
     );
@@ -626,11 +626,11 @@ export const excelService = {
                 const parts = item.split(':').map((p) => p.trim());
                 if (parts.length >= 3) {
                   metricsAndKras.push({
-                    outcomeArea: parts[0] || 'Quality & Delivery',
+                    outcomeArea: parts[0] || '',
                     metric: parts[1] || '',
                     target: parts[2] || '',
-                    frequency: parts[3] || 'Quarterly',
-                    sourceData: parts[4] || 'Jira / Direct Audit',
+                    frequency: parts[3] || '',
+                    sourceData: parts[4] || '',
                   });
                 }
               });
@@ -644,16 +644,14 @@ export const excelService = {
               experienceYears,
               mission,
               summary,
-              accountabilities: accountabilities.length > 0 ? accountabilities : ['Ensure domain excellence and on-time project delivery'],
-              responsibilities: responsibilities.length > 0 ? responsibilities : ['Execute daily domain deliverables'],
+              accountabilities,
+              responsibilities,
               competencies: {
-                technical: technical.length > 0 ? technical : ['Core Domain Knowledge'],
-                behavioral: behavioral.length > 0 ? behavioral : ['Accountability & Team Collaboration'],
+                technical,
+                behavioral,
                 domain: [],
               },
-              metricsAndKras: metricsAndKras.length > 0 ? metricsAndKras : [
-                { outcomeArea: 'Delivery', metric: 'On-time milestone delivery', target: '>90%', frequency: 'Quarterly', sourceData: 'Jira' }
-              ],
+              metricsAndKras,
               careerPath: {
                 previousRoles: row['Feeder / Previous Roles'] || row['Feeder Roles'] ? String(row['Feeder / Previous Roles'] || row['Feeder Roles']).split(',').map((r: string) => ({ id: r.trim(), title: r.trim() })) : [],
                 nextRoles: row['Next Elevation Target'] ? String(row['Next Elevation Target']).split(',').map((r: string) => ({ id: r.trim(), title: r.trim() })) : [],
