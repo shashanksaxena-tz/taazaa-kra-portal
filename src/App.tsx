@@ -12,7 +12,7 @@ import { ToastContainer } from './components/ui/ToastContainer';
 import { Footer } from './components/ui/Footer';
 import { TaazaaBackgroundLayer } from './components/ui/TaazaaBackgroundLayer';
 import { RoleCharter } from './types';
-import { getSection, SectionId } from './config/navigation';
+import { getSection } from './config/navigation';
 import { SECTION_REGISTRY } from './components/sections/registry';
 import { EmptyState } from './components/shared/EmptyState';
 import { HomePage } from './components/home/HomePage';
@@ -65,7 +65,7 @@ const MainPortalContent: React.FC = () => {
           const key = `${activeTab}.${activeSubTab}`;
           const Registered = SECTION_REGISTRY[key];
           if (Registered) return <Registered />;
-          const subTab = getSection(activeTab as SectionId).subTabs.find((s) => s.id === activeSubTab);
+          const subTab = getSection(activeTab).subTabs.find((s) => s.id === activeSubTab);
           return (
             <EmptyState
               title={subTab?.label ?? 'Not documented yet'}

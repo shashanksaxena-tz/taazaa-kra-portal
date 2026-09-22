@@ -2,6 +2,9 @@ export type SectionId =
   | 'home' | 'roles' | 'accountability' | 'performance'
   | 'career' | 'development' | 'how-we-work' | 'resources';
 
+/** SectionId minus 'home' — the sections that actually appear in NAVIGATION and have sub-tabs. */
+export type NavSectionId = Exclude<SectionId, 'home'>;
+
 export interface SubTabConfig {
   id: string;
   label: string;
@@ -10,7 +13,7 @@ export interface SubTabConfig {
 }
 
 export interface SectionConfig {
-  id: SectionId;
+  id: NavSectionId;
   label: string;
   subTabs: SubTabConfig[];
 }
@@ -55,12 +58,12 @@ export const NAVIGATION: SectionConfig[] = [
   ]},
 ];
 
-export function getSection(id: SectionId): SectionConfig {
+export function getSection(id: NavSectionId): SectionConfig {
   const section = NAVIGATION.find((s) => s.id === id);
   if (!section) throw new Error(`Unknown section id: ${id}`);
   return section;
 }
 
-export function getDefaultSubTab(id: SectionId): string {
+export function getDefaultSubTab(id: NavSectionId): string {
   return getSection(id).subTabs[0].id;
 }

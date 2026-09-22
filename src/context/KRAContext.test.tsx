@@ -321,3 +321,50 @@ describe('comparison cap', () => {
     expect(result.current.comparisonRoles.map((r) => r.id)).toEqual(['r-a', 'r-c']);
   });
 });
+
+describe('section/sub-tab navigation', () => {
+  it('defaults to the home section', () => {
+    const { result } = renderPortal();
+    expect(result.current.activeTab).toBe('home');
+  });
+
+  it('switching to a section with no explicit sub-tab resolves that section\'s first sub-tab', () => {
+    const { result } = renderPortal();
+    act(() => result.current.setActiveTab('career'));
+    expect(result.current.activeTab).toBe('career');
+    expect(result.current.activeSubTab).toBe('architecture');
+  });
+
+  it('never leaves a stale sub-tab from a previously-viewed section', () => {
+    const { result } = renderPortal();
+    act(() => result.current.setActiveTab('performance', 'kra-kpi'));
+    expect(result.current.activeSubTab).toBe('kra-kpi');
+
+    act(() => result.current.setActiveTab('resources'));
+    expect(result.current.activeTab).toBe('resources');
+    expect(result.current.activeSubTab).not.toBe('kra-kpi');
+    expect(result.current.activeSubTab).toBe('templates');
+  });
+
+  it('an explicit sub-tab is respected instead of the section default', () => {
+    const { result } = renderPortal();
+    act(() => result.current.setActiveTab('accountability', 'governance'));
+    expect(result.current.activeSubTab).toBe('governance');
+  });
+
+  it('switching to home does not throw and leaves activeSubTab untouched', () => {
+    const { result } = renderPortal();
+    act(() => result.current.setActiveTab('career', 'levels'));
+    act(() => result.current.setActiveTab('home'));
+    expect(result.current.activeTab).toBe('home');
+    expect(result.current.activeSubTab).toBe('levels');
+  });
+
+  it('switching to admin does not throw and leaves activeSubTab untouched', () => {
+    const { result } = renderPortal();
+    act(() => result.current.setActiveTab('career', 'competencies'));
+    act(() => result.current.setActiveTab('admin'));
+    expect(result.current.activeTab).toBe('admin');
+    expect(result.current.activeSubTab).toBe('competencies');
+  });
+});
