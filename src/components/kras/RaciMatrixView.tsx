@@ -42,7 +42,7 @@ export const RaciMatrixView: React.FC = () => {
               Cross-Functional RACI Governance Matrix
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">
-              Clarifies operational and strategic accountabilities between Delivery Managers, Program Managers, Technical Leads, and Product Managers.
+              Clarifies operational and strategic accountabilities between Delivery Managers and Program Managers, per the source RACI matrix document.
             </p>
           </div>
 
@@ -106,11 +106,9 @@ export const RaciMatrixView: React.FC = () => {
         <table className="w-full text-left text-sm">
           <thead className="bg-slate-50 dark:bg-slate-900 text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
             <tr>
-              <th className="p-4 sm:p-5 w-2/5">Operational Touchpoint & Activity</th>
+              <th className="p-4 sm:p-5 w-3/5">Operational Touchpoint & Activity</th>
               <th className="p-4 sm:p-5 text-center">Delivery Manager (DM)</th>
               <th className="p-4 sm:p-5 text-center">Program Manager (PgM)</th>
-              <th className="p-4 sm:p-5 text-center">Technical Lead (TL)</th>
-              <th className="p-4 sm:p-5 text-center">Product Manager (PM)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
@@ -121,22 +119,12 @@ export const RaciMatrixView: React.FC = () => {
                 </td>
                 <td className="p-4 sm:p-5 text-center">
                   <span className={`inline-block px-3 py-1 rounded-xl text-xs border ${getRaciBadge(row.deliveryManager)}`}>
-                    {row.deliveryManager}
+                    {row.deliveryManager || '—'}
                   </span>
                 </td>
                 <td className="p-4 sm:p-5 text-center">
                   <span className={`inline-block px-3 py-1 rounded-xl text-xs border ${getRaciBadge(row.programManager)}`}>
-                    {row.programManager}
-                  </span>
-                </td>
-                <td className="p-4 sm:p-5 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-xl text-xs border ${getRaciBadge(row.techLead)}`}>
-                    {row.techLead}
-                  </span>
-                </td>
-                <td className="p-4 sm:p-5 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-xl text-xs border ${getRaciBadge(row.productManager)}`}>
-                    {row.productManager}
+                    {row.programManager || '—'}
                   </span>
                 </td>
               </tr>
