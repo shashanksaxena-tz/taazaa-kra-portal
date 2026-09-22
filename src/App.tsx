@@ -18,6 +18,7 @@ import { RoleCharter } from './types';
 const MainPortalContent: React.FC = () => {
   const {
     activeTab,
+    activeSubTab,
     selectedRole,
     setSelectedRole,
     portalData,
@@ -48,7 +49,7 @@ const MainPortalContent: React.FC = () => {
       />
 
       <main className="flex-1 print:hidden">
-        {activeTab === 'kras' && (
+        {activeTab === 'roles' && activeSubTab === 'charters' && (
           <>
             <HeroSection />
             <DepartmentTabs />
@@ -56,9 +57,9 @@ const MainPortalContent: React.FC = () => {
           </>
         )}
 
-        {activeTab === 'raci' && <RaciMatrixView />}
+        {activeTab === 'accountability' && activeSubTab === 'raci' && <RaciMatrixView />}
 
-        {activeTab === 'frameworks' && <FrameworksView />}
+        {activeTab === 'resources' && activeSubTab === 'frameworks' && <FrameworksView />}
 
         {activeTab === 'admin' && <AdminPanel />}
       </main>

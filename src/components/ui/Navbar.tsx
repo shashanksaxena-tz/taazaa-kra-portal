@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useKRA } from '../../context/KRAContext';
-import { 
-  Layers, 
-  GitCompare, 
-  ShieldCheck, 
-  Lock, 
-  LogOut, 
-  FileSpreadsheet, 
-  BookOpen, 
-  Sun, 
-  Moon, 
-  Menu, 
+import { NAVIGATION, SectionId } from '../../config/navigation';
+import {
+  GitCompare,
+  ShieldCheck,
+  Lock,
+  LogOut,
+  Sun,
+  Moon,
+  Menu,
   X,
   History,
   ChevronDown
@@ -26,6 +24,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareModal }) => {
   const {
     activeTab,
+    activeSubTab,
     setActiveTab,
     comparisonRoles,
     adminSession,
@@ -41,12 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVersionDropdownOpen, setIsVersionDropdownOpen] = useState(false);
-
-  const navItems = [
-    { id: 'kras', label: 'Role Charters', icon: Layers },
-    { id: 'raci', label: 'RACI Matrix', icon: FileSpreadsheet },
-    { id: 'frameworks', label: 'Frameworks & OD', icon: BookOpen },
-  ] as const;
+  const [openDesktopSection, setOpenDesktopSection] = useState<SectionId | null>(null);
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-slate-950/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
@@ -56,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           {/* Brand Logo (Official Taazaa SVG from taazaa.com) */}
           <div 
             className="flex items-center gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
-            onClick={() => setActiveTab('kras')}
+            onClick={() => setActiveTab('home')}
           >
             <div className="flex items-center gap-2">
               <TaazaaLogo className="h-6 sm:h-7 w-auto" />
@@ -67,23 +61,68 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
+          <nav className="hidden md:flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <button
+              onClick={() => setActiveTab('home')}
+              className={`px-3 lg:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+                activeTab === 'home'
+                  ? 'bg-brand-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
+              }`}
+            >
+              Home
+            </button>
+            {NAVIGATION.map((section) => {
+              const isActive = activeTab === section.id;
               return (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
-                    isActive
-                      ? 'bg-brand-600 text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
-                  }`}
+                <div
+                  key={section.id}
+                  className="relative"
+                  onMouseEnter={() => setOpenDesktopSection(section.id)}
+                  onMouseLeave={() => setOpenDesktopSection((cur) => (cur === section.id ? null : cur))}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                </button>
+                  <button
+                    onClick={() => setActiveTab(section.id)}
+                    className={`px-3 lg:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+                      isActive
+                        ? 'bg-brand-600 text-white shadow-sm'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
+                    }`}
+                  >
+                    {section.label}
+                  </button>
+
+                  <AnimatePresence>
+                    {openDesktopSection === section.id && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 6 }}
+                        transition={{ duration: 0.12 }}
+                        className="absolute left-0 top-full pt-1 w-56 z-50"
+                      >
+                        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-1.5">
+                          {section.subTabs.map((subTab) => (
+                            <button
+                              key={subTab.id}
+                              onClick={() => {
+                                setActiveTab(section.id, subTab.id);
+                                setOpenDesktopSection(null);
+                              }}
+                              className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-colors ${
+                                isActive && activeSubTab === subTab.id
+                                  ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400'
+                                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                              }`}
+                            >
+                              {subTab.label}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </nav>
@@ -257,29 +296,52 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              className="md:hidden border-t border-slate-200 dark:border-slate-800 py-3 space-y-1 overflow-hidden"
+              className="md:hidden border-t border-slate-200 dark:border-slate-800 py-3 space-y-3 overflow-y-auto max-h-[70vh]"
             >
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isActive = activeTab === item.id;
-                return (
+              <button
+                onClick={() => {
+                  setActiveTab('home');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold active:scale-[0.98] ${
+                  activeTab === 'home' ? 'bg-brand-600 text-white' : 'text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                Home
+              </button>
+              {NAVIGATION.map((section) => (
+                <div key={section.id}>
                   <button
-                    key={item.id}
                     onClick={() => {
-                      setActiveTab(item.id);
+                      setActiveTab(section.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold active:scale-[0.98] ${
-                      isActive
-                        ? 'bg-brand-600 text-white'
-                        : 'text-slate-600 dark:text-slate-300'
+                    className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold active:scale-[0.98] ${
+                      activeTab === section.id ? 'bg-brand-600 text-white' : 'text-slate-600 dark:text-slate-300'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span>{item.label}</span>
+                    {section.label}
                   </button>
-                );
-              })}
+                  <div className="pl-4 space-y-0.5 mt-0.5">
+                    {section.subTabs.map((subTab) => (
+                      <button
+                        key={subTab.id}
+                        onClick={() => {
+                          setActiveTab(section.id, subTab.id);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-1.5 rounded-lg text-xs font-semibold active:scale-[0.98] ${
+                          activeTab === section.id && activeSubTab === subTab.id
+                            ? 'text-brand-600 dark:text-brand-400'
+                            : 'text-slate-500 dark:text-slate-400'
+                        }`}
+                      >
+                        {subTab.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>

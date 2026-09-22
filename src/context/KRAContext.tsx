@@ -14,6 +14,7 @@ import { sha256Hex } from '../utils';
 import { githubService, CommitResult } from '../services/githubService';
 import { excelService } from '../services/excelService';
 import { portalDataSchema } from '../schemas';
+import { SectionId, getDefaultSubTab } from '../config/navigation';
 
 interface ToastInfo {
   id: string;
@@ -31,7 +32,8 @@ interface KRAContextType {
   adminSession: AdminSession;
   gitHubConfig: GitHubConfig;
   isDarkMode: boolean;
-  activeTab: 'kras' | 'raci' | 'frameworks' | 'admin';
+  activeTab: SectionId | 'admin';
+  activeSubTab: string;
   toasts: ToastInfo[];
   
   // Versioning
@@ -50,7 +52,8 @@ interface KRAContextType {
   removeCompareRole: (roleId: string) => void;
   clearComparison: () => void;
   toggleDarkMode: () => void;
-  setActiveTab: (tab: 'kras' | 'raci' | 'frameworks' | 'admin') => void;
+  setActiveTab: (tab: SectionId | 'admin', subTab?: string) => void;
+  setActiveSubTab: (subTab: string) => void;
   showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
   removeToast: (id: string) => void;
 
@@ -86,7 +89,15 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [selectedRole, setSelectedRole] = useState<RoleCharter | null>(null);
   const [comparisonRoles, setComparisonRoles] = useState<RoleCharter[]>([]);
-  const [activeTab, setActiveTab] = useState<'kras' | 'raci' | 'frameworks' | 'admin'>('kras');
+  const [activeTab, setActiveTabState] = useState<SectionId | 'admin'>('home');
+  const [activeSubTab, setActiveSubTab] = useState<string>('charters');
+
+  const setActiveTab = (tab: SectionId | 'admin', subTab?: string) => {
+    setActiveTabState(tab);
+    if (tab !== 'admin' && tab !== 'home') {
+      setActiveSubTab(subTab ?? getDefaultSubTab(tab));
+    }
+  };
   const [toasts, setToasts] = useState<ToastInfo[]>([]);
 
   // Versioning state
@@ -239,7 +250,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const session: AdminSession = { isAuthenticated: false, username: '', role: 'editor' };
     setAdminSession(session);
     storageService.clearAdminSession();
-    setActiveTab('kras');
+    setActiveTab('roles', 'charters');
     showToast('Logged out of Admin workspace', 'info');
   };
 
@@ -545,6 +556,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         gitHubConfig,
         isDarkMode,
         activeTab,
+        activeSubTab,
         toasts,
         activeVersionId,
         activeVersion,
@@ -560,6 +572,7 @@ export const KRAProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         clearComparison,
         toggleDarkMode,
         setActiveTab,
+        setActiveSubTab,
         showToast,
         removeToast,
         loginAdmin,

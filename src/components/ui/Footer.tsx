@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
                   <button
                     onClick={() => {
                       setActiveDepartmentId(dept.id);
-                      setActiveTab('kras');
+                      setActiveTab('roles', 'charters');
                       window.scrollTo({ top: 380, behavior: 'smooth' });
                     }}
                     className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
@@ -61,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
               <li>
                 <button
                   onClick={() => {
-                    setActiveTab('raci');
+                    setActiveTab('accountability', 'raci');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
               <li>
                 <button
                   onClick={() => {
-                    setActiveTab('frameworks');
+                    setActiveTab('resources', 'frameworks');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
@@ -85,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
               <li>
                 <button
                   onClick={() => {
-                    setActiveTab('kras');
+                    setActiveTab('roles', 'charters');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors flex items-center gap-1.5"
