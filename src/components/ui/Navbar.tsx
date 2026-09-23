@@ -11,7 +11,10 @@ import {
   Menu,
   X,
   History,
-  ChevronDown
+  ChevronDown,
+  Search,
+  Bell,
+  UserCircle2,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TaazaaLogo } from './TaazaaLogo';
@@ -48,26 +51,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo (Official Taazaa SVG from taazaa.com) */}
-          <div 
+          <div
             className="flex items-center gap-3 cursor-pointer select-none active:scale-[0.98] transition-transform duration-150"
             onClick={() => setActiveTab('home')}
           >
-            <div className="flex items-center gap-2">
-              <TaazaaLogo className="h-6 sm:h-7 w-auto" />
-              <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 hidden xs:inline-block">
-                ER Portal
-              </span>
-            </div>
+            <TaazaaLogo className="h-5 sm:h-[22px] w-auto" />
+            <span className="hidden sm:inline-block w-px h-5 bg-slate-200 dark:bg-slate-700" />
+            <span className="text-sm sm:text-base font-bold text-brand-600 dark:text-brand-400 hidden sm:inline-block">
+              People Architecture
+            </span>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7">
             <button
               onClick={() => setActiveTab('home')}
-              className={`px-3 lg:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+              className={`pb-1 text-sm font-semibold border-b-2 transition-colors ${
                 activeTab === 'home'
-                  ? 'bg-brand-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
+                  ? 'text-brand-600 dark:text-brand-400 border-brand-500'
+                  : 'text-slate-600 dark:text-slate-300 border-transparent hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               Home
@@ -83,10 +85,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 >
                   <button
                     onClick={() => setActiveTab(section.id)}
-                    className={`px-3 lg:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.97] ${
+                    className={`pb-1 text-sm font-semibold border-b-2 transition-colors ${
                       isActive
-                        ? 'bg-brand-600 text-white shadow-sm'
-                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
+                        ? 'text-brand-600 dark:text-brand-400 border-brand-500'
+                        : 'text-slate-600 dark:text-slate-300 border-transparent hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
                     {section.label}
@@ -129,7 +131,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
 
           {/* Utility Actions & Version Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
-            
+
+            {/* Search */}
+            <button
+              onClick={() => setActiveTab('home')}
+              aria-label="Search"
+              className="p-2 rounded-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              <Search className="w-[18px] h-[18px]" />
+            </button>
+
+            {/* Notifications (visual only — no fabricated unread state) */}
+            <button
+              aria-label="Notifications"
+              title="No notifications"
+              className="p-2 rounded-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              <Bell className="w-[18px] h-[18px]" />
+            </button>
+
+            {/* Avatar — opens the admin session control */}
+            <button
+              onClick={adminSession.isAuthenticated ? logoutAdmin : onOpenAdminLogin}
+              title={adminSession.isAuthenticated ? `Signed in as ${adminSession.username} — click to log out` : 'Admin sign in'}
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-500/15 text-brand-700 dark:text-brand-300 hover:bg-brand-500/25 transition-colors"
+            >
+              <UserCircle2 className="w-5 h-5" />
+            </button>
+
+            <span className="hidden lg:inline-block w-px h-6 bg-slate-200 dark:bg-slate-700" />
+
             {/* Version Display: Interactive for Admin only; Read-Only badge for Public employees */}
             {adminSession.isAuthenticated ? (
               <div className="relative">
