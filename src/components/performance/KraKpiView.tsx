@@ -37,9 +37,9 @@ export const KraKpiView: React.FC = () => {
                     <td className="py-2 pr-4">{m.outcomeArea}</td>
                     <td className="py-2 pr-4">{m.metric}</td>
                     <td className="py-2 pr-4">{m.weight || '—'}</td>
-                    <td className="py-2 pr-4">{m.target}</td>
-                    <td className="py-2 pr-4">{m.sourceData}</td>
-                    <td className="py-2">{m.frequency}</td>
+                    <td className="py-2 pr-4">{m.target || '—'}</td>
+                    <td className="py-2 pr-4">{m.sourceData || '—'}</td>
+                    <td className="py-2">{m.frequency || '—'}</td>
                   </tr>
                 ))}
               </tbody>

@@ -89,4 +89,15 @@ describe('RoleDetailPage', () => {
     render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
     expect(screen.queryByText(/career ladder/i)).toBeNull();
   });
+
+  it('shows a dash instead of an empty pill when a KRA has no separate target benchmark', () => {
+    const roleWithBlankTarget = {
+      ...role,
+      metricsAndKras: [{ outcomeArea: 'Quality', metric: 'Escaped defects < 2%', target: '', frequency: 'Quarterly' }],
+    } as unknown as RoleCharter;
+    render(<RoleDetailPage role={roleWithBlankTarget} department={department} onClose={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: /^KRA & KPI$/i }));
+    const emptyPill = document.querySelector('span.rounded-full');
+    expect(emptyPill?.textContent).toBe('—');
+  });
 });

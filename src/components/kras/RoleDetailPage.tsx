@@ -241,7 +241,7 @@ export const RoleDetailPage: React.FC<RoleDetailPageProps> = ({
                         <td className="p-4 text-slate-500 font-mono text-xs">{kra.weight || '—'}</td>
                         <td className="p-4">
                           <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
-                            {kra.target}
+                            {kra.target || '—'}
                           </span>
                         </td>
                         <td className="p-4 text-slate-500 font-mono text-xs">{kra.frequency || '—'}</td>
@@ -405,7 +405,7 @@ export const RoleDetailPage: React.FC<RoleDetailPageProps> = ({
                   <td className="p-2.5 font-bold border-r border-slate-200">{kra.outcomeArea}</td>
                   <td className="p-2.5 border-r border-slate-200">{kra.metric}</td>
                   <td className="p-2.5 border-r border-slate-200">{kra.weight || '—'}</td>
-                  <td className="p-2.5 font-bold border-r border-slate-200">{kra.target}</td>
+                  <td className="p-2.5 font-bold border-r border-slate-200">{kra.target || '—'}</td>
                   <td className="p-2.5 border-r border-slate-200">{kra.frequency || '—'}</td>
                   <td className="p-2.5 text-slate-600">{kra.sourceData || '—'}</td>
                 </tr>
