@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/95 dark:bg-slate-950/95 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
+      <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo (Official Taazaa SVG from taazaa.com) */}

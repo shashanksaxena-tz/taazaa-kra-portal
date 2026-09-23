@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin }) => {
 
   return (
     <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors print:hidden">
-      <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-12">
+      <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Col 1: Taazaa Brand */}

@@ -220,7 +220,7 @@ export const AdminPanel: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-10 text-left">
+    <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 py-8 sm:py-10 text-left">
       
       {/* Top Banner */}
       <div className="p-6 sm:p-10 rounded-3xl bg-slate-900 text-white shadow-xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

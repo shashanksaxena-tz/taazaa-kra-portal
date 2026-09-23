@@ -78,7 +78,7 @@ export const RoleGrid: React.FC<RoleGridProps> = ({ onSelectRole }) => {
   const activeDeptObj = portalData.departments.find((d) => d.id === activeDepartmentId);
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 pb-20">
+    <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 pb-20">
       {/* Grid Header Info */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>

@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
       <div className="absolute top-0 right-10 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-accent-cyan/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
+      <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10">
         
         {/* Historical Version Time-Travel Notice Banner (Admin Only) */}
         {adminSession.isAuthenticated && isHistoricalVersion && (

@@ -27,7 +27,7 @@ export const RaciMatrixView: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-10">
+    <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 py-10">
       {/* Header Banner */}
       <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-brand-500/10 via-indigo-500/5 to-slate-50 dark:from-slate-900 dark:to-slate-950 border border-slate-200/80 dark:border-slate-800 mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

@@ -4,7 +4,7 @@ import { Navbar } from './components/ui/Navbar';
 import { HeroSection } from './components/ui/HeroSection';
 import { DepartmentTabs } from './components/kras/DepartmentTabs';
 import { RoleGrid } from './components/kras/RoleGrid';
-import { RoleDetailModal } from './components/kras/RoleDetailModal';
+import { RoleDetailPage } from './components/kras/RoleDetailPage';
 import { RoleComparatorModal } from './components/kras/RoleComparatorModal';
 import { AdminPanel } from './components/admin/AdminPanel';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
@@ -48,44 +48,45 @@ const MainPortalContent: React.FC = () => {
         onOpenCompareModal={() => setIsCompareModalOpen(true)}
       />
 
-      <main className="flex-1 print:hidden">
-        {activeTab === 'home' && <HomePage onSelectRole={handleSelectRole} />}
+      {selectedRole ? (
+        <main className="flex-1">
+          <RoleDetailPage
+            role={selectedRole}
+            department={selectedDepartment}
+            onClose={() => setSelectedRole(null)}
+            onOpenAdminEdit={handleEditInAdmin}
+          />
+        </main>
+      ) : (
+        <main className="flex-1 print:hidden">
+          {activeTab === 'home' && <HomePage onSelectRole={handleSelectRole} />}
 
-        {activeTab === 'roles' && activeSubTab === 'charters' && (
-          <>
-            <HeroSection />
-            <DepartmentTabs />
-            <RoleGrid onSelectRole={handleSelectRole} />
-          </>
-        )}
+          {activeTab === 'roles' && activeSubTab === 'charters' && (
+            <>
+              <HeroSection />
+              <DepartmentTabs />
+              <RoleGrid onSelectRole={handleSelectRole} />
+            </>
+          )}
 
-        {activeTab !== 'admin' && activeTab !== 'home' && !(activeTab === 'roles' && activeSubTab === 'charters') && (() => {
-          const key = `${activeTab}.${activeSubTab}`;
-          const Registered = SECTION_REGISTRY[key];
-          if (Registered) return <Registered />;
-          const subTab = getSection(activeTab).subTabs.find((s) => s.id === activeSubTab);
-          return (
-            <EmptyState
-              title={subTab?.label ?? 'Not documented yet'}
-              description={subTab?.emptyDescription}
-            />
-          );
-        })()}
+          {activeTab !== 'admin' && activeTab !== 'home' && !(activeTab === 'roles' && activeSubTab === 'charters') && (() => {
+            const key = `${activeTab}.${activeSubTab}`;
+            const Registered = SECTION_REGISTRY[key];
+            if (Registered) return <Registered />;
+            const subTab = getSection(activeTab).subTabs.find((s) => s.id === activeSubTab);
+            return (
+              <EmptyState
+                title={subTab?.label ?? 'Not documented yet'}
+                description={subTab?.emptyDescription}
+              />
+            );
+          })()}
 
-        {activeTab === 'admin' && <AdminPanel />}
-      </main>
+          {activeTab === 'admin' && <AdminPanel />}
+        </main>
+      )}
 
       <Footer onOpenAdminLogin={() => setIsAdminLoginOpen(true)} />
-
-      {/* Role Detail Modal */}
-      {selectedRole && (
-        <RoleDetailModal
-          role={selectedRole}
-          department={selectedDepartment}
-          onClose={() => setSelectedRole(null)}
-          onOpenAdminEdit={handleEditInAdmin}
-        />
-      )}
 
       {/* Role Comparator Modal */}
       <RoleComparatorModal

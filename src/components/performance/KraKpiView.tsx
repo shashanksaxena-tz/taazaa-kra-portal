@@ -13,7 +13,7 @@ export const KraKpiView: React.FC = () => {
   }
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-10">
+    <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 py-10">
       <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-8">KRA &amp; KPI by Role</h1>
       <div className="space-y-8">
         {rolesWithKras.map(({ department, role }) => (

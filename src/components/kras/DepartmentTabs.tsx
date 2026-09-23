@@ -60,7 +60,7 @@ export const DepartmentTabs: React.FC = () => {
   const totalFilteredCount = getFilteredCount('all');
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 mt-10 mb-8">
+    <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 mt-10 mb-8">
       
       {/* Section Header */}
       <div className="flex items-center justify-between mb-4">

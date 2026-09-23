@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { RoleDetailModal } from './RoleDetailModal';
+import { RoleDetailPage } from './RoleDetailPage';
 import { useKRA } from '../../context/KRAContext';
 import type { RoleCharter, Department } from '../../types';
 
@@ -42,9 +42,14 @@ beforeEach(() => {
   } as never);
 });
 
-describe('RoleDetailModal print structure', () => {
+describe('RoleDetailPage', () => {
+  it('renders as an in-page section, not a fixed overlay drawer', () => {
+    const { container } = render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
+    expect(container.querySelector('.fixed')).toBeNull();
+  });
+
   it('renders the print-only charter block with full role content', () => {
-    const { container } = render(<RoleDetailModal role={role} department={department} onClose={vi.fn()} />);
+    const { container } = render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
 
     const printBlocks = container.querySelectorAll('[class*="print:block"], [class*="hidden print"]');
     expect(printBlocks.length).toBeGreaterThan(0);
@@ -53,33 +58,35 @@ describe('RoleDetailModal print structure', () => {
     expect(printText).toContain('Quality');
   });
 
-  it('hides the interactive drawer when printing (print:hidden)', () => {
-    const { container } = render(<RoleDetailModal role={role} department={department} onClose={vi.fn()} />);
+  it('hides the interactive view when printing (print:hidden)', () => {
+    const { container } = render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
     expect(container.querySelector('[class*="print:hidden"]')).not.toBeNull();
   });
 
   it('Export PDF triggers window.print', () => {
     const printSpy = vi.spyOn(window, 'print').mockImplementation(() => {});
-    render(<RoleDetailModal role={role} department={department} onClose={vi.fn()} />);
-    const exportBtn = screen.getAllByRole('button', { name: /export pdf/i })[0];
+    render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
+    const exportBtn = screen.getAllByRole('button', { name: /print/i })[0];
     fireEvent.click(exportBtn);
     expect(printSpy).toHaveBeenCalledOnce();
     printSpy.mockRestore();
   });
 
-  it('calls onClose when the close button is clicked', () => {
+  it('calls onClose when the breadcrumb back link is clicked', () => {
     const onClose = vi.fn();
-    const { container } = render(<RoleDetailModal role={role} department={department} onClose={onClose} />);
-    const closeBtn = [...container.querySelectorAll('button')].find((b) =>
-      b.querySelector('.lucide-x')
-    );
-    fireEvent.click(closeBtn!);
+    render(<RoleDetailPage role={role} department={department} onClose={onClose} />);
+    fireEvent.click(screen.getByRole('button', { name: /roles/i }));
     expect(onClose).toHaveBeenCalledOnce();
   });
 
   it('renders no bare quote marks when the role has no documented mission', () => {
     const roleWithoutMission = { ...role, mission: '', summary: '' } as RoleCharter;
-    const { container } = render(<RoleDetailModal role={roleWithoutMission} department={department} onClose={vi.fn()} />);
+    const { container } = render(<RoleDetailPage role={roleWithoutMission} department={department} onClose={vi.fn()} />);
     expect(container.textContent).not.toContain('""');
+  });
+
+  it('does not render a Career Ladder tab (career-path chain is unverified against source docs)', () => {
+    render(<RoleDetailPage role={role} department={department} onClose={vi.fn()} />);
+    expect(screen.queryByText(/career ladder/i)).toBeNull();
   });
 });

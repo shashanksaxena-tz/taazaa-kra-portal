@@ -112,11 +112,11 @@ export const RolePreviewPanel: React.FC<RolePreviewPanelProps> = ({ onSelectRole
       {tabs.length === 0 ? (
         <div className="p-6 text-sm text-slate-400">No documented content available for a preview yet.</div>
       ) : (
-        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="p-6 space-y-6">
           {hasAccountabilities && (
             <div>
               <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-3">What You Own</h4>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5">
                 {featured.accountabilities.slice(0, 6).map((item, i) => (
                   <li key={i} className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex gap-2">
                     <span className="text-brand-500 mt-0.5">•</span> <span>{item}</span>
@@ -128,33 +128,47 @@ export const RolePreviewPanel: React.FC<RolePreviewPanelProps> = ({ onSelectRole
           {hasKras && (
             <div>
               <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-3">How Success is Measured (KRA &amp; KPI)</h4>
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="text-left text-slate-400 border-b border-slate-100 dark:border-slate-800">
-                    <th className="pb-2 pr-3 font-semibold">KRA</th>
-                    <th className="pb-2 pr-3 font-semibold">KPI</th>
-                    <th className="pb-2 pr-3 font-semibold">Weight</th>
-                    <th className="pb-2 font-semibold">Target</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {visibleKras.map((m, i) => (
-                    <tr key={i} className="border-b border-slate-50 dark:border-slate-800/60 text-slate-600 dark:text-slate-300">
-                      <td className="py-2 pr-3">{m.outcomeArea}</td>
-                      <td className="py-2 pr-3">{m.metric}</td>
-                      <td className="py-2 pr-3">{m.weight || '—'}</td>
-                      <td className="py-2 font-semibold text-slate-900 dark:text-white">{m.target || '—'}</td>
+              <div className="overflow-x-auto -mx-1">
+                <table className="w-full text-xs table-fixed min-w-[560px] px-1">
+                  <colgroup>
+                    <col className="w-[20%]" />
+                    <col className="w-[28%]" />
+                    <col className="w-[12%]" />
+                    <col className="w-[40%]" />
+                  </colgroup>
+                  <thead>
+                    <tr className="text-left text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                      <th className="pb-2 pr-3 font-semibold">KRA</th>
+                      <th className="pb-2 pr-3 font-semibold">KPI</th>
+                      <th className="pb-2 pr-3 font-semibold">Weight</th>
+                      <th className="pb-2 font-semibold">Target</th>
                     </tr>
-                  ))}
-                  {weightTotal !== null && (
-                    <tr className="text-slate-900 dark:text-white font-bold">
-                      <td className="py-2 pr-3" colSpan={2}>Total</td>
-                      <td className="py-2 pr-3">{weightTotal}%</td>
-                      <td className="py-2" />
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {visibleKras.map((m, i) => (
+                      <tr key={i} className="border-b border-slate-50 dark:border-slate-800/60 text-slate-600 dark:text-slate-300 align-top">
+                        <td className="py-2.5 pr-3" title={m.outcomeArea}>
+                          <span className="line-clamp-2">{m.outcomeArea}</span>
+                        </td>
+                        <td className="py-2.5 pr-3" title={m.metric}>
+                          <span className="line-clamp-2">{m.metric}</span>
+                        </td>
+                        <td className="py-2.5 pr-3">{m.weight || '—'}</td>
+                        <td className="py-2.5 font-semibold text-slate-900 dark:text-white" title={m.target}>
+                          <span className="line-clamp-2">{m.target || '—'}</span>
+                        </td>
+                      </tr>
+                    ))}
+                    {weightTotal !== null && (
+                      <tr className="text-slate-900 dark:text-white font-bold">
+                        <td className="py-2.5 pr-3" colSpan={2}>Total</td>
+                        <td className="py-2.5 pr-3">{weightTotal}%</td>
+                        <td className="py-2.5" />
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
