@@ -39,55 +39,48 @@ export const HeroPanel: React.FC = () => {
 
       <div className="relative aspect-[4/3]">
         <svg viewBox="0 0 400 300" className="w-full h-full" aria-hidden="true">
-          <defs>
-            <radialGradient id="heroGlow" cx="55%" cy="45%" r="60%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.14" />
-              <stop offset="55%" stopColor="#6366F1" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <rect x="0" y="0" width="400" height="300" fill="url(#heroGlow)" />
-
           {/* Ground shadows */}
-          <ellipse cx="95" cy="255" rx="60" ry="10" fill="#0f172a" opacity="0.06" />
-          <ellipse cx="220" cy="270" rx="70" ry="11" fill="#0f172a" opacity="0.06" />
-          <ellipse cx="330" cy="240" rx="45" ry="9" fill="#0f172a" opacity="0.06" />
+          <ellipse cx="95" cy="253" rx="58" ry="9" fill="#0f172a" opacity="0.07" />
+          <ellipse cx="222" cy="268" rx="68" ry="10" fill="#0f172a" opacity="0.07" />
+          <ellipse cx="328" cy="238" rx="42" ry="8" fill="#0f172a" opacity="0.07" />
 
           {/* Ascending platform blocks */}
-          <rect x="40" y="190" width="110" height="60" rx="10" fill="#A7F3D0" />
-          <rect x="150" y="140" width="110" height="110" rx="12" fill="#6366F1" opacity="0.85" />
-          <rect x="270" y="170" width="90" height="80" rx="10" fill="#10B981" />
+          <rect x="40" y="192" width="110" height="58" rx="12" fill="#A7F3D0" />
+          <rect x="150" y="138" width="112" height="112" rx="14" fill="#6366F1" />
+          <rect x="272" y="172" width="88" height="78" rx="12" fill="#10B981" />
 
-          {/* Plants */}
-          <g opacity="0.9">
-            <path d="M28 200 Q18 180 30 165 Q42 182 32 202 Z" fill="#059669" />
-            <path d="M22 208 Q6 196 8 176 Q28 186 26 210 Z" fill="#34D399" />
-          </g>
-          <g opacity="0.9">
-            <path d="M370 195 Q360 176 372 160 Q384 178 374 197 Z" fill="#059669" />
-          </g>
+          {/* Plants — left */}
+          <path d="M20 214 Q9 196 18 178 Q31 197 24 216 Z" fill="#059669" />
+          <path d="M12 220 Q-3 206 1 186 Q19 198 18 222 Z" fill="#34D399" />
+          {/* Plants — right */}
+          <path d="M378 208 Q367 190 376 172 Q389 191 382 210 Z" fill="#059669" />
+          <path d="M370 214 Q356 200 360 180 Q378 192 376 216 Z" fill="#34D399" />
 
           {/* Person 1 — seated with laptop, left block */}
-          <g transform="translate(95,175)">
-            <ellipse cx="0" cy="46" rx="16" ry="6" fill="#0f172a" opacity="0.08" />
-            <rect x="-14" y="10" width="28" height="30" rx="10" fill="#10B981" />
-            <circle cx="0" cy="-4" r="12" fill="#FDE9DD" />
-            <rect x="-16" y="30" width="32" height="14" rx="4" fill="#0f172a" opacity="0.75" />
+          <g transform="translate(95,178)">
+            <ellipse cx="0" cy="52" rx="19" ry="6" fill="#0f172a" opacity="0.08" />
+            <path d="M-15 20 Q-15 6 0 6 Q15 6 15 20 L15 40 L-15 40 Z" fill="#059669" />
+            <circle cx="0" cy="-8" r="13" fill="#FBCFA0" />
+            <path d="M-13 -12 Q-13 -24 0 -24 Q13 -24 13 -12 Q13 -18 0 -18 Q-13 -18 -13 -12 Z" fill="#1E293B" />
+            <rect x="-18" y="30" width="36" height="16" rx="3" fill="#1E293B" />
+            <rect x="-15" y="20" width="30" height="12" rx="2" fill="#334155" />
           </g>
 
           {/* Person 2 — standing, passing the cube, center */}
-          <g transform="translate(198,120)">
-            <ellipse cx="0" cy="66" rx="17" ry="6" fill="#0f172a" opacity="0.08" />
-            <rect x="-15" y="8" width="30" height="52" rx="11" fill="#4338CA" />
-            <circle cx="0" cy="-8" r="13" fill="#FDE9DD" />
-            <rect x="10" y="18" width="22" height="22" rx="5" fill="#F0ABFC" transform="rotate(18 10 18)" />
+          <g transform="translate(196,118)">
+            <ellipse cx="0" cy="72" rx="20" ry="6" fill="#0f172a" opacity="0.08" />
+            <path d="M-17 20 Q-17 4 0 4 Q17 4 17 20 L17 62 L-17 62 Z" fill="#4338CA" />
+            <circle cx="0" cy="-14" r="14" fill="#FBCFA0" />
+            <path d="M-14 -18 Q-14 -31 0 -31 Q14 -31 14 -18 Q14 -25 0 -25 Q-14 -25 -14 -18 Z" fill="#1E293B" />
+            <rect x="12" y="12" width="24" height="24" rx="5" fill="#A78BFA" transform="rotate(20 12 12)" />
           </g>
 
           {/* Person 3 — receiving, right block */}
-          <g transform="translate(305,140)">
-            <ellipse cx="0" cy="62" rx="16" ry="6" fill="#0f172a" opacity="0.08" />
-            <rect x="-14" y="6" width="28" height="50" rx="10" fill="#7C3AED" />
-            <circle cx="0" cy="-9" r="12" fill="#FDE9DD" />
+          <g transform="translate(305,142)">
+            <ellipse cx="0" cy="64" rx="18" ry="6" fill="#0f172a" opacity="0.08" />
+            <path d="M-16 18 Q-16 2 0 2 Q16 2 16 18 L16 56 L-16 56 Z" fill="#7C3AED" />
+            <circle cx="0" cy="-16" r="13" fill="#FBCFA0" />
+            <path d="M-13 -20 Q-13 -33 0 -33 Q13 -33 13 -20 Q13 -27 0 -27 Q-13 -27 -13 -20 Z" fill="#1E293B" />
           </g>
         </svg>
       </div>

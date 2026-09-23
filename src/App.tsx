@@ -10,7 +10,6 @@ import { AdminPanel } from './components/admin/AdminPanel';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { ToastContainer } from './components/ui/ToastContainer';
 import { Footer } from './components/ui/Footer';
-import { TaazaaBackgroundLayer } from './components/ui/TaazaaBackgroundLayer';
 import { RoleCharter } from './types';
 import { getSection } from './config/navigation';
 import { SECTION_REGISTRY } from './components/sections/registry';
@@ -43,8 +42,7 @@ const MainPortalContent: React.FC = () => {
     : portalData.departments[0];
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-slate-50/70 dark:bg-[#07091E] text-slate-900 dark:text-slate-100 transition-colors">
-      <TaazaaBackgroundLayer />
+    <div className="relative min-h-screen flex flex-col bg-white dark:bg-[#07091E] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar
         onOpenAdminLogin={() => setIsAdminLoginOpen(true)}
         onOpenCompareModal={() => setIsCompareModalOpen(true)}

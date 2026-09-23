@@ -4,8 +4,6 @@ import { NAVIGATION, SectionId } from '../../config/navigation';
 import {
   GitCompare,
   ShieldCheck,
-  Lock,
-  LogOut,
   Sun,
   Moon,
   Menu,
@@ -154,15 +152,48 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
             <button
               onClick={adminSession.isAuthenticated ? logoutAdmin : onOpenAdminLogin}
               title={adminSession.isAuthenticated ? `Signed in as ${adminSession.username} — click to log out` : 'Admin sign in'}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-500/15 text-brand-700 dark:text-brand-300 hover:bg-brand-500/25 transition-colors"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-500/15 text-brand-700 dark:text-brand-300 hover:bg-brand-500/25 transition-colors text-[11px] font-bold"
             >
-              <UserCircle2 className="w-5 h-5" />
+              {adminSession.isAuthenticated && adminSession.username
+                ? adminSession.username
+                    .split(' ')
+                    .map((w) => w[0])
+                    .slice(0, 2)
+                    .join('')
+                    .toUpperCase()
+                : <UserCircle2 className="w-5 h-5" />}
             </button>
 
-            <span className="hidden lg:inline-block w-px h-6 bg-slate-200 dark:bg-slate-700" />
+            {/* Compare Trigger */}
+            <button
+              onClick={onOpenCompareModal}
+              aria-label="Compare roles"
+              title="Compare roles"
+              className={`relative p-2 rounded-full transition-colors ${
+                comparisonRoles.length > 0
+                  ? 'text-brand-600 dark:text-brand-400 bg-brand-500/10'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              <GitCompare className="w-[18px] h-[18px]" />
+              {comparisonRoles.length > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-black text-white bg-brand-600 rounded-full">
+                  {comparisonRoles.length}
+                </span>
+              )}
+            </button>
 
-            {/* Version Display: Interactive for Admin only; Read-Only badge for Public employees */}
-            {adminSession.isAuthenticated ? (
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              aria-label="Toggle Theme"
+              className="p-2 rounded-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              {isDarkMode ? <Sun className="w-[18px] h-[18px] text-amber-400" /> : <Moon className="w-[18px] h-[18px]" />}
+            </button>
+
+            {/* Admin-only: version switcher + admin mode indicator */}
+            {adminSession.isAuthenticated && (
               <div className="relative">
                 <button
                   onClick={() => setIsVersionDropdownOpen(!isVersionDropdownOpen)}
@@ -239,73 +270,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                   )}
                 </AnimatePresence>
               </div>
-            ) : (
-              // Public View: Clean Read-only Active Version Badge
-              <div 
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[11px] font-bold text-slate-600 dark:text-slate-400 select-none"
-                title={`Active Governance Version: ${activeVersion?.name || activeVersionId}`}
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="font-mono">{activeVersion?.versionNumber || portalData.version || activeVersionId}</span>
-              </div>
             )}
 
-            {/* Compare Trigger */}
-            <button
-              onClick={onOpenCompareModal}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all active:scale-[0.96] ${
-                comparisonRoles.length > 0
-                  ? 'bg-brand-50 dark:bg-brand-950/40 border-brand-500 text-brand-600 dark:text-brand-400 shadow-sm'
-                  : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
-              }`}
-            >
-              <GitCompare className="w-4 h-4 text-brand-500" />
-              <span className="hidden sm:inline">Compare</span>
-              {comparisonRoles.length > 0 && (
-                <span className="flex items-center justify-center w-5 h-5 text-xs font-black text-white bg-brand-600 rounded-full">
-                  {comparisonRoles.length}
-                </span>
-              )}
-            </button>
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              aria-label="Toggle Theme"
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition-colors active:scale-[0.92]"
-            >
-              {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-            </button>
-
-            {/* Admin Portal Button */}
-            {adminSession.isAuthenticated ? (
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => setActiveTab('admin')}
-                  className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all active:scale-[0.96] ${
-                    activeTab === 'admin'
-                      ? 'bg-emerald-600 text-white shadow-md'
-                      : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
-                  }`}
-                >
-                  <ShieldCheck className="w-4 h-4" />
-                  <span className="hidden sm:inline">Admin Mode</span>
-                </button>
-                <button
-                  onClick={logoutAdmin}
-                  title="Logout from Admin"
-                  className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors active:scale-[0.92]"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
+            {/* Admin mode indicator (shown only once signed in — avatar handles sign-in/out) */}
+            {adminSession.isAuthenticated && (
               <button
-                onClick={onOpenAdminLogin}
-                className="btn-primary !px-3 sm:!px-5 !py-2 sm:!py-2.5 text-xs sm:text-sm"
+                onClick={() => setActiveTab('admin')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all active:scale-[0.96] ${
+                  activeTab === 'admin'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                }`}
               >
-                <Lock className="w-3.5 h-3.5" />
-                <span className="hidden xs:inline">Admin Login</span>
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Admin Mode</span>
               </button>
             )}
 
