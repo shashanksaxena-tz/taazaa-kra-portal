@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           <nav className="hidden md:flex items-center gap-6 lg:gap-7">
             <button
               onClick={() => setActiveTab('home')}
-              className={`pb-1 text-sm font-semibold border-b-2 transition-colors ${
+              className={`pb-1 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ${
                 activeTab === 'home'
                   ? 'text-brand-600 dark:text-brand-400 border-brand-500'
                   : 'text-slate-600 dark:text-slate-300 border-transparent hover:text-slate-900 dark:hover:text-white'
@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
                 >
                   <button
                     onClick={() => setActiveTab(section.id)}
-                    className={`pb-1 text-sm font-semibold border-b-2 transition-colors ${
+                    className={`pb-1 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ${
                       isActive
                         ? 'text-brand-600 dark:text-brand-400 border-brand-500'
                         : 'text-slate-600 dark:text-slate-300 border-transparent hover:text-slate-900 dark:hover:text-white'

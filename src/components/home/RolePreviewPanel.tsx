@@ -91,12 +91,12 @@ export const RolePreviewPanel: React.FC<RolePreviewPanelProps> = ({ onSelectRole
         )}
 
         {tabs.length > 0 && (
-          <div className="flex items-center gap-6 mt-5 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-6 mt-5 border-b border-slate-100 dark:border-slate-800 overflow-x-auto">
             {tabs.map((tab, i) => (
               <button
                 key={tab.label}
                 onClick={() => onSelectRole(featured)}
-                className={`pb-3 text-sm font-semibold border-b-2 -mb-px transition-colors ${
+                className={`pb-3 text-sm font-semibold whitespace-nowrap shrink-0 border-b-2 -mb-px transition-colors ${
                   i === 0
                     ? 'text-brand-600 dark:text-brand-400 border-brand-500'
                     : 'text-slate-500 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'

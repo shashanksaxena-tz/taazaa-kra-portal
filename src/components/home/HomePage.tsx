@@ -25,8 +25,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectRole }) => {
 
       <StatsRow />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-2">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-2">
+        <div>
           <QuickActionsRow />
           <ExploreByFunctionGrid />
         </div>
