@@ -1813,35 +1813,40 @@
               "metric": "# of UAT queries from stakeholders (Count)",
               "target": "UAT query rate ≤ 10% of total stories per sprint",
               "sourceData": "JIRA logs",
-              "frequency": "Per sprint"
+              "frequency": "Per sprint",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Effective Collaboration with Teams",
               "metric": "# of dev flags during sprint (Count)",
               "target": "Dev flags during sprints reduced to < 10% per sprint",
               "sourceData": "Logged by dev team",
-              "frequency": "Per sprint"
+              "frequency": "Per sprint",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Requirement Defect Leakage Rate",
               "metric": "Requirement Defect Leakage Rate (%)",
               "target": "Requirement Defect Leakage Rate ≤ 10%",
               "sourceData": "JIRA bug root cause analysis (tagged)",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Agile Process Efficiency",
               "metric": "Sprint Readiness Rate (%)",
               "target": "90% sprint stories signed off before the upcoming 2 sprints (\"Upcoming\" = the sprint about to start and the next one)",
               "sourceData": "",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Maintain complete documentation and stakeholder alignment",
               "metric": "% of meetings documented with MoM and communicated to stakeholders",
               "target": "100% of meetings documented with MoM (Loop) and communicated to stakeholders via email",
               "sourceData": "Loop (MoM)",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             }
           ],
           "careerPath": {
@@ -1900,35 +1905,40 @@
               "metric": "% of prioritized backlog items linked to Business Goals.",
               "target": "90%+ of backlog items tagged to business OKRs",
               "sourceData": "JIRA",
-              "frequency": ""
+              "frequency": "",
+              "weight": "30%"
             },
             {
               "outcomeArea": "Agile Readiness",
               "metric": "Number of upcoming sprints with validated requirements. Signed-off sprints.",
               "target": "90% sprint stories signed off before the upcoming 2 sprints (\"Upcoming\" = the sprint about to start and the next one)",
               "sourceData": "",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Value Realization",
               "metric": "Post-release improvement in key metrics.",
               "target": "75% of releases show ≥5% improvement in key product metrics (e.g., NPS, drop-offs)",
               "sourceData": "",
-              "frequency": ""
+              "frequency": "",
+              "weight": "25%"
             },
             {
               "outcomeArea": "Execution Reliability",
               "metric": "Roadmap milestone adherence rate",
               "target": "R% of roadmap milestones delivered on time and within scope",
               "sourceData": "",
-              "frequency": ""
+              "frequency": "",
+              "weight": "15%"
             },
             {
               "outcomeArea": "Support team development and process maturity",
               "metric": "Mentor 2+ BAs per quarter with documented feedback sessions",
               "target": "Mentor 2+ BAs per quarter",
               "sourceData": "Documented feedback sessions",
-              "frequency": "Quarterly"
+              "frequency": "Quarterly",
+              "weight": "10%"
             }
           ],
           "careerPath": {
@@ -1995,7 +2005,8 @@
               "metric": "Stakeholder Confidence Index",
               "target": "≥ 4.2",
               "sourceData": "Surveyed quarterly",
-              "frequency": "Quarterly"
+              "frequency": "Quarterly",
+              "weight": "10%"
             },
             {
               "outcomeArea": "Strategic Execution",
@@ -2009,7 +2020,8 @@
               "metric": "Product Adoption/Impact",
               "target": "80% of funded initiatives meet their adoption/revenue goal within 1–2 quarters",
               "sourceData": "Documented ROI model (90% of product proposals evaluated with documented ROI model)",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Team Leadership",
@@ -2023,7 +2035,8 @@
               "metric": "Roadmap Execution Efficiency",
               "target": "≥ 85% of roadmap items delivered per quarter",
               "sourceData": "",
-              "frequency": "Quarterly"
+              "frequency": "Quarterly",
+              "weight": "10%"
             }
           ],
           "careerPath": {
@@ -2095,14 +2108,16 @@
               "metric": "Stakeholder Confidence Index",
               "target": "≥ 4.0 / 5.0",
               "sourceData": "Quarterly survey",
-              "frequency": "Quarterly"
+              "frequency": "Quarterly",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Strategic Execution",
               "metric": "Business Goal Attainment Rate",
               "target": "≥ 75% of PM's own OKRs met per quarter",
               "sourceData": "Keka",
-              "frequency": "Quarterly"
+              "frequency": "Quarterly",
+              "weight": "30%"
             },
             {
               "outcomeArea": "Market Impact",
@@ -2130,14 +2145,16 @@
               "metric": "% of backlog stories scored using RICE/ICE framework",
               "target": "75% of backlog stories scored using RICE/ICE framework",
               "sourceData": "",
-              "frequency": ""
+              "frequency": "",
+              "weight": "20%"
             },
             {
               "outcomeArea": "Prioritize high-impact features based on data",
               "metric": "Data-led prioritization conflicts resolved",
               "target": "Document 2 data-led prioritization conflicts resolved/month",
               "sourceData": "",
-              "frequency": "Monthly"
+              "frequency": "Monthly",
+              "weight": "10%"
             }
           ],
           "careerPath": {

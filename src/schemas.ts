@@ -6,6 +6,7 @@ export const metricKraSchema = z.object({
   target: z.string().default(''),
   frequency: z.string().optional(),
   sourceData: z.string().optional(),
+  weight: z.string().optional(),
 });
 
 export const roleCharterSchema = z.object({

@@ -25,6 +25,7 @@ export const KraKpiView: React.FC = () => {
                 <tr className="text-left text-xs uppercase tracking-widest text-slate-500 border-b border-slate-200 dark:border-slate-800">
                   <th className="pb-2 pr-4">Outcome Area</th>
                   <th className="pb-2 pr-4">Metric</th>
+                  <th className="pb-2 pr-4">Weight</th>
                   <th className="pb-2 pr-4">Target</th>
                   <th className="pb-2 pr-4">Source</th>
                   <th className="pb-2">Frequency</th>
@@ -35,6 +36,7 @@ export const KraKpiView: React.FC = () => {
                   <tr key={i} className="border-b border-slate-100 dark:border-slate-800/60 text-slate-700 dark:text-slate-300">
                     <td className="py-2 pr-4">{m.outcomeArea}</td>
                     <td className="py-2 pr-4">{m.metric}</td>
+                    <td className="py-2 pr-4">{m.weight || '—'}</td>
                     <td className="py-2 pr-4">{m.target}</td>
                     <td className="py-2 pr-4">{m.sourceData}</td>
                     <td className="py-2">{m.frequency}</td>

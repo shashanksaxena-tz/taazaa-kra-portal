@@ -114,6 +114,7 @@ export const RolePreviewPanel: React.FC<RolePreviewPanelProps> = ({ onSelectRole
                   <tr className="text-left text-slate-400 border-b border-slate-100 dark:border-slate-800">
                     <th className="pb-1.5 pr-2 font-semibold">Outcome Area</th>
                     <th className="pb-1.5 pr-2 font-semibold">Metric</th>
+                    <th className="pb-1.5 pr-2 font-semibold">Weight</th>
                     <th className="pb-1.5 font-semibold">Target</th>
                   </tr>
                 </thead>
@@ -122,6 +123,7 @@ export const RolePreviewPanel: React.FC<RolePreviewPanelProps> = ({ onSelectRole
                     <tr key={i} className="border-b border-slate-50 dark:border-slate-800/60 text-slate-600 dark:text-slate-300">
                       <td className="py-1.5 pr-2">{m.outcomeArea}</td>
                       <td className="py-1.5 pr-2">{m.metric}</td>
+                      <td className="py-1.5 pr-2">{m.weight || '—'}</td>
                       <td className="py-1.5 font-semibold text-slate-900 dark:text-white">{m.target || '—'}</td>
                     </tr>
                   ))}

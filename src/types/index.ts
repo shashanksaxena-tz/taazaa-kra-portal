@@ -13,6 +13,8 @@ export interface MetricKRA {
   target: string;
   sourceData: string;
   frequency: string;
+  /** Weighting toward the role's overall KRA score, only when the source document states one explicitly. */
+  weight?: string;
 }
 
 export interface CompetencyGroup {
