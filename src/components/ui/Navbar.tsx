@@ -130,10 +130,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdminLogin, onOpenCompareM
           {/* Utility Actions & Version Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
 
-            {/* Search */}
+            {/* Search — jumps to the searchable Role Charters page (also reachable via Cmd+K / "/") */}
             <button
-              onClick={() => setActiveTab('home')}
-              aria-label="Search"
+              onClick={() => setActiveTab('roles', 'charters')}
+              aria-label="Search roles"
+              title="Search roles (Cmd+K)"
               className="p-2 rounded-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               <Search className="w-[18px] h-[18px]" />

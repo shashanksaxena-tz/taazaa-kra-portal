@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KRAProvider, useKRA } from './context/KRAContext';
 import { Navbar } from './components/ui/Navbar';
 import { HeroSection } from './components/ui/HeroSection';
@@ -40,6 +40,25 @@ const MainPortalContent: React.FC = () => {
   const selectedDepartment = selectedRole
     ? portalData.departments.find((d) => d.id === selectedRole.departmentId) || portalData.departments[0]
     : portalData.departments[0];
+
+  // Global search shortcut (Cmd+K / Ctrl+K / "/") — works from any page, not just
+  // once already on Roles > Charters, since Home (not Roles) is now the default view.
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const isTypingTarget =
+        e.target instanceof HTMLElement &&
+        (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable);
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setActiveTab('roles', 'charters');
+      } else if (e.key === '/' && !isTypingTarget) {
+        e.preventDefault();
+        setActiveTab('roles', 'charters');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setActiveTab]);
 
   return (
     <div className="relative min-h-screen flex flex-col bg-white dark:bg-[#07091E] text-slate-900 dark:text-slate-100 transition-colors">
